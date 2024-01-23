@@ -1,0 +1,91 @@
+.Customer{
+}
+
+
+.Customer-top-div{
+    display: flex;
+    justify-content: space-between;
+}
+
+.Customer-left-div{
+    width: 27%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+}
+.Customer-search-div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 60%;
+}
+.Customer-search-input{
+    width: 200px;
+    height: 25px;
+
+}
+.Customer-search-icon{
+    width: 20px;
+    height: 20px;
+}
+
+
+.Customer-right-div{
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+.Customer-btn-div{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+.Customer-btn{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 20px;
+    padding: 0px 20px;
+    border: none;
+    font-size: 16px;
+    background-color: var( --color-secondary);
+
+}
+.customer-btn-icon{
+    width: 18px;
+}
+
+
+.Customer-table-div{
+
+}
+
+
+
+
+
+
+
+.hide{
+    display: none;
+}
+
+
+.uptodown{
+    animation: uptodown .4s linear  0s;
+    position: absolute;
+    margin-top: -20px;
+}
+
+
+/* keyframes*/
+@keyframes uptodown {
+    0% { transform: translateY(-1000px);
+            opacity: 0; }
+    100% { transform: translateY(-100px);
+    opacity: 1; }
+}

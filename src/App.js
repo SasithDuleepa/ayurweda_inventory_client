@@ -1,23 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+
+import CreateNewRawItem from './inventory/pages/create new raw item/CreateNewRawItem';
+import CreateNewProduct from './inventory/pages/create new product/CreateNewProduct';
+import ProductView from './inventory/pages/product view/ProductView';
+import Customer from './inventory/pages/customer/Customer';
+
+import AddCustomer from './inventory/components/add customer/AddCustomer';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {/* <CreateNewRawItem/> */}
+      {/* <CreateNewProduct/> */}
+
+      {/* <AddCustomer/> */}
+
+      <Customer/>
+     
     </div>
   );
 }
