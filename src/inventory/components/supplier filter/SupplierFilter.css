@@ -1,0 +1,64 @@
+
+
+.SupplierFilter-main{
+    box-shadow: 0px 0px 41px 4px rgba(0,0,0,0.1);
+    height: 80vh;
+    width: 400px;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    right: 1px;
+    z-index: 1;
+    padding: 10px;
+}
+.SupplierFilter-main-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.SupplierFilter-close-btn{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+}
+.SupplierFilter-close-icon{
+    width: 22px;
+    height: 22px;
+}
+.SupplierFilter-main-top-title{
+
+}
+
+.SupplierFilter-form-div{
+    margin: 10px;
+}
+.SupplierFilter-form{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    margin: 20px auto;
+}
+.SupplierFilter-form-input{
+    height: 30px;
+}
+
+.SupplierFilter-btn-div{
+    display: flex;
+    justify-content: space-around;
+}
+.SupplierFilter-btn-1{
+    padding: 10px 30px;
+    border: none;
+    background-color:var(--blue) ;
+    border-radius: 5px;
+}
+.SupplierFilter-btn-2{
+    padding: 10px 30px;
+    border: none;
+    background-color:var(--color-secondary) ;
+    border-radius: 5px;
+}

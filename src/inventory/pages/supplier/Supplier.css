@@ -1,36 +1,36 @@
-.Customer{
+.Supplier{
 }
 
 
-.Customer-top-div{
+.Supplier-top-div{
     display: flex;
     justify-content: space-between;
 }
 
-.Customer-left-div{
+.Supplier-left-div{
     width: 27%;
     height: 100px;
     display: flex;
     justify-content: center;
 }
-.Customer-search-div{
+.Supplier-search-div{
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 60%;
 }
-.Customer-search-input{
+.Supplier-search-input{
     width: 200px;
     height: 25px;
 
 }
-.Customer-search-icon{
+.Supplier-search-icon{
     width: 20px;
     height: 20px;
 }
 
 
-.Customer-right-div{
+.Supplier-right-div{
     width: 50%;
     display: flex;
     justify-content: space-around;
@@ -38,13 +38,13 @@
 }
 
 
-.Customer-btn-div{
+.Supplier-btn-div{
     display: flex;
     justify-content: space-around;
     align-items: center;
     width: 100%;
 }
-.Customer-btn{
+.Supplier-btn{
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -55,12 +55,12 @@
     background-color: var( --color-secondary);
 
 }
-.customer-btn-icon{
+.Supplier-btn-icon{
     width: 18px;
 }
 
 
-.Customer-table-div{
+.Supplier-table-div{
 
 }
 
@@ -79,7 +79,10 @@
     animation: uptodown .4s linear  0s;
     position: absolute;
     margin-top: -20px;
-    z-index: 1;
+}
+.righttoleft{
+    animation: righttoleft .4s linear   0s;
+
 }
 
 
@@ -88,5 +91,11 @@
     0% { transform: translateY(-1000px);
             opacity: 0; }
     100% { transform: translateY(-100px);
+    opacity: 1; }
+}
+@keyframes righttoleft {
+    0% { transform: translateX(100px);
+            opacity: 0; }
+    100% { transform: translateX(0px);
     opacity: 1; }
 }

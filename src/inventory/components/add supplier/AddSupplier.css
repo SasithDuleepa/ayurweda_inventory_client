@@ -1,0 +1,69 @@
+.AddSupplier{
+    background-color: rgba(70, 70, 70, 0.116);
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+.AddSupplier-main{
+    background-color: white;
+    padding:0px 10px 15px 10px;
+    width: 50%;
+    margin-top: 20px;
+    height: fit-content;
+}
+.AddSupplier-main-header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.AddSupplier-main-header-close{
+    width: 22px;
+    height: 22px;
+}
+
+
+.AddSupplier-form-div{
+    margin: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.AddSupplier-form{
+    /* background-color: aqua; */
+    width: 350px;
+    margin: 10px 5px;
+}
+.AddSupplier-form-sub{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+.AddSupplier-form-label{}
+.AddSupplier-form-input{
+    width: 220px;
+    height: 26px;
+}
+.AddSupplier-form-message{
+    font-size: 10px;
+    line-height: 1px;
+}
+
+
+.AddSupplier-btn-div{
+    width: 100%;
+    display: flex;
+    justify-content: right;
+}
+.AddSupplier-btn{
+    background-color: var(--color-secondary);
+    border: none;
+    padding: 10px 30px;
+    border-radius: 10px;
+    right: 10px;
+    font-weight: 600;
+
+}

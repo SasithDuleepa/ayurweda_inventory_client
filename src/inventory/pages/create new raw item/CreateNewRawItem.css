@@ -3,6 +3,17 @@
     height: 100%;
     padding: 1%;
 }
+.CreateNewRawItem-top-div{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.CreateNewRawItem-top-div-p{
+    margin-right: 5px;
+
+}
 
 .CreateNewRawItem-line-1{
 
@@ -16,7 +27,7 @@
 }
 .CreateNewRawItem-div-1-left{
     /* background-color: antiquewhite; */
-    width: 70%;
+    width: 100%;
 }
 .CreateNewRawItem-div-1-left-sub1{
     box-shadow: 0px 0px 41px 4px rgba(0,0,0,0.1);
@@ -35,13 +46,23 @@
     display: flex;
     
     flex-direction: column;
-    justify-content: center;
+
+ 
   width: 400px;
 
+}
+.CreateNewRawItem-div-1-left-form-select{
+    /* background-color: aqua; */
+    margin:15px 5px;
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: max-content;
 }
 .CreateNewRawItem-div-1-left-form-sub{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     gap: 10px;
 }
@@ -51,6 +72,8 @@
 .CreateNewRawItem-div-1-left-form-input{
     height: 25px;
     width: 300px;
+    background-color: var(--color-primary);
+    border: 1px solid rgb(141, 141, 141);
 }
 .CreateNewRawItem-div-1-left-form-message{
     font-size: 10px;
@@ -66,77 +89,24 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.CreateNewRawItem-div-1-right{
-    /* background-color: yellowgreen; */
-    width: 30%;
-}
-.CreateNewRawItem-div-1-right-sub{
-    /* background-color: blanchedalmond; */
-    box-shadow: 0px 0px 41px 4px rgba(0,0,0,0.1);
-    border-radius: 10px;
-    padding: 10px;
-    margin: 5px;
+.CreateNewRawItem-btn-div{
+    /* background-color: aqua; */
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 20px;
+    justify-content: end;
 
 }
-
-.CreateNewRawItem-div-1-right-add-img-div{
-    width: 70%;
-    max-height: 300px;
-    min-height: 300px;
-    border: 2px dotted black;
-    /* background-color: rgba(136, 136, 136, 0.489); */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.CreateNewRawItem-btn-1{
+    background-color: red;
 }
-.CreateNewRawItem-div-1-right-add-img-input{
-      position: absolute;
-  opacity: 0;
-  cursor: pointer;
-      
-
-    
-    }
-
-
-    .input-file-trigger {
-        display: block;
-        transition: all .4s;
-        cursor: pointer;
-        width: 95%;
-        height: 15rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-
-
-.CreateNewRawItem-div-1-right-add-img-icon{
-    width: 150px;
-    opacity: .3;
+.CreateNewRawItem-btn-2{
+    background-color: var(--color-secondary);
 }
+
+
+
+
+
+
+
+
+

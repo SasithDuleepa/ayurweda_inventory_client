@@ -2,6 +2,8 @@ import React from 'react';
 import './AddCustomer.css';
 import Close from '../../icons/close.png';
 
+import AddSupplier from '../add supplier/AddSupplier';
+
 export default function AddCustomer(props) {
   return (
     <div className ='AddCustomer'>
