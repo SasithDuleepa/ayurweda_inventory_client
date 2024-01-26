@@ -1,0 +1,40 @@
+
+
+
+.PurchaseRawStore-main{
+    box-shadow: 0px 0px 41px 4px rgba(0,0,0,0.1);
+    /* background-color: aliceblue; */
+    margin:10px;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 10px 5px;
+}
+
+.PurchaseRawStore-data-table{
+    background-color: antiquewhite;
+    width: 100%;
+    
+}
+.PurchaseRawStore-data-table-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+
+}
+.PurchaseRawStore-data-table-body{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+
+.PurchaseRawStore-btn-div{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: end;
+}

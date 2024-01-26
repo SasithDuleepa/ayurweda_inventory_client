@@ -8,15 +8,20 @@ import Customer from './inventory/pages/customer/Customer';
 import AddCustomer from './inventory/components/add customer/AddCustomer';
 import Supplier from './inventory/pages/supplier/Supplier';
 import AddSupplier from './inventory/components/add supplier/AddSupplier';
-import PurchaseRawView from './inventory/pages/purchase raw view/PurchaseRawView';
+
 import SupplierFilter from './inventory/components/supplier filter/SupplierFilter';
 
-import PurchaseRaw from './inventory/pages/purchase raw/PurchaseRaw';
+import PurchaseRaw from './inventory/pages/Raw items/purchase raw/PurchaseRaw'
+import PurchaseRawStore from './inventory/pages/Raw items/purchase Raw Store/PurchaseRawStore';
+import PurchaseRawLabReport from './inventory/pages/Raw items/purchase raw lab report/PurchaseRawLabReport';
+import PurchaseRawRelease from './inventory/pages/Raw items/purchase raw release/PurchaseRawRelease';
+import PurchaseRawView from './inventory/pages/Raw items/purchase raw view/PurchaseRawView';
 
-
+import Navigation from './inventory/components/navigation/navigation';
 function App() {
   return (
     <div>
+      <Navigation/>
 
 
 
@@ -29,6 +34,9 @@ function App() {
         <Route element={<CreateNewProduct/>} path="/create/product"/>
 
         <Route element={<PurchaseRaw/>} path="/purchase/raw"/>
+        <Route element={<PurchaseRawStore/>} path='/purchase/raw/store' />
+        <Route element={<PurchaseRawLabReport/>} path='/purchase/raw/labreport'/>
+        <Route element={<PurchaseRawRelease/>} path="/purchase/raw/release"/>
         <Route element={<PurchaseRawView/>} path="/purchase/raw/view"/>
 
 

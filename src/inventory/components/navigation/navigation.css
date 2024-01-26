@@ -1,0 +1,11 @@
+.Navigation{
+    display: flex;
+    flex-direction: column;
+    opacity: .1;
+    z-index: 2;
+    position: absolute;
+    &:hover{
+        opacity: 1;
+        background-color: aqua;
+    }
+}

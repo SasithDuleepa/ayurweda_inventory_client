@@ -1,11 +1,11 @@
 import React, { useState , useEffect } from 'react';
 import './PurchaseRaw.css';
-import DropDown from './../../icons/down-arrow.png';
-import AddSupplier from '../../components/add supplier/AddSupplier';
+import DropDown from './../../../icons/down-arrow.png';
+import AddSupplier from './../../../components/add supplier/AddSupplier';
 
 export default function PurchaseRaw() {
     const[addSupplier,setAddSupplier] = useState('hide');
-    const[selectItemDiv , setSelectItemDiv] = useState('PurchaseRaw-form-item-div-results-div-active')
+    const[selectItemDiv , setSelectItemDiv] = useState('PurchaseRaw-form-item-div-results-div-hide')
 
  //NewCustomerClassName btn
  const NewCustomerClassNameBtn = () => {
@@ -41,6 +41,10 @@ const ItemSearchBtn=()=>{
     else if(selectItemDiv === 'PurchaseRaw-form-item-div-results-div-active'){
         setSelectItemDiv('PurchaseRaw-form-item-div-results-div-hide')
     }
+}
+
+const NextHandler =() =>{
+    window.location.href='/purchase/raw/store'
 }
 
 
@@ -160,6 +164,7 @@ const ItemSearchBtn=()=>{
 
             <div className='PurchaseRaw-btn-div'>
                 <button className='btn PurchaseRaw-btn'>Submit</button>
+                <button className='btn PurchaseRaw-btn' onClick={NextHandler}>Next</button>
 
             </div>
         </div>

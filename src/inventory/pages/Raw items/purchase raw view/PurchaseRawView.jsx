@@ -25,7 +25,7 @@ export default function PurchaseRawView() {
                     <input className='form-input' type="date" />
                 </div>
                 <div className='PurchaseRawView-search-form'>
-                    <label className='sub_title'>start date</label>
+                    <label className='sub_title'>lab report</label>
                     <p className='sub_title'>:</p>
                     <input className='form-input' type="date" />
                 </div>
