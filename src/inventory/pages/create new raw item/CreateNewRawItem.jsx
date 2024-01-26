@@ -5,6 +5,8 @@ import DragAnddrop from './../../icons/drag-and-drop.png';
 import DropDown from './../../icons/down-arrow.png';
 import IdGenerate from '../../utils/IdGenerate';
 
+import axios from 'axios';
+
 
 import './CreateNewRawItem.css';
 
@@ -18,6 +20,7 @@ export default function CreateNewRawItem() {
     const[itemMeasureUnit, setItemMeasureUnit] = useState('Select Measure Unit');
     const[itemUnitPrice, setItemUnitPrice] = useState('');
     const[itemDescription, setItemDescription] = useState('');
+    const[date,setDate] = useState(currentDate);
 
     const[nameWarning, setNameWarning] = useState('');
     const[shortNameWarning, setShortNameWarning] = useState('');
@@ -25,6 +28,7 @@ export default function CreateNewRawItem() {
     const[dateWarning,setDateWarning] = useState('');
     const[measureUnitWarning, setMeasureUnitWarning] = useState('');
     const[descriptionWarning, setDescriptionWarning] = useState('');
+    const[unitPriceWarning, setUnitPriceWarning] = useState('');
 
 
 
@@ -70,7 +74,7 @@ const SelectHandler = (unit) =>{
             window.location.reload()
         }
 
-        const SubmitHandler = () =>{
+        const SubmitHandler =async () =>{
             if(itemName === ''){
                 setNameWarning('Item Name is required');
             }else{
@@ -101,8 +105,48 @@ const SelectHandler = (unit) =>{
                 setDescriptionWarning('');
             }
 
+            if(itemUnitPrice === ''){
+                setUnitPriceWarning('Item Unit Price is required');
+            }else{
+                setUnitPriceWarning('');
+            }
 
-            if(itemName !== '' && itemShortName !== '' && itemCode !== '' && itemMeasureUnit !== 'Select Measure Unit' && itemDescription !== ''){
+
+            if(itemName !== '' && itemShortName !== '' && itemCode !== '' && itemMeasureUnit !== 'Select Measure Unit' && itemUnitPrice!=='' && itemDescription !== ''){
+                try {
+                    const res = await axios.post('http://localhost:8080/raw/add' , {
+                    itemName,
+                    itemShortName,
+                    itemCode,
+                    itemMeasureUnit,
+                    itemUnitPrice,
+                    itemDescription,    
+                    user,
+                    date
+                })
+
+                if(res.status===200){
+                        window.alert('Item Added Successfully');
+                        window.location.reload()
+                }
+
+
+                } catch (error) {
+                if(error.response.status === 401){
+                    window.alert("Unauthorized");
+                }else if(error.response.status === 400){
+                    window.alert("All fields are required");
+                }else if(error.response.status === 500){
+                    window.alert("Internal server error");
+                 }else if(error.response.status === 409){
+                    window.alert("Item already exists");
+                 }
+                 else{
+                 window.alert("Error adding Item");
+                 }
+                }
+
+                
             }
         }
   return (
@@ -138,9 +182,9 @@ const SelectHandler = (unit) =>{
                     </div>
                     <div className='CreateNewRawItem-div-1-left-form'>
                         <div  className='CreateNewRawItem-div-1-left-form-sub'>
-                            <label className='sub_title CreateNewRawItem-div-1-left-form-label'>Item Code </label>
+                            <label className='sub_title CreateNewRawItem-div-1-left-form-label'>Item Id </label>
                             <p className='sub_title'>:</p>
-                            <input className='form-input' value={itemCode}/>
+                            <input className='form-input' value={itemCode} onChange={(e)=>setItemCode(e.target.value)}/>
                         </div>
                         <p className='warning'>{codeWarning}</p>
                     </div>
@@ -149,7 +193,7 @@ const SelectHandler = (unit) =>{
                         <div  className='CreateNewRawItem-div-1-left-form-sub'>
                             <label className='sub_title CreateNewRawItem-div-1-left-form-label'>Date </label>
                             <p className='sub_title'>:</p>
-                            <input className='form-input ' value={currentDate}/>
+                            <input className='form-input ' value={date} onChange={(e)=>setDate(e.target.value)}/>
                         </div>
                         <p className='warning'>{dateWarning}</p>
                     </div>
@@ -157,7 +201,7 @@ const SelectHandler = (unit) =>{
                         <div  className='CreateNewRawItem-div-1-left-form-sub'>
                             <label className='sub_title CreateNewRawItem-div-1-left-form-label'>User </label>
                             <p className='sub_title'>:</p>
-                            <input className='form-input ' value={user} disabled/>
+                            <input className='form-input ' value={user} onChange={()=>{}} disabled/>
                         </div>
                     </div>
                     <div className='CreateNewRawItem-div-1-left-form-select'>
@@ -185,8 +229,9 @@ const SelectHandler = (unit) =>{
                         <div  className='CreateNewRawItem-div-1-left-form-sub'>
                             <label className='sub_title CreateNewRawItem-div-1-left-form-label'>Item unit Price </label>
                             <p className='sub_title'>:</p>
-                            <input className='form-input ' value={itemUnitPrice} disabled/>
+                            <input type='number' className='form-input ' value={itemUnitPrice} onChange={(e)=>setItemUnitPrice(e.target.value)}/>
                         </div>
+                        <p className='warning'> {unitPriceWarning}</p>
                     </div>
 
                     <div className='CreateNewRawItem-div-1-left-form'>
