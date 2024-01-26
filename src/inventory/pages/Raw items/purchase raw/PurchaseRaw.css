@@ -149,11 +149,21 @@
     overflow: hidden;
 }
 
+.PurchaseRaw-header-5-input{
+    height: 25px;
+}
+.PurchaseRaw-header-6-input{
+    height: 25px;
+}
+
+
+
 
 
 .PurchaseRaw-items-table-body{
     display: flex;
     justify-content: space-around;
+    align-items: center;
 }
 
 

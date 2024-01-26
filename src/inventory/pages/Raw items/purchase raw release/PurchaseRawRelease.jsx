@@ -40,30 +40,40 @@ export default function PurchaseRawRelease() {
 
         <div className='PurchaseRawRelease-main-table'>
           <div className='PurchaseRawRelease-main-table-header'>
-            <p>lotid</p>
-            <p>invoice id</p>
-            <p>customer</p>
-            <p>item</p>
-            <p>qty</p>
-            <p>current qty</p>
-            <p>description</p>
-            <p>unit price</p>
+            <p className='PurchaseRawRelease-main-table-col-1'>Lot Id</p>
+            <p className='PurchaseRawRelease-main-table-col-2'>Invoice Id</p>
+            <p className='PurchaseRawRelease-main-table-col-3'>Customer</p>
+            <p className='PurchaseRawRelease-main-table-col-4'>Item Name</p>
+            <p className='PurchaseRawRelease-main-table-col-5'>Qty</p>
+            <p className='PurchaseRawRelease-main-table-col-6'>Unit</p>
+            <p className='PurchaseRawRelease-main-table-col-10'>Unit Price</p>
+            <p className='PurchaseRawRelease-main-table-col-11'>Total</p>
+            <p className='PurchaseRawRelease-main-table-col-7'>Lab Report Status</p>
+            <p className='PurchaseRawRelease-main-table-col-8'>Current Qty</p>
+            <p className='PurchaseRawRelease-main-table-col-9'>Description</p>
+            
+            
           </div>
           <div className='PurchaseRawRelease-main-table-body'>
-          <p>lotid</p>
-            <p>invoice id</p>
-            <p>customer</p>
-            <p>item</p>
-            <p>qty</p>
-            <p>current qty</p>
-            <p>description</p>
-            <p>unit price</p>
+            <p className='PurchaseRawRelease-main-table-col-1'>Lot Id</p>
+            <p className='PurchaseRawRelease-main-table-col-2'>Invoice Id</p>
+            <p className='PurchaseRawRelease-main-table-col-3'>customer</p>
+            <p className='PurchaseRawRelease-main-table-col-4'>Item Name</p>
+            <p className='PurchaseRawRelease-main-table-col-5'>Qty</p>
+            <p className='PurchaseRawRelease-main-table-col-6'>Unit</p>
+            <p className='PurchaseRawRelease-main-table-col-10'>Unit Price</p>
+            <p className='PurchaseRawRelease-main-table-col-11'>total</p>
+            <p className='PurchaseRawRelease-main-table-col-7'>Lab Report Status</p>
+            <input className='PurchaseRawRelease-main-table-col-8 PurchaseRawRelease-main-table-col-8-input'/>
+            <textarea className='PurchaseRawRelease-main-table-col-9 PurchaseRawRelease-main-table-col-9-input'/>
+            
+            
           </div>
 
         </div>
 
         <div className='PurchaseRawRelease-btn-div'>
-          <button className='btn'>Submit</button>
+          <button className='btn PurchaseRawRelease-btn'>Submit</button>
         </div>
 
       </div>

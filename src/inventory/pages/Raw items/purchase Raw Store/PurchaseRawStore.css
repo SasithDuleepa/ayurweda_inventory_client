@@ -13,8 +13,11 @@
 }
 
 .PurchaseRawStore-data-table{
-    background-color: antiquewhite;
+    /* background-color: antiquewhite; */
     width: 100%;
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 5px;
     
 }
 .PurchaseRawStore-data-table-header{
@@ -22,6 +25,7 @@
     align-items: center;
     justify-content: space-around;
     width: 100%;
+    background-color: var(--color-secondary);
 
 }
 .PurchaseRawStore-data-table-body{
@@ -30,6 +34,32 @@
     justify-content: space-around;
     width: 100%;
 }
+.PurchaseRawStore-data-table-col1{
+    /* background-color: aqua; */
+    width: 15%;
+}
+.PurchaseRawStore-data-table-col2{
+    /* background-color: yellowgreen; */
+    width: 15%;
+}
+.PurchaseRawStore-data-table-col3{
+    /* background-color: aquamarine; */
+    width: 30%;
+}
+.PurchaseRawStore-data-table-col4{
+    /* background-color: blue; */
+    width: 8%;
+}
+.PurchaseRawStore-data-table-col5{
+    /* background-color: violet; */
+    width: 15%;
+}
+.PurchaseRawStore-data-table-col5-input{
+    width: 14.5%;
+    height: 25px;
+}
+
+
 
 
 .PurchaseRawStore-btn-div{
@@ -37,4 +67,7 @@
     align-items: center;
     width: 100%;
     justify-content: end;
+}
+.PurchaseRawStore-btn{
+    background-color: var(--color-secondary);
 }

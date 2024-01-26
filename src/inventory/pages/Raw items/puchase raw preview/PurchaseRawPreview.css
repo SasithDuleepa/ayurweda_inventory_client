@@ -1,0 +1,105 @@
+
+.PurchaseRawPreview{
+    width: 100%;
+}
+
+
+.PurchaseRawPreview-main{
+    box-shadow: 0px 0px 41px 4px rgba(0,0,0,0.1);
+    /* background-color: aliceblue; */
+    margin:10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 10px 5px;
+    
+
+}
+.PurchaseRawPreview-bill-info{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+}
+.PurchaseRawPreview-bill-info-1{
+    display: flex;
+    flex-direction: column;
+}
+.PurchaseRawPreview-bill-info-2{
+    display: flex;
+    flex-direction: column;
+}
+
+.PurchaseRawPreview-p-div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: aqua; */
+    width: 400px;
+}
+
+.PurchaseRawPreview-table{
+    width: 100%;
+    /* background-color: antiquewhite; */
+    border: 1px solid black;
+}
+.PurchaseRawPreview-table-header{
+    width: 100%;
+    background-color: var(--color-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.PurchaseRawPreview-table-body{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.PurchaseRawPreview-table-col-1{
+    /* background-color: aqua; */
+    width: 25%;
+}
+.PurchaseRawPreview-table-col-2{
+    /* background-color: yellowgreen; */
+    width: 13%;
+}
+.PurchaseRawPreview-table-col-3{
+    /* background-color: blue; */
+    width: 5%;
+}
+.PurchaseRawPreview-table-col-4{
+    /* background-color: aqua; */
+    width: 10%;
+}
+.PurchaseRawPreview-table-col-5{
+    /* background-color: violet; */
+    width: 15%;
+}
+.PurchaseRawPreview-table-col-6{
+    /* background-color: yellow; */
+    width: 10%;
+}
+.PurchaseRawPreview-table-total-div{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+.PurchaseRawPreview-table-total-div-sub{
+    display: flex;
+    gap: 20px;
+    background-color: var(--color-secondary);
+    padding: 10px 30px;
+}
+
+.PurchaseRawPreview-btn-div{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+.PurchaseRawPreview-btn{
+    background-color: var(--color-secondary);
+}

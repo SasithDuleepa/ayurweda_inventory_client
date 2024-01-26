@@ -15,7 +15,10 @@ import PurchaseRaw from './inventory/pages/Raw items/purchase raw/PurchaseRaw'
 import PurchaseRawStore from './inventory/pages/Raw items/purchase Raw Store/PurchaseRawStore';
 import PurchaseRawLabReport from './inventory/pages/Raw items/purchase raw lab report/PurchaseRawLabReport';
 import PurchaseRawRelease from './inventory/pages/Raw items/purchase raw release/PurchaseRawRelease';
-import PurchaseRawView from './inventory/pages/Raw items/purchase raw view/PurchaseRawView';
+import PurchaseRawLotView from './inventory/pages/Raw items/purchase raw lot view/PurchaseRawLotView';
+import PurchaseRawPreview from './inventory/pages/Raw items/puchase raw preview/PurchaseRawPreview';
+
+
 
 import Navigation from './inventory/components/navigation/navigation';
 function App() {
@@ -37,7 +40,8 @@ function App() {
         <Route element={<PurchaseRawStore/>} path='/purchase/raw/store' />
         <Route element={<PurchaseRawLabReport/>} path='/purchase/raw/labreport'/>
         <Route element={<PurchaseRawRelease/>} path="/purchase/raw/release"/>
-        <Route element={<PurchaseRawView/>} path="/purchase/raw/view"/>
+        <Route element={<PurchaseRawLotView/>} path="/purchase/raw/view"/>
+        <Route element={<PurchaseRawPreview/>} path="/purchase/raw/preview"/>
 
 
       </Routes>

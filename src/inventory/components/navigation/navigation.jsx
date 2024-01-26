@@ -12,8 +12,8 @@ export default function Navigation() {
         <a href='/purchase/raw/store'>PurchaseRawStore</a>
         <a href='/purchase/raw/labreport'>PurchaseRawLabReport</a>
         <a href='/purchase/raw/release'>PurchaseRawRelease</a>
-        <a href='/purchase/raw/view'>PurchasedRawview</a>
-        <a>create a bill for raw</a>
+        <a href='/purchase/raw/view'>PurchasedRawLotView</a>
+        <a href='/purchase/raw/preview'>PurchasedRawPreview</a>
     </div>
   )
 }

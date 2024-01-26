@@ -37,28 +37,33 @@ export default function PurchaseRawLabReport() {
 
         <div className='PurchaseRawLabReport-main-table'>
           <div  className='PurchaseRawLabReport-main-table-header'>
-            <p>Lot id</p>
-            <p>Invoice id</p>
-            <p>item</p>
-            <p>qty</p>
-            <p>location</p>
-            <p>labreport id</p>
-            <p>lab report status</p>
+            <p className='PurchaseRawLabReport-main-table-col-1'>Lot id</p>
+            <p className='PurchaseRawLabReport-main-table-col-2'>Invoice id</p>
+            <p className='PurchaseRawLabReport-main-table-col-3'>Item Name</p>
+            <p className='PurchaseRawLabReport-main-table-col-4'>qty</p>
+            <p className='PurchaseRawLabReport-main-table-col-5'>Unit</p>
+            <p className='PurchaseRawLabReport-main-table-col-6'>Location</p>
+            <p className='PurchaseRawLabReport-main-table-col-7'>Lab Report Id</p>
+            <p className='PurchaseRawLabReport-main-table-col-8'>Lab Report Status</p>
           </div>
           <div  className='PurchaseRawLabReport-main-table-body'>
-            <p>Lot id</p>
-            <p>Invoice id</p>
-            <p>item</p>
-            <p>qty</p>
-            <p>location</p>
-            <input />
-            <input />
+          <p className='PurchaseRawLabReport-main-table-col-1'>Lot id</p>
+            <p className='PurchaseRawLabReport-main-table-col-2'>Invoice id</p>
+            <p className='PurchaseRawLabReport-main-table-col-3'>Item Name</p>
+            <p className='PurchaseRawLabReport-main-table-col-4'>qty</p>
+            <p className='PurchaseRawLabReport-main-table-col-5'>Unit</p>
+            <p className='PurchaseRawLabReport-main-table-col-6'>Location</p>
+            <input className='PurchaseRawLabReport-main-table-col-7 PurchaseRawLabReport-main-table-col-7-input'/>
+            <select  className='PurchaseRawLabReport-main-table-col-7'>
+              <option value="g">g</option>
+              <option value="ml">ml</option>
+            </select>
           </div>
 
         </div>
 
         <div className='PurchaseRawLabReport-btn-div'>
-          <button className='btn'>Submit</button>
+          <button className='btn PurchaseRawLabReport-btn'>Submit</button>
         </div>
       </div>
     </div>

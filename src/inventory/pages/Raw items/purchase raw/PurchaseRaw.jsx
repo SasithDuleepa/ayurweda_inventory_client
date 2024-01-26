@@ -117,45 +117,29 @@ const NextHandler =() =>{
                 <p className='normal_titles PurchaseRaw-items-div-title'>Order Items</p>
                 <div className='PurchaseRaw-items-table-header'>
                     <p className='PurchaseRaw-header-1'>#</p>
-                    <p className='PurchaseRaw-header-2'>Item</p>
-                    <p className='PurchaseRaw-header-3'>Net Unit Cost</p>
-                    <p className='PurchaseRaw-header-4'>Current Stock</p>
+                    <p className='PurchaseRaw-header-2'>Item Name</p>
+                    <p className='PurchaseRaw-header-4'>Unit Price</p>
                     <p className='PurchaseRaw-header-5'>Qty</p>
                     <p className='PurchaseRaw-header-6'>Unit</p>
-                    <p className='PurchaseRaw-header-7'>Location</p>
-                    <p className='PurchaseRaw-header-8'>Tax</p>
-                    <p className='PurchaseRaw-header-9'>sub Total</p>
+                    <p className='PurchaseRaw-header-7'>Total</p>
                 </div>
                 <div className='PurchaseRaw-items-table-body'>
-                    <p className='PurchaseRaw-header-1'>#</p>
-                    <p className='PurchaseRaw-header-2'>Item</p>
-                    <p className='PurchaseRaw-header-3'>Net Unit Cost</p>
+                <p className='PurchaseRaw-header-1'>1</p>
+                    <p className='PurchaseRaw-header-2'>Item Name</p>
                     <p className='PurchaseRaw-header-4'>Current Stock</p>
-                    <p className='PurchaseRaw-header-5'>Qty</p>
+                    <input className='PurchaseRaw-header-5 PurchaseRaw-header-5-input' type="number" />
                     <p className='PurchaseRaw-header-6'>Unit</p>
-                    <p className='PurchaseRaw-header-7'>Location</p>
-                    <p className='PurchaseRaw-header-8'>Tax</p>
-                    <p className='PurchaseRaw-header-9'>sub Total</p>
+                    <p className='PurchaseRaw-header-7'>Total</p>
                 </div>
-                <div className='PurchaseRaw-items-table-body'>
-                    <p className='PurchaseRaw-header-1'>#</p>
-                    <p className='PurchaseRaw-header-2'>Item</p>
-                    <p className='PurchaseRaw-header-3'>Net Unit Cost</p>
-                    <p className='PurchaseRaw-header-4'>Current Stock</p>
-                    <p className='PurchaseRaw-header-5'>Qty</p>
-                    <p className='PurchaseRaw-header-6'>Unit</p>
-                    <p className='PurchaseRaw-header-7'>Discount</p>
-                    <p className='PurchaseRaw-header-8'>Tax</p>
-                    <p className='PurchaseRaw-header-9'>sub Total</p>
-                </div>
+
             </div>
 
             <div className='PurchaseRaw-items-summary-div'>
                 <div className='PurchaseRaw-items-summary'>
                     
                     <div className='PurchaseRaw-items-summary-sub'>
-                        <p>Grand Total</p>
-                        <p>2220</p>
+                        <p>Total</p>
+                        <p>2</p>
                     </div>
 
                 </div>

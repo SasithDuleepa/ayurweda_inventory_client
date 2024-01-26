@@ -16,6 +16,7 @@ export default function CreateNewRawItem() {
     const[itemShortName, setItemShortName] = useState('');
     const[itemCode,setItemCode] = useState('');
     const[itemMeasureUnit, setItemMeasureUnit] = useState('Select Measure Unit');
+    const[itemUnitPrice, setItemUnitPrice] = useState('');
     const[itemDescription, setItemDescription] = useState('');
 
     const[nameWarning, setNameWarning] = useState('');
@@ -177,6 +178,15 @@ const SelectHandler = (unit) =>{
                         </div>
                         
                         <p className='warning'>{measureUnitWarning}</p>
+                    </div>
+
+
+                    <div className='CreateNewRawItem-div-1-left-form'>
+                        <div  className='CreateNewRawItem-div-1-left-form-sub'>
+                            <label className='sub_title CreateNewRawItem-div-1-left-form-label'>Item unit Price </label>
+                            <p className='sub_title'>:</p>
+                            <input className='form-input ' value={itemUnitPrice} disabled/>
+                        </div>
                     </div>
 
                     <div className='CreateNewRawItem-div-1-left-form'>

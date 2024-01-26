@@ -36,23 +36,23 @@ export default function PurchaseRawStore() {
 
       <div  className='PurchaseRawStore-data-table'>
         <div className='PurchaseRawStore-data-table-header' >
-          <p>Lot Id</p>
-          <p>invoice id</p>
-          <p>Item</p>
-          <p>qty</p>
-          <p>Location</p>
+          <p className='PurchaseRawStore-data-table-col1'>Lot Id</p>
+          <p className='PurchaseRawStore-data-table-col2'>invoice id</p>
+          <p className='PurchaseRawStore-data-table-col3'>Item Name</p>
+          <p className='PurchaseRawStore-data-table-col4'>Qty</p>
+          <p className='PurchaseRawStore-data-table-col5'>Location</p>
         </div>
         <div className='PurchaseRawStore-data-table-body' >
-          <p>Lot Id</p>
-          <p>invoice id</p>
-          <p>Item</p>
-          <p>qty</p>
-          <input />
+        <p className='PurchaseRawStore-data-table-col1'>Lot Id</p>
+          <p className='PurchaseRawStore-data-table-col2'>invoice id</p>
+          <p className='PurchaseRawStore-data-table-col3'>Item Name</p>
+          <p className='PurchaseRawStore-data-table-col4'>Qty</p>
+          <input className='PurchaseRawStore-data-table-col5 PurchaseRawStore-data-table-col5-input'/>
         </div>
       </div>
 
       <div className='PurchaseRawStore-btn-div'>
-        <button className='btn'>Add</button>
+        <button className='btn PurchaseRawStore-btn'>Submit</button>
       </div>
       </div>
 

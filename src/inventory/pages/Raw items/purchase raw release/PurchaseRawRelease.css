@@ -16,8 +16,10 @@
 
 
 .PurchaseRawRelease-main-table{
-    background-color: antiquewhite;
+    /* background-color: antiquewhite; */
     width: 100%;
+    border: 1px solid black;
+    padding: 5px;
 }
 
 .PurchaseRawRelease-main-table-header{
@@ -25,6 +27,7 @@
     justify-content: space-around;
     align-items: center;
     width: 100%;
+    background-color: var(--color-secondary);
 }
 .PurchaseRawRelease-main-table-body{
     display: flex;
@@ -33,6 +36,63 @@
     width: 100%;
 }
 
+.PurchaseRawRelease-main-table-col-1{
+    /* background-color: aqua; */
+    width: 7%;
+}
+.PurchaseRawRelease-main-table-col-2{
+    /* background-color: bisque; */
+    width: 7%;
+}
+.PurchaseRawRelease-main-table-col-3{
+    /* background-color: yellowgreen; */
+    width: 7%;
+}
+.PurchaseRawRelease-main-table-col-4{
+    /* background-color: violet; */
+    width: 15%;
+}
+.PurchaseRawRelease-main-table-col-5{
+    /* background-color: aqua; */
+    width: 7%;
+}
+.PurchaseRawRelease-main-table-col-6{
+    /* background-color: yellow; */
+    width: 3%;
+}
+.PurchaseRawRelease-main-table-col-7{
+    /* background-color: aliceblue; */
+    width: 6%;
+}
+.PurchaseRawRelease-main-table-col-8{
+    /* background-color:blue; */
+    width: 8%;
+}
+.PurchaseRawRelease-main-table-col-9{
+    /* background-color: wheat; */
+    width: 9%;
+}
+.PurchaseRawRelease-main-table-col-10{
+    /* background-color: rgb(0, 255, 89); */
+    width: 7%;
+}
+.PurchaseRawRelease-main-table-col-11{
+    /* background-color: aqua; */
+    width: 8%;
+}
+.PurchaseRawRelease-main-table-col-8-input{
+    width: 7.5%;
+    min-height: 25px;
+}
+.PurchaseRawRelease-main-table-col-9-input{
+    width: 8.5%;
+}
+.PurchaseRawRelease-main-table-col-10-input{
+    width: 6.7%;
+    min-height: 25px;
+}
+
+
 
 
 .PurchaseRawRelease-btn-div{
@@ -40,4 +100,7 @@
     display: flex;
     align-items: center;
     justify-content: end;
+}
+.PurchaseRawRelease-btn{
+    background-color: var(--color-secondary);
 }
