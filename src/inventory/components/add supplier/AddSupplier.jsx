@@ -3,6 +3,7 @@ import './AddSupplier.css';
 import IdGenerate from '../../utils/IdGenerate';
 import axios from 'axios';
 
+
 import Close from '../../icons/close.png';
 
 export default function AddSupplier(props) {
@@ -30,9 +31,7 @@ export default function AddSupplier(props) {
         if(res.status===200){
             window.alert('Supplier Added Successfully');
             window.location.reload()
-    }
-
-        // console.log(res.data);
+            }
         } catch (error) {
             if(error.response.status === 401){
                 window.alert("Unauthorized");
@@ -47,7 +46,6 @@ export default function AddSupplier(props) {
              window.alert("Error adding Customer");
              }
         }
-        
     }
   return (
     <div className ='AddSupplier'>

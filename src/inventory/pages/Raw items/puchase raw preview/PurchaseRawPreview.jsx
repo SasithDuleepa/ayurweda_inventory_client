@@ -1,7 +1,11 @@
 import React from 'react';
 import './PurchaseRawPreview.css';
+import { useParams } from 'react-router-dom';
 
 export default function PurchaseRawPreview() {
+    const {invoice_id} = useParams();
+    console.log(invoice_id);
+
   return (
     <div className='PurchaseRawPreview'>
         <p className='title'>Purchase Raw Preview</p>

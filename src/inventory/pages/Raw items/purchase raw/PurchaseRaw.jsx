@@ -2,8 +2,8 @@ import React, { useState , useEffect } from 'react';
 import './PurchaseRaw.css';
 import DropDown from './../../../icons/down-arrow.png';
 import AddSupplier from './../../../components/add supplier/AddSupplier';
-
 import IdGenerate from '../../../utils/IdGenerate';
+
 
 import axios from 'axios';
 
@@ -11,12 +11,17 @@ export default function PurchaseRaw() {
     const[addSupplier,setAddSupplier] = useState('hide');
     const[selectItemDiv , setSelectItemDiv] = useState('PurchaseRaw-form-item-div-results-div-hide');
 
+    const[userId,setUserId] = useState('user-001');
+
     const[invoiceId, setInvoiceId] = useState(IdGenerate('invoice')) ;
     const[lotId,setLotId] = useState(IdGenerate('lot'));
     const[supplier,setSupplier] = useState('');
     const[supplierId,setSupplierId] = useState('');
+    const[date,setDate] = useState(new Date());
 
-    const[storeId, setStoreId] = useState('');
+    const[store,setStore] = useState('store-001')
+
+    const[storeId, setStoreId] = useState('111');
 
     const [data,setdata] = useState([])
 
@@ -36,23 +41,39 @@ const NewCustomerClosebtn = () =>{
 
 
 
-    const SelectHandler = (unit) =>{
-     
-        setShowDropdown(false);
-    };
+ 
     const [showDropdown, setShowDropdown] = useState(false);      
     const toggleDropdown = () => {
       setShowDropdown(!showDropdown);
     };      
-    const filterFunction = (e) => {
+
+    const[suppliers,setSuppliers] = useState([]);
+    const[supplierInputValue,setSupplierInputValue] = useState('')
+    const filterFunction = async(e) => {
+        setSupplierInputValue(e.target.value);
+        
       console.log(e.target.value);
+      if(e.target.value !==''){
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/supplier/search/${e.target.value}`)
+      console.log(res.data)
+      setSuppliers(res.data)
+
+      }
       
+      
+    };
+    const SelectHandler = (name,id) =>{
+        setSupplierInputValue(name)
+        setSupplier(name)
+        setSupplierId(id)
+        setShowDropdown(false);
     };
 
 const SelectItemHandler =(id,name,unit_price,unit) =>{
     console.log(id,name,unit_price,unit);
     const newData = [...data]
       newData.push({
+
         item_id:id,
         item_name:name,
         item_unit_price:unit_price,
@@ -76,7 +97,7 @@ const ItemSearchBtn=()=>{
 
 const SearchItemHandler = async(e) =>{
     if(e.target.value !== ''){
-        const res = await axios.get(`http://localhost:8080/raw/search/${e.target.value}`)
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/raw/search/${e.target.value}`)
         console.log(res.data);
         setItemsearchResults(res.data);
     }else{
@@ -96,12 +117,93 @@ const TotalHandler = ( ) =>{
 }
 useEffect(() =>{
     TotalHandler()
-},[
-    data
-])
+},[data])
 
-const NextHandler =() =>{
-    window.location.href='/purchase/raw/store'
+const NextHandler = async () =>{
+    
+
+    if(data.length>0 && supplierId !==''&& userId!=='' ){
+        try {
+            const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/purchase/raw/add`,{
+                user_id:userId,
+                invoice_id:invoiceId,
+                lot_id:lotId,
+                supplier_id:supplierId,
+                store_id:storeId,
+                total:total,
+                date:date,
+                items:data
+                
+            })
+            if(res.status===200){
+                window.alert('Raw Items Added Successfully');
+                window.location.href=`/purchase/raw/store/${invoiceId}`
+
+            }
+            
+        } catch (error) {
+            if(error.response.status === 401){
+                window.alert("Unauthorized");
+            }else if(error.response.status === 400){
+                window.alert("All fields are required");
+            }else if(error.response.status === 500){
+                window.alert("Internal server error");
+             }else if(error.response.status === 409){
+                window.alert("Data already exists");
+             }
+             else{
+             window.alert("Error Adding Raw Items");
+             }
+        }
+
+    }
+    else if(data.length === 0){
+        alert('Please Add Items')
+    }else if(supplierId === ''){
+        alert('Please Select Supplier')
+    }
+}
+const SubmitHandler =async () =>{
+
+    if(data.length>0 && supplierId !==''&& userId!=='' ){
+        try {
+            const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/purchase/raw/add`,{
+                user_id:userId,
+                invoice_id:invoiceId,
+                lot_id:lotId,
+                supplier_id:supplierId,
+                store_id:storeId,
+                total:total,
+                date:date,
+                items:data
+                
+            })
+            if(res.status===200){
+                window.alert('Raw Items Added Successfully');
+                window.location.reload()
+
+            }
+        } catch (error) {
+            if(error.response.status === 401){
+                window.alert("Unauthorized");
+            }else if(error.response.status === 400){
+                window.alert("All fields are required");
+            }else if(error.response.status === 500){
+                window.alert("Internal server error");
+             }else if(error.response.status === 409){
+                window.alert("Data already exists");
+             }
+             else{
+             window.alert("Error Adding Raw Items");
+             }
+        }
+
+    }
+    else if(data.length === 0){
+        alert('Please Add Items')
+    }else if(supplierId === ''){
+        alert('Please Select Supplier')
+    }
 }
 
 
@@ -131,7 +233,8 @@ const NextHandler =() =>{
             <div className='PurchaseRaw-form-div'>
                 <label className='sub_title PurchaseRaw-form-label'>Date</label>
                 <p className='sub_title'>:</p>
-                <input className='form-input' type="date" />
+                <input className='form-input' value={date} onChange={(e)=>setDate(e.target.value)} disabled />
+
             </div>
             <div className='PurchaseRaw-form_div'>
                 <div className='PurchaseRaw-form-div-sub'>
@@ -140,13 +243,27 @@ const NextHandler =() =>{
                             <p>:</p>
                             <div className="dropdown">
                                 <button onClick={toggleDropdown} className="dropbtn">
-                                    <input type="text"  id="myInput" onKeyUp={(e)=>filterFunction(e)}/>
+                                    <input type="text"  id="myInput" value={supplierInputValue} onChange={(e)=>filterFunction(e)}/>
                                     <img className={`${showDropdown ? 'drop-down-arrow-clos' : 'drop-down-arrow-expand'}`} src={DropDown} alt="" />
                                 </button>
-                             <div id="myDropdown" className={`dropdown-content ${showDropdown ? 'show' : ''}`}>
-                                    <button onClick={()=>SelectHandler('g')} className='dropdown-select-btn'>g</button>
-                                    <button onClick={()=>SelectHandler('ml')} className='dropdown-select-btn'>ml</button>
-                                </div>
+                             
+                                {suppliers.length>0 ? suppliers.map((supplier,index)=>{
+                                    return <div key={index} id="myDropdown" className={`dropdown-content ${showDropdown ? 'show' : ''}`}>
+                                        <button onClick={()=>SelectHandler(supplier.supplier_name,supplier.supplier_id)} className='dropdown-select-btn'>{supplier.supplier_name}</button>
+                                    </div>
+                                })
+                                    
+                                        
+                                    
+
+                                
+                                
+                                
+                                
+                            :null}
+                                    
+                                    
+                                
                             </div>
 
                 </div>
@@ -157,7 +274,7 @@ const NextHandler =() =>{
             <div className='PurchaseRaw-form-div'>
                 <label className='sub_title PurchaseRaw-form-label'>Store</label>
                 <p className='sub_title'>:</p>
-                <input className='form-input' type="text" disabled/>
+                <input className='form-input' type="text" value={(store)} onChange={(e)=>setStore(e.target.value)} disabled/>
             </div>
 
             <div className='PurchaseRaw-form-item-div'>
@@ -228,7 +345,7 @@ const NextHandler =() =>{
             </div>
 
             <div className='PurchaseRaw-btn-div'>
-                <button className='btn PurchaseRaw-btn'>Submit</button>
+                <button className='btn PurchaseRaw-btn' onClick={SubmitHandler}>Submit</button>
                 <button className='btn PurchaseRaw-btn' onClick={NextHandler}>Next</button>
 
             </div>

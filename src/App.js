@@ -38,10 +38,13 @@ function App() {
 
         <Route element={<PurchaseRaw/>} path="/purchase/raw"/>
         <Route element={<PurchaseRawStore/>} path='/purchase/raw/store' />
+        <Route element={<PurchaseRawStore/>} path='/purchase/raw/store/:invoice_id' />
         <Route element={<PurchaseRawLabReport/>} path='/purchase/raw/labreport'/>
         <Route element={<PurchaseRawRelease/>} path="/purchase/raw/release"/>
         <Route element={<PurchaseRawLotView/>} path="/purchase/raw/view"/>
-        <Route element={<PurchaseRawPreview/>} path="/purchase/raw/preview"/>
+
+
+        <Route element={<PurchaseRawPreview/>} path="/purchase/raw/preview/:invoice_id"/>
 
 
       </Routes>
