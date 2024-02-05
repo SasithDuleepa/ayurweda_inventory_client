@@ -314,7 +314,7 @@ const SubmitHandler =async () =>{
                         <p className='PurchaseRaw-header-1'>{index+1}</p>
                         <p className='PurchaseRaw-header-2'>{item.item_name}</p>
                         <p className='PurchaseRaw-header-4'>{item.item_unit_price}</p>
-                        <input className='PurchaseRaw-header-5' type="number" value={item.item_qty} onChange={(e)=>{
+                        <input className='PurchaseRaw-header-5 PurchaseRaw-header-5-input' type="number" value={item.item_qty} onChange={(e)=>{
                             const newData = [...data]
                             newData[index].item_qty = e.target.value
                             newData[index].total = e.target.value * item.item_unit_price

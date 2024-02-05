@@ -123,9 +123,14 @@ export default function PurchaseRawStore() {
       <div  className='PurchaseRawStore-data-table'>
         <div className='PurchaseRawStore-data-table-header' >
           <p className='PurchaseRawStore-data-table-col1'>Lot Id</p>
+          <p className='PurchaseRawStore-data-table-col1'>purchased person</p>
+          <p className='PurchaseRawStore-data-table-col1'>purchased date</p>
           <p className='PurchaseRawStore-data-table-col2'>invoice id</p>
+          <p className='PurchaseRawStore-data-table-col2'>supplier</p>
           <p className='PurchaseRawStore-data-table-col3'>Item Name</p>
           <p className='PurchaseRawStore-data-table-col4'>Qty</p>
+          <p className='PurchaseRawStore-data-table-col4'>Purchased date</p>
+          <p className='PurchaseRawStore-data-table-col4'>Purchased Person</p>
           <p className='PurchaseRawStore-data-table-col5'>Location</p>
         </div>
 
