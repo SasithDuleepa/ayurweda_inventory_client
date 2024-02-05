@@ -44,10 +44,14 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+    text-decoration: none;
+    &:hover{
+        background-color: rgba(69, 69, 69, 0.045);
+    }
 }
 .PurchaseRawLotView-table1-col-1{
     /* background-color: aqua; */
-    width: 10%;
+    width: 15%;
 }
 .PurchaseRawLotView-table1-col-2{
     /* background-color: yellowgreen; */
@@ -59,7 +63,7 @@
 }
 .PurchaseRawLotView-table1-col-4{
     /* background-color: yellow; */
-    width: 10%;
+    width: 15%;
 }
 .PurchaseRawLotView-table1-col-5{
     /* background-color: aquamarine; */

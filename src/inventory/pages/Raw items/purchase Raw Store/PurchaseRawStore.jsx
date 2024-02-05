@@ -9,7 +9,7 @@ export default function PurchaseRawStore() {
 
   const[invoiceItemData, setInvoiceItemData] = useState([])
      const GetInvoiceData = async (invoice_id) =>{
-      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/purchase/raw/raw/${invoice_id}`)
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/purchase/raw/search/forstore/${invoice_id}`)
       console.log(res.data);
       setInvoiceItemData(res.data)
 
@@ -123,15 +123,16 @@ export default function PurchaseRawStore() {
       <div  className='PurchaseRawStore-data-table'>
         <div className='PurchaseRawStore-data-table-header' >
           <p className='PurchaseRawStore-data-table-col1'>Lot Id</p>
-          <p className='PurchaseRawStore-data-table-col1'>purchased person</p>
-          <p className='PurchaseRawStore-data-table-col1'>purchased date</p>
           <p className='PurchaseRawStore-data-table-col2'>invoice id</p>
-          <p className='PurchaseRawStore-data-table-col2'>supplier</p>
-          <p className='PurchaseRawStore-data-table-col3'>Item Name</p>
-          <p className='PurchaseRawStore-data-table-col4'>Qty</p>
-          <p className='PurchaseRawStore-data-table-col4'>Purchased date</p>
-          <p className='PurchaseRawStore-data-table-col4'>Purchased Person</p>
-          <p className='PurchaseRawStore-data-table-col5'>Location</p>
+          <p className='PurchaseRawStore-data-table-col3'>supplier</p>
+          <p className='PurchaseRawStore-data-table-col4'>Item Name</p>
+          <p className='PurchaseRawStore-data-table-col5'>Qty</p>
+          <p className='PurchaseRawStore-data-table-col6'>Unit</p>
+          <p className='PurchaseRawStore-data-table-col7'>Unit Price</p>
+          <p className='PurchaseRawStore-data-table-col8'>Total</p>
+          <p className='PurchaseRawStore-data-table-col9'>purchased date</p>
+          <p className='PurchaseRawStore-data-table-col10'>purchased person</p>
+          <p className='PurchaseRawStore-data-table-col11'>Location</p>
         </div>
 
         {invoiceItemData.length > 0 ?
@@ -139,9 +140,16 @@ export default function PurchaseRawStore() {
           return <div className='PurchaseRawStore-data-table-body' key={index}>
           <p className='PurchaseRawStore-data-table-col1'>{item.lot_id}</p>
           <p className='PurchaseRawStore-data-table-col2'>{item.invoice_id}</p>
-          <p className='PurchaseRawStore-data-table-col3'>{item.item_id}</p>
-          <p className='PurchaseRawStore-data-table-col4'>{item.item_qty}</p>
-           <select className='PurchaseRawStore-data-table-col5' onChange={(e)=>{
+          <p className='PurchaseRawStore-data-table-col3'>{item.supplier_name}</p>
+          <p className='PurchaseRawStore-data-table-col4'>{item.raw_item_name}</p>
+           
+          <p className='PurchaseRawStore-data-table-col5'>{item.item_qty}</p>
+          <p className='PurchaseRawStore-data-table-col6'>{item.item_unit}</p>
+          <p className='PurchaseRawStore-data-table-col7'>Rs. {item.unit_price}</p>
+          <p className='PurchaseRawStore-data-table-col8'>Rs. {item.item_qty * item.unit_price}</p>
+          <p className='PurchaseRawStore-data-table-col9'>{item.item_purchased_date}</p>
+          <p className='PurchaseRawStore-data-table-col10'>{item.item_purchased_user_id}</p>
+          <select className='PurchaseRawStore-data-table-col11 PurchaseRawStore-data-table-col11-input' onChange={(e)=>{
             let temp = [...invoiceItemData]
             temp[index].item_location= e.target.value
             temp[index].item_location_added_date = date
@@ -157,6 +165,7 @@ export default function PurchaseRawStore() {
             <option value="store2">Store2</option>
             <option value="store3">Store3</option>
           </select>
+
         </div>
         }
         ) : null

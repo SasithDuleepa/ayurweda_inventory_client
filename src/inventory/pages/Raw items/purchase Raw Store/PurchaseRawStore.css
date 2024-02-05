@@ -1,5 +1,8 @@
 
+.PurchaseRawStore{
+    width: 100%;
 
+}
 
 .PurchaseRawStore-main{
     box-shadow: 0px 0px 41px 4px rgba(0,0,0,0.1);
@@ -7,55 +10,84 @@
     margin:10px;
     border-radius: 10px;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding: 10px 5px;
+    width: 98%;
 }
 
 .PurchaseRawStore-data-table{
     /* background-color: antiquewhite; */
-    width: 100%;
+    overflow-x: scroll;
     border: 1px solid black;
     padding: 5px;
-    border-radius: 5px;
+    width: 99%;
+    /* margin:0px 100px; */
+
     
 }
 .PurchaseRawStore-data-table-header{
     display: flex;
-    align-items: center;
     justify-content: space-around;
-    width: 100%;
+    align-items: center;
+    width: fit-content;
     background-color: var(--color-secondary);
-
+    gap: 5px;
 }
 .PurchaseRawStore-data-table-body{
     display: flex;
-    align-items: center;
     justify-content: space-around;
-    width: 100%;
+    align-items: center;
+    width: fit-content;
+    gap: 5px;
 }
 .PurchaseRawStore-data-table-col1{
     /* background-color: aqua; */
-    width: 15%;
+    width: 140px;
 }
 .PurchaseRawStore-data-table-col2{
     /* background-color: yellowgreen; */
-    width: 15%;
+    width: 250px;
 }
 .PurchaseRawStore-data-table-col3{
     /* background-color: aquamarine; */
-    width: 30%;
+    width: 260px;
 }
 .PurchaseRawStore-data-table-col4{
     /* background-color: blue; */
-    width: 8%;
+    width: 700px;
 }
 .PurchaseRawStore-data-table-col5{
     /* background-color: violet; */
-    width: 15%;
+    width: 100px;
 }
-.PurchaseRawStore-data-table-col5-input{
-    width: 14.5%;
+.PurchaseRawStore-data-table-col6{
+    /* background-color: violet; */
+    width: 100px;
+}
+.PurchaseRawStore-data-table-col7{
+    /* background-color: violet; */
+    width: 100px;
+}
+.PurchaseRawStore-data-table-col8{
+    /* background-color: violet; */
+    width: 140px;
+}
+.PurchaseRawStore-data-table-col9{
+    /* background-color: violet; */
+    width: 200px;
+}
+.PurchaseRawStore-data-table-col10{
+    /* background-color: violet; */
+    width: 140px;
+}
+.PurchaseRawStore-data-table-col11{
+    /* background-color: violet; */
+    width: 140px;
+}
+.PurchaseRawStore-data-table-col11-input{
+    width: 130px;
     height: 25px;
 }
 

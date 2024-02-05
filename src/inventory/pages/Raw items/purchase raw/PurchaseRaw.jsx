@@ -3,6 +3,7 @@ import './PurchaseRaw.css';
 import DropDown from './../../../icons/down-arrow.png';
 import AddSupplier from './../../../components/add supplier/AddSupplier';
 import IdGenerate from '../../../utils/IdGenerate';
+import Close from '../../../icons/close.png'
 
 
 import axios from 'axios';
@@ -306,6 +307,7 @@ const SubmitHandler =async () =>{
                     <p className='PurchaseRaw-header-5'>Qty</p>
                     <p className='PurchaseRaw-header-6'>Unit</p>
                     <p className='PurchaseRaw-header-7'>Total</p>
+                    <p className='PurchaseRaw-header-7'>delete</p>
                 </div>
 
                 {data.length > 0 ?
@@ -322,6 +324,11 @@ const SubmitHandler =async () =>{
                         }}/>
                         <p className='PurchaseRaw-header-6'>{item.item_unit}</p>
                         <p className='PurchaseRaw-header-7'>{item.total}</p>
+                        <button className='PurchaseRaw-header-7' onClick={(index)=>{
+                            const Data = [...data]
+                            Data.splice(index,1)
+                            setdata(Data)
+                        }}>delete</button>
                     </div>
                     }) :
                     <p>no results</p>

@@ -21,9 +21,15 @@
     justify-content: space-between;
     align-items: center;
 }
+.AddSupplier-main-header-close-btn{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
 .AddSupplier-main-header-close{
     width: 22px;
     height: 22px;
+    background-color: transparent;
 }
 
 

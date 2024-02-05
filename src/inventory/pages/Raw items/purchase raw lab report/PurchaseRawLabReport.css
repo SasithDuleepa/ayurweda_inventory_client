@@ -17,61 +17,83 @@
 
 
 .PurchaseRawLabReport-main-table{
-    width: 100%;
-    /* background-color: antiquewhite; */
+    overflow-x: scroll;
     border: 1px solid black;
-    padding: 5px;
+    padding: 5px
 }
 .PurchaseRawLabReport-main-table-header{
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 100%;
+    width: fit-content;
     background-color: var(--color-secondary);
+    gap: 5px;
 }
 .PurchaseRawLabReport-main-table-body{
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 100%;
+    width: fit-content;
+    gap: 5px;
 
 }
 .PurchaseRawLabReport-main-table-col-1{
     /* background-color: aqua; */
-    width: 10%;
+    width: 140px;
 }
 .PurchaseRawLabReport-main-table-col-2{
     /* background-color: blue; */
-    width: 10%;
+    width: 250px;
 }
 .PurchaseRawLabReport-main-table-col-3{
     /* background-color: yellowgreen; */
-    width: 30%;
+    width: 260px;
 }
 .PurchaseRawLabReport-main-table-col-4{
     /* background-color: brown; */
-    width: 10%;
+    width: 700px;
 }
 .PurchaseRawLabReport-main-table-col-5{
     /* background-color: violet; */
-    width: 3%;
+    width: 100px;
 }
 .PurchaseRawLabReport-main-table-col-6{
     /* background-color: aqua; */
-    width: 10%;
+    width: 100px;
 }
 .PurchaseRawLabReport-main-table-col-7{
     /* background-color: tomato; */
-    width: 10%;
+    width: 100px;
 }
 .PurchaseRawLabReport-main-table-col-8{
     /* background-color: rgb(71, 255, 215); */
-    width: 10%;
+    width: 100px;
 }
-
-.PurchaseRawLabReport-main-table-col-7-input{
-    width: 9.5%;
-    height: 25px;
+.PurchaseRawLabReport-main-table-col-9{
+    /* background-color: rgb(71, 255, 215); */
+    width: 120px;
+}
+.PurchaseRawLabReport-main-table-col-10{
+    /* background-color: rgb(71, 255, 215); */
+    width: 130px;
+}
+.PurchaseRawLabReport-main-table-col-11{
+    /* background-color: rgb(71, 255, 215); */
+    width: 120px;
+}
+.PurchaseRawLabReport-main-table-col-12{
+    /* background-color: rgb(71, 255, 215); */
+    width: 150px;
+}
+.PurchaseRawLabReport-main-table-col-13{
+    /* background-color: rgb(71, 255, 215); */
+    width: 150px;
+}
+.PurchaseRawLabReport-main-table-col-12-input{
+    width: 140px;
+}
+.PurchaseRawLabReport-main-table-col-13-input{
+    width: 140px;
 }
 
 
