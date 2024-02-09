@@ -2,13 +2,14 @@ import './App.css';
 import { BrowserRouter as Router, Route,Routes, BrowserRouter } from "react-router-dom";
 
 
-
+import Release from './inventory/pages/release/release';
 
 
 function App() {
   return (
-    <div>
-      <h1>ryutjfhkgbknm, </h1>
+    <div className='app'>
+      <Release/>
+
       
 
 
@@ -16,7 +17,7 @@ function App() {
 
       <Router>
       <Routes>
-        {/* <Route element={<Customer/>} path="/customer"/> */}
+        {/* <Route element={<Release/>} path="/customer"/> */}
        
 
       </Routes>
