@@ -16,22 +16,22 @@
 
 .title{
   font-size: 20px;
-  font-family: 'Switzer', sans-serif;
-  font-weight: 600;
-}
-.normal_titles{
-  font-size: 18px;
-  font-family: 'Switzer', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 600;
 }
 .sub_title{
+  font-size: 18px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+.label{
   font-size: 15px;
-  font-family: 'Switzer', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 600;
 }
 .warning{
   font-size: 10px;
-  font-family: 'Switzer', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 600;
   color: red;
 }
