@@ -2,22 +2,23 @@ import './App.css';
 import { BrowserRouter as Router, Route,Routes, BrowserRouter } from "react-router-dom";
 
 
-import Release from './inventory/pages/release/release';
+
+import StoreManagerRelease from './inventory/pages/release/store manager/StoreManagerRelease';
+import StoreKeeperRelease from './inventory/pages/release/store keeper/StoreKeeperRelease';
 
 
 function App() {
   return (
     <div className='app'>
-      <Release/>
-
-      
 
 
 
 
       <Router>
       <Routes>
-        {/* <Route element={<Release/>} path="/customer"/> */}
+
+        <Route element={<StoreManagerRelease/>} path="/store-manager-release"/>
+        <Route element={<StoreKeeperRelease/>} path="/store-keeper-release"/>
        
 
       </Routes>

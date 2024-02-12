@@ -94,21 +94,7 @@ background-color: white;
   transition: .5s;
   margin: 10px;
 }
-.dropbtn {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background-color: #ffffff;
-  border: none;
-  cursor: pointer;
-  border: 1px solid rgb(106, 106, 106);
-  height: 30px;
-  width: 295px;
-  border-radius: 2px;
-}
-.dropbtn:hover, .dropbtn:focus {
-  background-color: #9d9d9d21;
-}
+
 #myInput {
   font-size: 16px;
   border: none;
@@ -121,14 +107,7 @@ background-color: white;
   position: relative;
   display: inline-block;
 }
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f6f6f6;
-  min-width: 100%;
-  border: 1px solid #ddd;
-  z-index: 1;
-}
+
 .dropdown-content a {
   color: black;
   padding: 12px 16px;
@@ -140,9 +119,78 @@ background-color: white;
   display:flex;
   flex-direction: column;
 }
+
+
+
+
+
+
+.search-select-div{
+ 
+
+  margin: 10px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.Release-search-div-select{
+  width: max-content;
+
+}
+.drop-down-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #ffffff;
+  border: none;
+  cursor: pointer;
+  border: 1px solid rgb(106, 106, 106);
+  height: 30px;
+  width: 500px;
+  border-radius: 2px;
+}
+.drop-down-btn:hover, .drop-down-btn:focus {
+  background-color: rgba(54, 54, 54, 0.249);
+}
+.Release-search-div-select-input{
+  font-size: 16px;
+border: none;
+height: 22px;
+width: 100%;
+background-color: transparent;
+
+&:focus {
+  outline: 0px solid #ddd;
+  }
+}
+.select-dropdown-img-on{
+  width: 15px;
+  height: 15px;
+  transition: 0.3s;
+}
+.select-dropdown-img-off{
+  width: 15px;
+  height: 15px;
+  transform: rotate(180deg);
+  transition: 0.3s;
+}
+.dropdown-content-show {
+  position: absolute;
+  background-color: #f6f6f6;
+  width: 498px;
+  border: 1px solid #ddd;
+  z-index: 1;
+}
+.dropdown-content-hide {
+  display: none;
+
+}
+
 .dropdown-select-btn{
-  background-color: rgba(0, 0, 0, 0.038);
+  background-color: rgba(15, 14, 14, 0.064);
   border: none;
   height: 25px;
   margin: 1px 0px;
+  width: 100%;
 }

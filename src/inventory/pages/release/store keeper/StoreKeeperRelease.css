@@ -1,0 +1,59 @@
+.StoreKeeperRelease{
+    margin: auto 10px;
+}
+.StoreKeeperRelease-info-main-div{
+    /* background-color: violet; */
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.StoreKeeperRelease-info-input-div{
+    /* border: 1px solid black; */
+    width: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0px;
+}
+.StoreKeeperRelease-info-input-label{}
+.StoreKeeperRelease-info-input{}
+
+
+
+
+
+.StoreKeeperRelease-search-main-div{
+    /* background-color: antiquewhite; */
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.StoreKeeperRelease-search-div-select-input{
+    font-size: 16px;
+    border: none;
+    height: 22px;
+    width: 100%;
+    background-color: transparent;
+    
+    &:focus {
+      outline: 0px solid #ddd;
+      }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.StoreKeeperRelease-input-main-div{
+    margin-top: 50px;
+    background-color: yellow;
+}
