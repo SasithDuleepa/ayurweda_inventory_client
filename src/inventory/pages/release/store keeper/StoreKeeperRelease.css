@@ -55,5 +55,46 @@
 
 .StoreKeeperRelease-input-main-div{
     margin-top: 50px;
-    background-color: yellow;
+    /* background-color: yellow; */
+}
+
+
+
+
+
+
+
+.StoreKeeperRelease-job-preview{
+    width: 99%;
+    height: 100vh;
+    background-color: rgba(247, 247, 247, 0.944);
+    position: absolute;
+    top: 0px;
+    z-index: 2;
+
+}
+.StoreKeeperRelease-job-select_item-title{
+    text-align: center;
+}
+.StoreKeeperRelease-job-preview-1{
+
+}
+
+
+
+
+
+
+
+
+.StoreKeeperRelease-job-select_item-preview{
+    width: 99%;
+    height: 100vh;
+    background-color: rgba(247, 247, 247, 0.944);
+    position: absolute;
+    top: 0px;
+    z-index: 3;
+}
+.StoreKeeperRelease-job-select_item-preview-1{
+
 }

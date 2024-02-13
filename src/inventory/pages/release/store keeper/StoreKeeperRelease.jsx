@@ -35,6 +35,31 @@ export default function StoreKeeperRelease() {
         }else{
             setDropDown2('dropdown-content-hide');
         }
+
+        setJobPreviewWindow(true)
+
+
+
+    }
+
+
+
+    //job preview window
+    const [jobPreviewWindow,setJobPreviewWindow] = useState(false);
+    const JobPreviewHandler = () =>{
+        setJobItemWindow(true)           
+    }
+    const JobPreviewCloseHandler = () =>{
+        setJobPreviewWindow(false);
+    }
+
+
+
+    //job preview select item window
+    const [jobItemWindow,setJobItemWindow] = useState(false);
+    const JobItemSelectHandler = () =>{
+        console.log('selected')
+        setJobItemWindow(false);
     }
   return (
     <div className='StoreKeeperRelease'>
@@ -83,15 +108,15 @@ export default function StoreKeeperRelease() {
                     </div>
                 </div>
                 <div  className='search-select-div'>
-                    <label className='StoreKeeperRelease-search-div-label label'>Search by Recipe</label>
+                    <label className='StoreKeeperRelease-search-div-label label'>Search by Job</label>
                     <label className='StoreKeeperRelease-search-div-label label'>:</label>
                     <div className='StoreKeeperRelease-search-div-select'>
                         <button onClick={()=>DropDown2Handler()} className='drop-down-btn '>
-                            <input className='StoreKeeperRelease-search-div-select-input ' type='text' placeholder='Recipe Name'/>
+                            <input className='StoreKeeperRelease-search-div-select-input ' type='text' placeholder='JOB-XXXX'/>
                             <img src={Arrow} alt='arrow'  className={dropDown2 ==='dropdown-content-hide'? 'select-dropdown-img-on':'select-dropdown-img-off' }/>
                         </button>
                         <div className={dropDown2}>
-                            <button onClick={()=>DropDown2SelectHandler()} className='dropdown-select-btn'>jythfgjh</button>
+                            <button onClick={()=>DropDown2SelectHandler()} className='dropdown-select-btn'>JOB-0001</button>
                         </div>
                     </div>
                 </div>
@@ -101,15 +126,20 @@ export default function StoreKeeperRelease() {
             <div className='StoreKeeperRelease-input-main-div'>
                 <table>
                     <thead>
-                        <th>no</th>
-                        <th>Name</th>
-                        <th>description</th>
-                        <th>Quantity</th>
-                        <th>measure unit</th>
-                        <th>unit price</th>
-                        <th>Total</th>
+                        <tr>
+                        <td>no</td>
+                        <td>Name</td>
+                        <td>description</td>
+                        <td>Quantity</td>
+                        <td>measure unit</td>
+                        <td>unit price</td>
+                        <td>Total</td>
+
+                        </tr>
+                        
                     </thead>
                     <tbody>
+                        <tr>
                         <td>0</td>
                         <td>katuwelbatu</td>
                         <td>katuwelbatu kuyjg kuyg kuugjgh </td>
@@ -117,11 +147,105 @@ export default function StoreKeeperRelease() {
                         <td>g</td>
                         <td>200</td>
                         <td>400</td>
+
+                        </tr>
+                        
                     </tbody>
                 </table>
             </div>
 
             <div  className='StoreKeeperRelease-btn-main-div'></div>
+        </div>
+
+
+
+{/* job preview window */}
+
+        <div className={jobPreviewWindow ? 'StoreKeeperRelease-job-preview' : 'hide'}>
+            <p className='title'>Job Preview</p>
+            <div className='StoreKeeperRelease-job-preview-1'>
+            <table>
+                    <thead>
+                        <tr>
+                            <td>select</td>
+                            <td>no</td>
+                            <td>Name</td>
+                            <td>description</td>
+                            <td>requested qty</td>
+                            <td>available qty</td>
+                            <td>measure unit</td>
+                            <td>unit value</td>
+                            <td>Total</td>
+                        </tr>
+                    </thead>
+ 
+                    <tbody>
+                            <tr onClick={()=>JobPreviewHandler()}>
+                                <td><input type='checkbox' /></td>
+                                <td>01</td>
+                                <td>item name</td>
+                                <td>item description</td>
+                                <td>requested</td>
+                                <td>{}</td>
+                                <td>measure unit</td>
+                                <td></td>
+                                <td>tot</td>
+                            </tr>
+
+
+
+                    </tbody>
+                    
+
+                </table>
+                <button className='btn' onClick={()=>JobPreviewCloseHandler()}>close</button>
+            </div>
+            <div className='StoreKeeperRelease-job-preview-1'></div>
+
+        </div>
+
+
+
+        {/* job preview select item window */}
+        <div className={jobItemWindow ? 'StoreKeeperRelease-job-select_item-preview' : 'hide'}>
+            <p className='title StoreKeeperRelease-job-select_item-title'>Select Item</p>
+            <div className='line'></div>
+            <div className='StoreKeeperRelease-job-select_item-preview-1'>
+                <p>Item Name : katuwelbatu </p>
+            </div>
+
+            <div className='StoreKeeperRelease-job-select_item-preview-1'>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>no</td>
+                            <td>Name</td>
+                            <td>description</td>
+                            <td>requested qty</td>
+                            <td>available qty</td>
+                            <td>measure unit</td>
+                            <td>unit value</td>
+                            <td>Total</td>
+                            <td>Store</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr onClick={(e)=>JobItemSelectHandler()}>
+                            <td>01</td>
+                            <td>item name</td>
+                            <td>item description</td>
+                            <td>requested</td>
+                            <td>{}</td>
+                            <td>measure unit</td>
+                            <td></td>
+                            <td>tot</td>
+                            <td>STORE-0001</td>
+                        </tr>
+                        
+
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
   )

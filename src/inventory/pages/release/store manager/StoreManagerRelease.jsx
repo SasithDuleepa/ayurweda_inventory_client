@@ -155,9 +155,42 @@ const JobSubmitHandler = () =>{
 }
 
 
+const JobData = {
+    job_no:'',
+    job_date:'',
+    requested_by:'',
+    invoice_no:'',
+    invoice_date:'',
+    invoice_amount:'',
+    invoice_status:'',
+    job_status:'',
+    job_type:'',
+    job_description:'',
+    job_items:[
+        {
+            item_id:'ITEM-0001',
+            item_name:'raw item 1',
+            item_description:'item 1 description for job',
+            requested_qty:'50',
+            measure_unit:'l',
+        },{
+            item_id:'ITEM-0002',
+            item_name:'raw item 2',
+            item_description:'item 2 description for job',
+            requested_qty:'20',
+            measure_unit:'kg',
+        }
+    ],
+    
+}
 
 
-  return (
+
+//add available qty
+const AddAvailableQty = () =>{
+
+}
+   return (
     <div className='StoreManagerRelease'>
             <p className='title'>Inventory Store Manager Release</p>
 
@@ -236,6 +269,7 @@ const JobSubmitHandler = () =>{
                             <td>measure unit</td>
                             <td>unit price</td>
                             <td>Total</td>
+                            <td>Store</td>
                         </tr>
                     </thead>
                     {tableData.length >0 ? tableData.map((item, index)=>(
@@ -253,6 +287,7 @@ const JobSubmitHandler = () =>{
                             <td>{item.measure_unit}</td>
                             <td>{item.unit_price}</td>
                             <td>{item.quantity * item.unit_price}</td>
+                            <td>STORE-0001</td>
                             </tr>
                         </tbody>
                     ))
@@ -263,7 +298,7 @@ const JobSubmitHandler = () =>{
             </div>
 
             <div  className='StoreManagerRelease-btn-main-div'>
-                <button>Request</button>
+                <button className='btn'>Request</button>
             </div>
         </div>
 
@@ -297,24 +332,29 @@ const JobSubmitHandler = () =>{
                             <td>no</td>
                             <td>Name</td>
                             <td>description</td>
+                            <td>requested qty</td>
                             <td>available qty</td>
-                            <td>Quantity</td>
                             <td>measure unit</td>
-                            <td>unit price</td>
+                            <td>unit value</td>
                             <td>Total</td>
                         </tr>
                     </thead>
+ 
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Item Name</td>
-                            <td>Item Description</td>
-                            <td>100</td>
-                            <td>100</td>
-                            <td>Unit</td>
-                            <td>$100</td>
-                            <td>$100</td>
-                        </tr>
+                        {JobData.job_items.length >0 ? JobData.job_items.map((item, index)=>(
+                            <tr key={index}>
+                                <td>{index+1}</td>
+                                <td>{item.item_name}</td>
+                                <td>{item.item_description}</td>
+                                <td>{item.requested_qty}</td>
+                                <td>{}</td>
+                                <td>{item.measure_unit}</td>
+                                <td></td>
+                                <td>{item.requested_qty}</td>
+                            </tr>
+                            )):
+                            <tr></tr>}
+
                     </tbody>
                     
 
