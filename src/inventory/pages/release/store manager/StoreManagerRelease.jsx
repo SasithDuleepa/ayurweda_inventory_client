@@ -28,14 +28,14 @@ export default function StoreManagerRelease() {
         }else{
             setDropDown1('dropdown-content-hide');
         }
+
+
+        setJobPreview(true)
     }
 
 
-
-
-
     const [dropDown2,setDropDown2] = useState('dropdown-content-hide');
-    const [dropdown2InputValue,setDropdown2InputValue] = useState('')
+    const [dropdown2InputValue,setDropdown2InputValue] = useState('');
     const DropDown2Handler = () =>{
         if(dropDown2 === 'dropdown-content-hide'){
             setDropDown2('dropdown-content-show');
@@ -70,7 +70,7 @@ export default function StoreManagerRelease() {
                     available_qty:res.data[0].raw_item_shadow_qty     ,
                     quantity:0,
                     measure_unit:res.data[0].raw_item_measure_unit,
-                    unit_price:1,
+                    unit_price:res.data[0].raw_item_unit_price,
                 })
                     setTableData(data)
                     console.log(tableData)
@@ -95,7 +95,7 @@ export default function StoreManagerRelease() {
                     available_qty:res.data[0].product_shadow_qty         ,
                     quantity:0,
                     measure_unit:res.data[0].product_measure_unit                    ,
-                    unit_price:1,
+                    unit_price:res.data[0].product_price,
                 })
                     setTableData(data)
                     console.log(tableData)
@@ -116,10 +116,9 @@ export default function StoreManagerRelease() {
                     available_qty:res.data[0].non_raw_shadow_qty         ,
                     quantity:0,
                     measure_unit:res.data[0].non_raw_measure_unit,
-                    unit_price:1,
+                    unit_price:res.data[0].non_raw_item_unit_price,
 })
                     setTableData(data)
-
             }catch (error) {
             
             }
@@ -131,8 +130,9 @@ export default function StoreManagerRelease() {
     //search item from all
     const [itemSearchResult,setItemSearchResult] = useState([]);
     const ItemSearchHandler = async(e) =>{
+        setDropdown2InputValue(e.target.value)
         if(e.target.value !== ''){
-            setDropdown2InputValue(e.target.value)
+            
             try {
                 const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/inventory/all/${e.target.value}`)
                 setItemSearchResult(res.data);
@@ -144,6 +144,15 @@ export default function StoreManagerRelease() {
         }
     }
 
+
+//job preview
+const [jobPreview,setJobPreview] = useState(false);
+const JobCancelHandler = () =>{
+    setJobPreview(false)
+}
+const JobSubmitHandler = () =>{
+    setJobPreview(false)
+}
 
 
 
@@ -190,7 +199,7 @@ export default function StoreManagerRelease() {
                             <img src={Arrow} alt='arrow'  className={dropDown1 ==='dropdown-content-hide'? 'select-dropdown-img-on':'select-dropdown-img-off' }/>
                         </button>
                         <div className={dropDown1}>
-                            <button onClick={()=>DropDown1SelectHandler()} className='dropdown-select-btn'>jythfgjh</button>
+                            <button onClick={()=>DropDown1SelectHandler()} className='dropdown-select-btn'>JOB-0001</button>
                         </div>
                     </div>
                 </div>
@@ -218,17 +227,20 @@ export default function StoreManagerRelease() {
             <div className='StoreManagerRelease-input-main-div'>
                 <table>
                     <thead>
-                        <th>no</th>
-                        <th>Name</th>
-                        <th>description</th>
-                        <th>available qty</th>
-                        <th>Quantity</th>
-                        <th>measure unit</th>
-                        <th>unit price</th>
-                        <th>Total</th>
+                        <tr>
+                            <td>no</td>
+                            <td>Name</td>
+                            <td>description</td>
+                            <td>available qty</td>
+                            <td>Quantity</td>
+                            <td>measure unit</td>
+                            <td>unit price</td>
+                            <td>Total</td>
+                        </tr>
                     </thead>
                     {tableData.length >0 ? tableData.map((item, index)=>(
                         <tbody key={index}>
+                            <tr>
                             <td>{index+1}</td>
                             <td>{item.item_name}</td>
                             <td>{item.item_description}</td>
@@ -241,12 +253,12 @@ export default function StoreManagerRelease() {
                             <td>{item.measure_unit}</td>
                             <td>{item.unit_price}</td>
                             <td>{item.quantity * item.unit_price}</td>
+                            </tr>
                         </tbody>
                     ))
                         :
                         <tbody></tbody>
                         }
-                    
                 </table>
             </div>
 
@@ -254,6 +266,68 @@ export default function StoreManagerRelease() {
                 <button>Request</button>
             </div>
         </div>
+
+
+        <div className={jobPreview  ? 'StoreManagerRelease-job-preview-div':'hide'}>
+        <p className='title StoreManagerRelease-job-preview-title'>Job Preview</p>
+        <div className='line'></div>
+            <div className='StoreManagerRelease-job-preview-div-1'>                
+                <p className='label StoreManagerRelease-job-preview-info-p1'>Job Number : JOB-0001</p>
+                <p className='label StoreManagerRelease-job-preview-info-p1'>Job Date : 01/01/2022</p>
+                <p className='label StoreManagerRelease-job-preview-info-p1'>Requested By : John Doe</p>
+                <p className='label StoreManagerRelease-job-preview-info-p1'>Invoice Number : INV-0001</p>
+                <p className='label StoreManagerRelease-job-preview-info-p1'>Invoice Date : 01/01/2022</p>
+                <p className='label StoreManagerRelease-job-preview-info-p1'>Job Status : Pending</p>
+                <p className='label StoreManagerRelease-job-preview-info-p1'>Job Type : Raw Item</p>
+                <p className='label StoreManagerRelease-job-preview-info-p1'>Job Description : This is a raw item job</p>
+                <p className='label StoreManagerRelease-job-preview-info-p1'>Job Total : $100</p>
+                <p className='label StoreManagerRelease-job-preview-info-p1'>Job Created By : John Doe</p>
+                <p className='label StoreManagerRelease-job-preview-info-p1'>Job Created Date : 01/01/2022</p>
+                <p className='label StoreManagerRelease-job-preview-info-p1'>Job Created Time : 01:00:00 AM</p>
+                <p className='label StoreManagerRelease-job-preview-info-p1'>Job Updated By : John Doe</p>
+                <p className='label StoreManagerRelease-job-preview-info-p1'>Job Updated Date : 01/01/2022</p>
+                <p className='label StoreManagerRelease-job-preview-info-p1'>Job Updated Time : 01:00:00 AM</p>
+                <p className='label StoreManagerRelease-job-preview-info-p1'>Job Deleted By : John Doe</p>
+            </div>
+            <div className='line'></div>
+            <div className='StoreManagerRelease-job-preview-div-2'>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>no</td>
+                            <td>Name</td>
+                            <td>description</td>
+                            <td>available qty</td>
+                            <td>Quantity</td>
+                            <td>measure unit</td>
+                            <td>unit price</td>
+                            <td>Total</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Item Name</td>
+                            <td>Item Description</td>
+                            <td>100</td>
+                            <td>100</td>
+                            <td>Unit</td>
+                            <td>$100</td>
+                            <td>$100</td>
+                        </tr>
+                    </tbody>
+                    
+
+                </table>
+            </div>
+            <div className='StoreManagerRelease-job-preview-div-3'>
+                <button onClick={()=>JobSubmitHandler()} className='btn'>Select</button>
+                <button onClick={()=>JobCancelHandler()} className='btn'>Cancel</button>
+            </div>
+
+        </div>
     </div>
   )
 }
+
+

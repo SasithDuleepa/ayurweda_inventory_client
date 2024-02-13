@@ -67,10 +67,13 @@ background-color: white;
   border-radius: 5px;
   margin: 5px;
   font-size: 17px;
-  font-family: 'Switzer', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 900;
 }
-
+.hide{
+  display: none;
+  background-color: #2196F3;
+}
 
 
 
