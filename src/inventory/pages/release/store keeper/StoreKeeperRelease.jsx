@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './StoreKeeperRelease.css'
-import Arrow from '../../../../icon/down-arrow.png'
+import Arrow from '../../../../icon/down-arrow.png';
+import axios from 'axios';
 
 export default function StoreKeeperRelease() {
     const [dropDown1,setDropDown1] = useState('dropdown-content-hide');
@@ -42,25 +43,119 @@ export default function StoreKeeperRelease() {
 
     }
 
+    const [JobPreviewItems,setJobPreviewItems] = useState([
+        {
+            id:1,
+            item_id:'NRAW-0001',
+            name:'item 1',
+            description:'description',
+            requested_quantity:1,
+            available_qty:0,
+            unit:'kg',
+        },
+        {
+            id:2,
+            item_id:'RAW-0001',
+            name:'item 2',
+            description:'description',
+            requested_quantity:1,
+            available_qty:0,
+            unit:'kg',
+        },
+        {
+            id:2,
+            item_id:'RAW-0002',
+            name:'item 2',
+            description:'description',
+            requested_quantity:1,
+            available_qty:0,
+            unit:'kg',
+        }
+    ])
+
+        //release main window
+        const[releaseItems,setReleaseItems] = useState([])
+
+
+
+
+
+
+
+
 
 
     //job preview window
     const [jobPreviewWindow,setJobPreviewWindow] = useState(false);
-    const JobPreviewHandler = () =>{
-        setJobItemWindow(true)           
+    const JobPreviewHandler = (item_id) =>{
+        setJobItemWindow(true)
+        setSelectedItem(item_id)           
     }
     const JobPreviewCloseHandler = () =>{
         setJobPreviewWindow(false);
     }
+        //set item available qty acc to item_id
+        const availableQtyHandler =async() =>{
+            if(JobPreviewItems.length > 0){
+                JobPreviewItems.map(async(item,index)=>{
+                    try {
+                        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/inventory/all/qty/${item.item_id}`)
+                        console.log(res.data)
+                        const availableQty = res.data;
+    
+                        const data = [...JobPreviewItems]
+                        data[index].available_qty = availableQty
+                        setJobPreviewItems(data)
+    
+                    } catch (error) {
+                        
+                    }
+                })
+            }
+        }
 
 
 
     //job preview select item window
     const [jobItemWindow,setJobItemWindow] = useState(false);
-    const JobItemSelectHandler = () =>{
-        console.log('selected')
+    const JobItemSelectHandler = (item) =>{
+        console.log(item)
         setJobItemWindow(false);
+        const data = [...releaseItems]
+        data.push(item)
+        setReleaseItems(data)
+
     }
+
+    const[items,setItems] = useState([]);
+    const[selectedItem,setSelectedItem] = useState('');
+    const GetItemsAccordingToItemId = async() =>{
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/inventory/all/allitems/${selectedItem}`)  
+        console.log(res.data)
+        setItems(res.data)
+    }
+    useEffect(()=>{
+        GetItemsAccordingToItemId();
+    },[selectedItem])
+    
+
+
+
+
+
+
+
+    //set unit price
+    
+    useEffect(()=>{
+        availableQtyHandler();
+
+    },[JobPreviewItems.length])
+
+
+
+
+
   return (
     <div className='StoreKeeperRelease'>
             <p className='title'>Inventory Store Keeper Release</p>
@@ -130,7 +225,8 @@ export default function StoreKeeperRelease() {
                         <td>no</td>
                         <td>Name</td>
                         <td>description</td>
-                        <td>Quantity</td>
+                        <td>Available Quantity</td>
+                        <td>qty</td>
                         <td>measure unit</td>
                         <td>unit price</td>
                         <td>Total</td>
@@ -139,16 +235,21 @@ export default function StoreKeeperRelease() {
                         
                     </thead>
                     <tbody>
-                        <tr>
-                        <td>0</td>
-                        <td>katuwelbatu</td>
-                        <td>katuwelbatu kuyjg kuyg kuugjgh </td>
-                        <td>2</td>
-                        <td>g</td>
-                        <td>200</td>
-                        <td>400</td>
+                        {releaseItems.length>0 ? releaseItems.map((item,index)=>(
+                            <tr>
+                                <td>{index+1}</td>
+                                <td>{item.item_name}</td>
+                                <td>{item.inventory_raw_item_description}</td>
+                                <td>{item.available_qty}</td>
+                                <td><input /></td>
+                                <td>{item.measure_unit}</td>
+                                <td>{item.item_price}</td>
+                                <td>{item.total}</td>
 
-                        </tr>
+                            </tr>
+                            )):
+                            <tr></tr>}
+                        
                         
                     </tbody>
                 </table>
@@ -174,27 +275,28 @@ export default function StoreKeeperRelease() {
                             <td>requested qty</td>
                             <td>available qty</td>
                             <td>measure unit</td>
-                            <td>unit value</td>
-                            <td>Total</td>
                         </tr>
                     </thead>
  
                     <tbody>
-                            <tr onClick={()=>JobPreviewHandler()}>
+                        {JobPreviewItems.length>0 ? JobPreviewItems.map((item)=>(
+                            <tr  onClick={()=>JobPreviewHandler(item.item_id)}>
                                 <td><input type='checkbox' /></td>
-                                <td>01</td>
-                                <td>item name</td>
-                                <td>item description</td>
-                                <td>requested</td>
-                                <td>{}</td>
-                                <td>measure unit</td>
-                                <td></td>
-                                <td>tot</td>
-                            </tr>
+                                <td>{item.id}</td>
+                                <td>{item.name}</td>
+                                <td>{item.description}</td>
+                                <td>{item.requested_quantity}</td>
+                                <td>{item.available_qty}</td>
+                                <td>{item.unit}</td>
 
+                            </tr>
+                        )):
+                        <tr></tr>
+                        }
 
 
                     </tbody>
+
                     
 
                 </table>
@@ -212,6 +314,7 @@ export default function StoreKeeperRelease() {
             <div className='line'></div>
             <div className='StoreKeeperRelease-job-select_item-preview-1'>
                 <p>Item Name : katuwelbatu </p>
+                <p>{selectedItem}</p>
             </div>
 
             <div className='StoreKeeperRelease-job-select_item-preview-1'>
@@ -221,15 +324,30 @@ export default function StoreKeeperRelease() {
                             <td>no</td>
                             <td>Name</td>
                             <td>description</td>
-                            <td>requested qty</td>
                             <td>available qty</td>
                             <td>measure unit</td>
                             <td>unit value</td>
-                            <td>Total</td>
                             <td>Store</td>
+                            <td>Store Location</td>
                         </tr>
                     </thead>
                     <tbody>
+                        {items.length>0 ? items.map((item,index)=>(
+                            <tr onClick={()=>JobItemSelectHandler(item)}>
+                                <td>{index}</td>
+                                <td>{item.item_name}</td>
+                                <td>{item.inventory_raw_item_description}</td>
+                                <td>{item.available_qty}</td>
+                                <td>{item.measure_unit}</td>
+                                <td>{item.item_price}</td>
+                                <td>{item.store_id}</td>
+                                <td>{item.store_location}</td>
+                            </tr>
+                        )):
+                        <tr></tr>
+                        }
+
+{/* 
                         <tr onClick={(e)=>JobItemSelectHandler()}>
                             <td>01</td>
                             <td>item name</td>
@@ -240,7 +358,7 @@ export default function StoreKeeperRelease() {
                             <td></td>
                             <td>tot</td>
                             <td>STORE-0001</td>
-                        </tr>
+                        </tr> */}
                         
 
                     </tbody>
