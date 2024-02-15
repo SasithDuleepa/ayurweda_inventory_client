@@ -1,12 +1,52 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Arrow from '../../../../icon/down-arrow.png';
 import './StoreManagerRelease.css';
 import axios from 'axios';
 
 export default function StoreManagerRelease() {
 
-        //table data
-        const [tableData,setTableData] = useState([]);
+        //shows in job preview window
+const [JobData,setJobData]= useState( {
+    job_no:'',
+    job_date:'',
+    requested_by:'',
+    invoice_no:'',
+    invoice_date:'',
+    invoice_amount:'',
+    invoice_status:'',
+    job_status:'',
+    job_type:'',
+    job_description:'',
+    job_items:[
+        {
+            item_id:'RAW-0001',
+            item_name:'raw item 1',
+            job_item_description:'item 1 description for job',
+            requested_qty:'2000',
+            measure_unit:'g',
+        },{
+            item_id:'RAW-0002',
+            item_name:'raw item 2',
+            job_item_description:'item 2 description for job',
+            requested_qty:'3500',
+            measure_unit:'g',
+        },{
+            item_id:'RAW-0003',
+            item_name:'raw item 3',
+            job_item_description:'item 3 description for job',
+            requested_qty:'2000',
+            measure_unit:'ml',
+        },{
+            item_id:'RAW-0004',
+            item_name:'raw item 4',
+            job_item_description:'item 4 description for job',
+            requested_qty:'2500',
+            measure_unit:'g',
+        }
+    ],
+    
+}
+)
 
 
 
@@ -28,9 +68,12 @@ export default function StoreManagerRelease() {
         }else{
             setDropDown1('dropdown-content-hide');
         }
+        
+
+        setJobPreviewWindow(true)
 
 
-        setJobPreview(true)
+
     }
 
 
@@ -47,7 +90,7 @@ export default function StoreManagerRelease() {
     const DropDown2SelectHandler =async (item) =>{
         // setDropdown2InputValue(item.item_name)
 
-        
+    
         if(dropDown2 === 'dropdown-content-hide'){
             setDropDown2('dropdown-content-show');
         }else{
@@ -145,51 +188,101 @@ export default function StoreManagerRelease() {
     }
 
 
-//job preview
-const [jobPreview,setJobPreview] = useState(false);
-const JobCancelHandler = () =>{
-    setJobPreview(false)
-}
-const JobSubmitHandler = () =>{
-    setJobPreview(false)
-}
 
 
-const JobData = {
-    job_no:'',
-    job_date:'',
-    requested_by:'',
-    invoice_no:'',
-    invoice_date:'',
-    invoice_amount:'',
-    invoice_status:'',
-    job_status:'',
-    job_type:'',
-    job_description:'',
-    job_items:[
-        {
-            item_id:'ITEM-0001',
-            item_name:'raw item 1',
-            item_description:'item 1 description for job',
-            requested_qty:'50',
-            measure_unit:'l',
-        },{
-            item_id:'ITEM-0002',
-            item_name:'raw item 2',
-            item_description:'item 2 description for job',
-            requested_qty:'20',
-            measure_unit:'kg',
+    const[jobPreviewWindow,setJobPreviewWindow]= useState(false)
+
+    const AvailableQtyHandler = async() =>{
+        if(JobData.job_items.length >0) {
+            JobData.job_items.map(async(item,index) => {
+                try {
+                    const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/inventory/all/qty/${item.item_id}`)
+                    const data = [...JobData.job_items]
+                    data[index].available_qty = res.data
+                    setJobData({...JobData,job_items:data})
+                } catch (error) {
+                    
+                }
+            })
         }
-    ],
-    
-}
+    }
+    useEffect(()=>{
+        AvailableQtyHandler()
+    },[JobData.job_items.length])
+
+    const JobPreviewCancelHandler = () =>{
+        setJobPreviewWindow(false)
+    }
+
+    const [selectedItem,setSelectedItem] = useState('');   //id
+    const [selectedItemName, setSelectedItemName] = useState('');  //name
+    const [selectedItemReqQty,setSelectedItemReqQty] = useState(0);
+    const[selectedItemJobDescription, setSelectedItemJobDescription] = useState('')
+
+    const JobPreviewItemSelectHandler = (item)=>{
+        // console.log(item)
+        setSelectedItem(item.item_id);
+        setSelectedItemName(item.item_name);
+        setSelectedItemReqQty(item.requested_qty);
+        setSelectedItemJobDescription(item.job_item_description)
+
+        setItemPreviewWindow(true)
+
+    }
+
+
+    //item preview window close
+    const [itemPreviewWindow,setItemPreviewWindow] = useState(false)
+    const ItemPreviewWindowCloseHandler = () =>{
+        setItemPreviewWindow(false)
+    }
+
+    const GetItems =async() =>{
+        try {
+            const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/inventory/all/allitems/${selectedItem}`);
+            // console.log(res.data);
+            setItems(res.data)
+        } catch (error) {
+            
+        }
+    }
+    useEffect(()=>{GetItems()},[selectedItem])
+
+
+    const ItemPreviewAddHandler =() =>{
+        
+        if(items.length > 0){
+            // console.log(items)
+            items.forEach(item => {
+                if(item.releasing_quantity && item.releasing_quantity !== ''){
+                    // console.log(item)
+                    const data = [...tableData]
+                    data.push(item)
+                    setTableData(data)
+
+                    console.log(tableData)
+                }
+                
+            });
+
+        }
+
+    }
 
 
 
-//add available qty
-const AddAvailableQty = () =>{
 
-}
+//table data show in main page
+const [tableData,setTableData] = useState([]);  
+
+
+
+
+
+//shows in items preview
+const[items,setItems] = useState([]);
+
+
    return (
     <div className='StoreManagerRelease'>
             <p className='title'>Inventory Store Manager Release</p>
@@ -262,32 +355,41 @@ const AddAvailableQty = () =>{
                     <thead>
                         <tr>
                             <td>no</td>
+                            <td>id</td>
                             <td>Name</td>
-                            <td>description</td>
-                            <td>available qty</td>
+                            <td>available qty</td>                            
                             <td>Quantity</td>
                             <td>measure unit</td>
                             <td>unit price</td>
                             <td>Total</td>
                             <td>Store</td>
+                            <td>location</td>
+
                         </tr>
                     </thead>
                     {tableData.length >0 ? tableData.map((item, index)=>(
                         <tbody key={index}>
                             <tr>
                             <td>{index+1}</td>
+                            <td>{item.item_id}</td>
                             <td>{item.item_name}</td>
-                            <td>{item.item_description}</td>
                             <td>{item.available_qty}</td>
-                            <td><input onChange={(e)=>{
-                                const data = [...tableData]
-                                data[index].quantity = e.target.value;
-                                setTableData(data)
-                            }} /></td>
+                            <td>
+                                <input
+                                value={item.releasing_quantity ? item.releasing_quantity :0}
+                                 onChange={(e)=>{
+                                // const data = [...tableData]
+                                // data[index].quantity = e.target.value;
+                                // setTableData(data)
+                                console.log(tableData)
+                                 }} />
+                            </td>
                             <td>{item.measure_unit}</td>
-                            <td>{item.unit_price}</td>
-                            <td>{item.quantity * item.unit_price}</td>
-                            <td>STORE-0001</td>
+                            <td>{item.item_price}</td>
+                            <td>{item.releasing_quantity * item.item_price}</td>
+ 
+                            <td>{item.store_id}</td>
+                            <td>{item.store_location}</td>
                             </tr>
                         </tbody>
                     ))
@@ -303,71 +405,113 @@ const AddAvailableQty = () =>{
         </div>
 
 
-        <div className={jobPreview  ? 'StoreManagerRelease-job-preview-div':'hide'}>
-        <p className='title StoreManagerRelease-job-preview-title'>Job Preview</p>
-        <div className='line'></div>
-            <div className='StoreManagerRelease-job-preview-div-1'>                
-                <p className='label StoreManagerRelease-job-preview-info-p1'>Job Number : JOB-0001</p>
-                <p className='label StoreManagerRelease-job-preview-info-p1'>Job Date : 01/01/2022</p>
-                <p className='label StoreManagerRelease-job-preview-info-p1'>Requested By : John Doe</p>
-                <p className='label StoreManagerRelease-job-preview-info-p1'>Invoice Number : INV-0001</p>
-                <p className='label StoreManagerRelease-job-preview-info-p1'>Invoice Date : 01/01/2022</p>
-                <p className='label StoreManagerRelease-job-preview-info-p1'>Job Status : Pending</p>
-                <p className='label StoreManagerRelease-job-preview-info-p1'>Job Type : Raw Item</p>
-                <p className='label StoreManagerRelease-job-preview-info-p1'>Job Description : This is a raw item job</p>
-                <p className='label StoreManagerRelease-job-preview-info-p1'>Job Total : $100</p>
-                <p className='label StoreManagerRelease-job-preview-info-p1'>Job Created By : John Doe</p>
-                <p className='label StoreManagerRelease-job-preview-info-p1'>Job Created Date : 01/01/2022</p>
-                <p className='label StoreManagerRelease-job-preview-info-p1'>Job Created Time : 01:00:00 AM</p>
-                <p className='label StoreManagerRelease-job-preview-info-p1'>Job Updated By : John Doe</p>
-                <p className='label StoreManagerRelease-job-preview-info-p1'>Job Updated Date : 01/01/2022</p>
-                <p className='label StoreManagerRelease-job-preview-info-p1'>Job Updated Time : 01:00:00 AM</p>
-                <p className='label StoreManagerRelease-job-preview-info-p1'>Job Deleted By : John Doe</p>
+
+
+
+
+
+
+        {/* job preview window */}
+        <div className={jobPreviewWindow ? 'StoreManagerRelease-job-preview' : 'hide'}>
+        <p>Job Preview</p>
+            <div>
+                <p>job no : </p>
+                <p>job date : </p>
+                <p>requested by : </p>
+                <p>invoice no : </p>
+                <p>invoice date : </p>
+                <p>invoice amount : </p>
+                
             </div>
-            <div className='line'></div>
-            <div className='StoreManagerRelease-job-preview-div-2'>
+
+            <div>
                 <table>
                     <thead>
                         <tr>
                             <td>no</td>
                             <td>Name</td>
-                            <td>description</td>
+                            <td>job item description</td>
                             <td>requested qty</td>
                             <td>available qty</td>
                             <td>measure unit</td>
-                            <td>unit value</td>
-                            <td>Total</td>
                         </tr>
                     </thead>
- 
-                    <tbody>
-                        {JobData.job_items.length >0 ? JobData.job_items.map((item, index)=>(
-                            <tr key={index}>
+                    {JobData.job_items.length >0 ? JobData.job_items.map((item, index)=>(
+                        <tbody key={index}>
+                            <tr onClick={()=>JobPreviewItemSelectHandler(item)}>
                                 <td>{index+1}</td>
                                 <td>{item.item_name}</td>
-                                <td>{item.item_description}</td>
+                                <td>{item.job_item_description}</td>
                                 <td>{item.requested_qty}</td>
-                                <td>{}</td>
+                                <td>{item.available_qty}</td>
                                 <td>{item.measure_unit}</td>
-                                <td></td>
-                                <td>{item.requested_qty}</td>
                             </tr>
-                            )):
-                            <tr></tr>}
-
-                    </tbody>
-                    
-
+                        </tbody>
+                    ))
+                        :
+                        <tbody></tbody>
+                        }
                 </table>
             </div>
-            <div className='StoreManagerRelease-job-preview-div-3'>
-                <button onClick={()=>JobSubmitHandler()} className='btn'>Select</button>
-                <button onClick={()=>JobCancelHandler()} className='btn'>Cancel</button>
-            </div>
 
+            <div><button onClick={()=>JobPreviewCancelHandler()}>cancel</button></div>
         </div>
-    </div>
-  )
-}
 
 
+
+
+
+        <div className={itemPreviewWindow ?'StoreManagerRelease-Item-preview' : 'hide'}>
+            <p>item preview</p>
+            <div>
+                <p>item name :{selectedItemName} </p>
+                <p>item description :{selectedItemJobDescription} </p>
+                <p>requestedqty: {selectedItemReqQty}</p>
+            </div>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>no</td>
+                            <td>Name</td>
+                            <td>available qty</td>
+                            <td>releasing qty</td>
+                            <td>measure unit</td>
+                            <td>date</td>
+                        </tr>
+                    </thead>
+                    {items.length >0 ? items.map((item, index)=>(
+                        <tbody key={index}>
+                            <tr>
+                                <td>{index+1}</td>
+                                <td>{item.item_name}</td>
+                                <td>{item.available_qty}</td>
+                                <td><input
+                                type='number'
+                                value={item.releasing_quantity ? item.releasing_quantity :''}
+                                
+                                 onChange={(e)=>{
+                                    const data = [...items]
+                                    data[index].releasing_quantity = e.target.value;
+                                    setItems(data)
+                                    console.log(items)
+                                }}/></td>
+                                <td>{item.measure_unit}</td>
+                                <td>{item.item_released_date}</td>
+                            </tr>
+                        </tbody>
+                    ))
+                        :
+                        <tbody></tbody>
+                        }
+                </table>
+
+            </div>
+            <div><button onClick={()=>ItemPreviewWindowCloseHandler()}>cancel</button>
+            <button onClick={()=>ItemPreviewAddHandler()}>ADD</button></div>
+        </div>
+
+
+
+</div>
+   )}
