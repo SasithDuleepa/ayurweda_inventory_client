@@ -74,27 +74,53 @@
 
 .StoreManagerRelease-job-preview{
  
-    background-color: aqua;
+    background-color: rgba(255, 255, 255, 0.923);
     position: absolute;
     top: 0px;
     z-index: 2;
     height: 100vh;
     width: 99%;
 }
+.StoreManagerRelease-job-preview-title{
+    text-align: center;
+}
+.StoreManagerRelease-job-preview-div-sub{
+    display: flex;
+    /* background-color: aqua; */
+    align-items: center;
+    gap: 10px;
+    padding: 0px 20px;
+}
+
+
+
 
 
 
 
 
 .StoreManagerRelease-Item-preview{
-    background-color: rgb(0, 255, 8);
+    background-color: rgba(255, 255, 255, 0.963);
     position: absolute;
     top: 0px;
     z-index: 2;
     height: 100vh;
     width: 99%;
-
 }
+.StoreManagerRelease-Item-preview-title{
+    text-align: center;
+}
+.StoreManagerRelease-Item-preview-info-div{
+    /* background-color: antiquewhite; */
+}
+.StoreManagerRelease-Item-preview-info-div-sub{
+    display: flex;
+    /* background-color: aqua; */
+    align-items: center;
+    gap: 10px;
+    padding: 0px 20px;
+}
+
 
 
 
