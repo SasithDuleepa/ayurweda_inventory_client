@@ -30,7 +30,26 @@ export default function StoreKeeperRelease() {
 
         }
     }
-    const DropDown2SelectHandler = () =>{
+
+    const[invoice,setInvoice] = useState({})
+    const DropDown2SearchHandler =async (e) =>{
+        
+        try {
+            const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/request/get/request/${e.target.value}`)  
+            console.log(res.data)
+            setInvoice(res.data)
+        } catch (error) {
+            
+        }
+    }
+
+    const [invoiceData, setInvoiceData] = useState({
+        invoice_id : 'res.data[0].invoice_id',
+                    request_user : 'res.data[0].inventory_request_user' ,
+                    request_type : 'res.data[0].inventory_request_type',
+                    request_items :[],
+    });
+    const DropDown2SelectHandler =async (invoice_id) =>{
         if(dropDown2 === 'dropdown-content-hide'){
             setDropDown2('dropdown-content-show');
         }else{
@@ -39,57 +58,89 @@ export default function StoreKeeperRelease() {
 
         setJobPreviewWindow(true)
 
+        //get request items
+        try {
+            const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/request/get/request/items/${invoice_id}`)  
+            console.log(res.data)
+            if ( res.data.length > 0) {
+                const InvoiceData = {
+                    invoice_id : res.data[0].invoice_id,
+                    request_user : res.data[0].inventory_request_user ,
+                    request_type : res.data[0].inventory_request_type,
+                    request_items : res.data.map((item) => ({
+                        item_id: item.inventory_item_id,
+                        item_qty: item.inventory_request_qty,
+                        available_qty:'',
+                        measure_unit:'',
+                        name:''
+                    })),
+                }
+        
+                setInvoiceData(InvoiceData)
+              }
+ 
+           
+            
+        } catch (error) {
+            
+        }
+
 
 
     }
+useEffect(()=>{ 
+    let inventoryItems = invoiceData.request_items
+    if(inventoryItems.length > 0){
+        inventoryItems.map(async(item,index) => {
+           let item_type = item.item_id.split("-");
+           console.log()
 
-    const [JobPreviewItems,setJobPreviewItems] = useState([
-        {
-            id:1,
-            item_id:'RAW-0001',
-            name:'raw item 1',
-            description:'job description',
-            requested_quantity:40,
-            available_qty:0,
-            unit:'g',
-        },
-        {
-            id:2,
-            item_id:'RAW-0002',
-            name:'raw item 2',
-            description:'job description',
-            requested_quantity:120,
-            available_qty:0,
-            unit:'g',
-        },
-        {
-            id:2,
-            item_id:'RAW-0003',
-            name:'raw item 3',
-            description:'job description',
-            requested_quantity:80,
-            available_qty:0,
-            unit:'g',
-        },
-        {
-            id:2,
-            item_id:'RAW-0004',
-            name:'raw item 4',
-            description:'job description',
-            requested_quantity:290,
-            available_qty:0,
-            unit:'g',
-        },
-        {
-            id:2,
-            item_id:'RAW-0005',
-            name:'raw item 5',
-            description:'job description',
-            requested_quantity:500,
-            available_qty:0,
-            unit:'g',
-        }
-    ])
+           if(item_type[1] === 'PRODUCT'){
+            try {
+                const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/inventory/product/item/RELEASED/${item.item_id}`)
+                // console.log(res.data)
+                const data = {...invoiceData}
+                data.request_items[index].available_qty = res.data[0].product_shadow_qty;
+                data.request_items[index].measure_unit = res.data[0].product_measure_unit;
+                data.request_items[index].name = res.data[0].product_name;
+                setInvoiceData(data)
+                // console.log(data)
+            } catch (error) {
+                
+            }
+           }
+           else if(item_type[1] === 'RAW'){
+            try {
+                const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/inventory/raw/item/RELEASED/${item.item_id}`)
+                // console.log(res.data)
+                const data = {...invoiceData}
+                data.request_items[index].available_qty = res.data[0].raw_item_shadow_qty ;
+                data.request_items[index].measure_unit = res.data[0].raw_item_measure_unit;
+                data.request_items[index].name = res.data[0].raw_item_name                ;
+ 
+                setInvoiceData(data)
+            } catch (error) {
+                
+            }
+           }
+           else if(item_type[1] === 'NRAW'){
+            try {
+                const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/inventory/non-raw/item/RELEASED/${item.item_id}`)
+                // console.log(res.data)
+                const data = {...invoiceData}
+                data.request_items[index].available_qty = res.data[0].non_raw_shadow_qty ;
+                data.request_items[index].measure_unit = res.data[0].non_raw_measure_unit;
+                data.request_items[index].name = res.data[0].raw_item_name                ;
+                // data.request_items[index].name = res.data.product_measure_unit;
+                setInvoiceData(data)
+            } catch (error) {
+                
+            }
+           }
+        })
+    }
+},[invoiceData.request_items.length])
+
 
         //release main window
         const[releaseItems,setReleaseItems] = useState([])
@@ -106,60 +157,97 @@ export default function StoreKeeperRelease() {
     //job preview window
     const [jobPreviewWindow,setJobPreviewWindow] = useState(false);
     const JobPreviewHandler = (item_id,req_qty,item_description) =>{
-        setJobItemWindow(true)
-        setSelectedItem(item_id)
-        setSelectedItemQty(req_qty)
-        setSelectedItemJobDescription(item_description)           
+      
     }
     const JobPreviewCloseHandler = () =>{
         setJobPreviewWindow(false);
     }
-        //set item available qty acc to item_id
-        const availableQtyHandler =async() =>{
-            if(JobPreviewItems.length > 0){
-                JobPreviewItems.map(async(item,index)=>{
-                    try {
-                        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/inventory/all/qty/${item.item_id}`)
-                        // console.log(res.data)
-                        const availableQty = res.data;
+    const JobPreviewSelectHandler = () => {
+        if (invoiceData.request_items.length > 0) {
+            let Items = invoiceData.request_items;
+            let updatedReleaseItems = [...releaseItems]; 
     
-                        const data = [...JobPreviewItems]
-                        data[index].available_qty = availableQty
-                        setJobPreviewItems(data)
+            Items.forEach((item) => {
+                updatedReleaseItems.push({
+                    item_id: item.item_id,
+                    requested_quantity: item.item_qty
+                });
+            });
     
-                    } catch (error) {
-                        
-                    }
-                })
-            }
+            setReleaseItems(updatedReleaseItems); 
+            return updatedReleaseItems; 
+        } else {
+            return releaseItems; 
         }
-
-
-
-    //job preview select item window
-    const [jobItemWindow,setJobItemWindow] = useState(false);
-    const JobItemSelectHandler = (item) =>{
-        let selectedItem = item        
-        selectedItem.requested_quantity = selectedItemQty
-       setJobItemWindow(false);
-        const data = [...releaseItems]
-        data.push(item)
-        setReleaseItems(data)
-    }
-
-    const[items,setItems] = useState([]);
-    const[selectedItem,setSelectedItem] = useState('');
-    const[selectedItemQty,setSelectedItemQty] = useState(0);
-    const[selectedItemJobDescription, setSelectedItemJobDescription] = useState('')
-    const GetItemsAccordingToItemId = async() =>{
-        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/inventory/all/allitems/${selectedItem}`)  
-        // console.log(res.data)
-        setItems(res.data)
-    }
-    useEffect(()=>{
-        GetItemsAccordingToItemId();
-    },[selectedItem])
+    };
     
+useEffect(()=>{
+    if(releaseItems.length > 0){
+    releaseItems.map(async(item, index) => {
+        
+        if(item.item_id){
+            let item_type = item.item_id.split("-");
+            // console.log(item_type)
+            if(item_type[1] === 'PRODUCT'){
+                try {
+                    const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/inventory/product/item/RELEASED/${item.item_id}`)
+                    // console.log(res.data)
+                    const data = {...releaseItems}
+                    data[index].available_qty = res.data[0].product_shadow_qty;
+                    data[index].measure_unit = res.data[0].product_measure_unit;
+                    data[index].item_name = res.data[0].product_name;
+                    data[index].item_price= res.data[0].product_unit_price;
+                    data[index].item_released_date= res.data[0].product_released_date ;
+                    data[index].location= res.data[0].product_location_id ;
+                    data[index].item_description= res.data[0].inventory_product_description;
+                    setReleaseItems(data)
+                    // console.log(data)
+                } catch (error) {
+
+                }
+               }
+               else if(item_type[1] === 'RAW'){
+                try {
+                    const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/inventory/raw/item/RELEASED/${item.item_id}`)
+                    // console.log(res.data)
+                    const data = [...releaseItems]
+                    data[index].available_qty = res.data[0].raw_item_shadow_qty ;
+                    data[index].measure_unit = res.data[0].raw_item_measure_unit;
+                    data[index].item_name= res.data[0].raw_item_name  ;
+                    data[index].item_price= res.data[0].raw_item_unit_price  ;
+                    data[index].item_released_date= res.data[0].raw_item_released_date ;
+                    data[index].location= res.data[0].raw_item_location_id;
+                    data[index].item_description= res.data[0].inventory_raw_item_description;
+
+                    setReleaseItems(data)
+                } catch (error) {
+
+                }
+               }
+               else if(item_type[1] === 'NRAW'){
+                try {
+                    const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/inventory/non-raw/item/RELEASED/${item.item_id}`)
+                    // console.log(res.data)
+                    const data = {...releaseItems}
+                    data[index].available_qty = res.data[0].non_raw_shadow_qty ;
+                    data[index].measure_unit = res.data[0].non_raw_measure_unit;
+                    data[index].item_name = res.data[0].non_raw_item_name              ;
+                    
+                 
+                    data[index].item_price= res.data[0].non_raw_item_unit_price ;
+                    data[index].item_released_date= res.data[0].non_raw_released_date;
+                    data[index].location= res.data[0].non_raw_location_id;
+                    data[index].item_description= res.data[0].non_raw_item_description;
+                    setReleaseItems(data)
+                } catch (error) {
+
+                }
+               }
+        }
+       
+    })
+    }
+},[releaseItems.length])
 
 
 
@@ -167,12 +255,8 @@ export default function StoreKeeperRelease() {
 
 
 
-    //set unit price
-    
-    useEffect(()=>{
-        availableQtyHandler();
 
-    },[JobPreviewItems.length])
+
 
 
 
@@ -225,16 +309,24 @@ export default function StoreKeeperRelease() {
                     </div>
                 </div>
                 <div  className='search-select-div'>
-                    <label className='StoreKeeperRelease-search-div-label label'>Search by Job</label>
+                    <label className='StoreKeeperRelease-search-div-label label'>Search by Invoice</label>
                     <label className='StoreKeeperRelease-search-div-label label'>:</label>
                     <div className='StoreKeeperRelease-search-div-select'>
                         <button onClick={()=>DropDown2Handler()} className='drop-down-btn '>
-                            <input className='StoreKeeperRelease-search-div-select-input ' type='text' placeholder='JOB-XXXX'/>
+                            <input className='StoreKeeperRelease-search-div-select-input ' onChange={(e)=>DropDown2SearchHandler(e)} type='text' placeholder='INVOICE-XXXXXX'/>
                             <img src={Arrow} alt='arrow'  className={dropDown2 ==='dropdown-content-hide'? 'select-dropdown-img-on':'select-dropdown-img-off' }/>
                         </button>
+                        {invoice.length > 0 ? 
                         <div className={dropDown2}>
-                            <button onClick={()=>DropDown2SelectHandler()} className='dropdown-select-btn'>JOB-0001</button>
+                            {invoice.map((item, index)=>(
+                                <button key={index} onClick={()=>DropDown2SelectHandler(item.invoice_id)} className='dropdown-select-btn'>{item.invoice_id}</button>
+                            ))}
                         </div>
+                        :
+                        null}
+                        {/* <div className={dropDown2}>
+                            <button onClick={()=>DropDown2SelectHandler()} className='dropdown-select-btn'>JOB-0001</button>
+                        </div> */}
                     </div>
                 </div>
             </div>
@@ -249,11 +341,11 @@ export default function StoreKeeperRelease() {
                         <td>description</td>
                         <td>Available Quantity</td>
                         <td>qty</td>
-                        <td>requested qty</td>
                         <td>measure unit</td>
                         <td>unit price</td>
                         <td>released date</td>
                         <td>Total</td>
+                        <td>location</td>
 
                         </tr>
                         
@@ -263,14 +355,15 @@ export default function StoreKeeperRelease() {
                             <tr key={index}>
                                 <td>{index+1}</td>
                                 <td>{item.item_name}</td>
-                                <td>{item.inventory_raw_item_description}</td>
+                                <td>{item.item_description}</td>
                                 <td>{item.available_qty}</td>
-                                <td><input /></td>
-                                <td>{item.requested_quantity}</td>
+                          
+                                <td>{item.requested_quantity ? item.requested_quantity :<input />}</td>
                                 <td>{item.measure_unit}</td>
                                 <td>{item.item_price}</td>
                                 <td>{item.item_released_date}</td>
                                 <td>{item.total}</td>
+                                <td>{item.location}</td>
 
                             </tr>
                             )):
@@ -286,10 +379,12 @@ export default function StoreKeeperRelease() {
 
 
 
-{/* job preview window */}
+{/* invoice preview window */}
 
         <div className={jobPreviewWindow ? 'StoreKeeperRelease-job-preview' : 'hide'}>
-            <p className='title'>Job Preview</p>
+            <p className='title'>Requested Items</p>
+
+
             <div className='StoreKeeperRelease-job-preview-1'>
             <table>
                     <thead>
@@ -297,7 +392,6 @@ export default function StoreKeeperRelease() {
                             <td>select</td>
                             <td>no</td>
                             <td>Name</td>
-                            <td>job item description</td>
                             <td>requested qty</td>
                             <td>available qty</td>
                             <td>measure unit</td>
@@ -305,15 +399,14 @@ export default function StoreKeeperRelease() {
                     </thead>
  
                     <tbody>
-                        {JobPreviewItems.length>0 ? JobPreviewItems.map((item,index)=>(
-                            <tr key={index}  onClick={()=>JobPreviewHandler(item.item_id,item.requested_quantity,item.description )}>
+                        {invoiceData.request_items.length >0 ? invoiceData.request_items.map((item,index)=>(
+                            <tr key={index}>
                                 <td><input type='checkbox' /></td>
-                                <td>{item.id}</td>
+                                <td>{item.item_id}</td>
                                 <td>{item.name}</td>
-                                <td>{item.description}</td>
-                                <td>{item.requested_quantity}</td>
+                                <td>{item.item_qty}</td>
                                 <td>{item.available_qty}</td>
-                                <td>{item.unit}</td>
+                                <td>{item.measure_unit}</td>
 
                             </tr>
                         )):
@@ -326,6 +419,7 @@ export default function StoreKeeperRelease() {
                     
 
                 </table>
+                <button className='btn' onClick={()=>JobPreviewSelectHandler()}>Select</button>
                 <button className='btn' onClick={()=>JobPreviewCloseHandler()}>close</button>
             </div>
             <div className='StoreKeeperRelease-job-preview-1'></div>
@@ -334,53 +428,7 @@ export default function StoreKeeperRelease() {
 
 
 
-        {/* job preview select item window */}
-        <div className={jobItemWindow ? 'StoreKeeperRelease-job-select_item-preview' : 'hide'}>
-            <p className='title StoreKeeperRelease-job-select_item-title'>Select Item</p>
-            <div className='line'></div>
-            <div className='StoreKeeperRelease-job-select_item-preview-1'>
-                <p>Item Name : katuwelbatu </p>
-                <p>requested qty : {selectedItemQty}</p>
-                <p>job item description : {selectedItemJobDescription}</p>
-                <p>{selectedItem}</p>
-            </div>
 
-            <div className='StoreKeeperRelease-job-select_item-preview-1'>
-                <table>
-                    <thead>
-                        <tr>
-                            <td>no</td>
-                            <td>Name</td>
-                            <td>item description</td>
-                            <td>available qty</td>
-                            <td>measure unit</td>
-                            <td>unit value</td>
-                            <td>Store</td>
-                            <td>Store Location</td>
-                            <td>released date</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {items.length>0 ? items.map((item,index)=>(
-                            <tr key={index} onClick={()=>JobItemSelectHandler(item)}>
-                                <td>{index}</td>
-                                <td>{item.item_name}</td>
-                                <td>{item.inventory_raw_item_description}</td>
-                                <td>{item.available_qty}</td>
-                                <td>{item.measure_unit}</td>
-                                <td>{item.item_price}</td>
-                                <td>{item.store_id}</td>
-                                <td>{item.store_location}</td>
-                                <td>{item.item_released_date}</td>
-                            </tr>
-                        )):
-                        <tr></tr>
-                        }
-
-                    </tbody>
-                </table>
-            </div>
-        </div>
     </div>
   )
 }

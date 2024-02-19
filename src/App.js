@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Route,Routes, BrowserRouter } from "react-rout
 import StoreManagerRelease from './inventory/pages/release/store manager/StoreManagerRelease';
 import StoreKeeperRelease from './inventory/pages/release/store keeper/StoreKeeperRelease';
 
+import Pos from './inventory/pages/pos/pos';
+
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
 
         <Route element={<StoreManagerRelease/>} path="/store-manager-release"/>
         <Route element={<StoreKeeperRelease/>} path="/store-keeper-release"/>
+        <Route element={<Pos/>} path="/pos"/>
        
 
       </Routes>

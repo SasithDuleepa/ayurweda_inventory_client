@@ -18,32 +18,7 @@ export default function StoreManagerRelease() {
     job_type: "",
     job_description: "",
     job_items: [
-      // {
-      //     item_id:'RAW-0001',
-      //     item_name:'raw item 1',
-      //     job_item_description:'item 1 description for job',
-      //     requested_qty:'2000',
-      //     measure_unit:'g',
-      // }
-      // ,{
-      //     item_id:'RAW-0002',
-      //     item_name:'raw item 2',
-      //     job_item_description:'item 2 description for job',
-      //     requested_qty:'3500',
-      //     measure_unit:'g',
-      // },{
-      //     item_id:'RAW-0003',
-      //     item_name:'raw item 3',
-      //     job_item_description:'item 3 description for job',
-      //     requested_qty:'2000',
-      //     measure_unit:'ml',
-      // },{
-      //     item_id:'RAW-0004',
-      //     item_name:'raw item 4',
-      //     job_item_description:'item 4 description for job',
-      //     requested_qty:'2500',
-      //     measure_unit:'g',
-      // }
+     
     ],
   });
 
@@ -52,6 +27,7 @@ export default function StoreManagerRelease() {
   const [invoiceAmount, setinvoiceAmount] = useState(0);
   const [user, setUsers] = useState("USER-000001");
   const [jobNo, setJobNo] = useState("JOB-0000001");
+  const [ requestType , setRequestType ] = useState('')
 
   const [dropDown1, setDropDown1] = useState("dropdown-content-hide");
   const DropDown1Handler = () => {
@@ -132,13 +108,15 @@ export default function StoreManagerRelease() {
         setTableData(res.data);
         const data = [...tableData];
         data.push({
-          item_id: res.data[0].raw_item_id,
+          item_id: res.data[0].raw_item_inventory_id,
           item_name: res.data[0].raw_item_name,
           item_description: res.data[0].inventory_raw_item_description,
           available_qty: res.data[0].raw_item_shadow_qty,
           quantity: 0,
           measure_unit: res.data[0].raw_item_measure_unit,
-          unit_price: res.data[0].raw_item_unit_price,
+          item_price: res.data[0].raw_item_unit_price ,
+          store_id:res.data[0].raw_item_store_id  ,
+          store_location:res.data[0].raw_item_location_id,
         });
         setTableData(data);
         // console.log(tableData);
@@ -153,13 +131,15 @@ export default function StoreManagerRelease() {
         setTableData(res.data);
         const data = [...tableData];
         data.push({
-          item_id: res.data[0].product_id,
+          item_id: res.data[0].inventory_product_id,
           item_name: res.data[0].product_name,
           item_description: res.data[0].inventory_product_description,
           available_qty: res.data[0].product_shadow_qty,
           quantity: 0,
           measure_unit: res.data[0].product_measure_unit,
-          unit_price: res.data[0].product_price,
+          item_price: res.data[0].product_unit_price,
+          store_id:res.data[0].product_store_id ,
+          store_location:res.data[0].product_location_id  ,
         });
         setTableData(data);
         // console.log(tableData);
@@ -174,13 +154,16 @@ export default function StoreManagerRelease() {
         setTableData(res.data);
         const data = [...tableData];
         data.push({
-          item_id: 1111,
+          item_id: res.data[0].   non_raw_inventory_item_id ,
           item_name: res.data[0].non_raw_item_name,
           item_description: res.data[0].non_raw_item_description,
           available_qty: res.data[0].non_raw_shadow_qty,
           quantity: 0,
           measure_unit: res.data[0].non_raw_measure_unit,
-          unit_price: res.data[0].non_raw_item_unit_price,
+          item_price: res.data[0].non_raw_item_unit_price,
+          store_id:res.data[0].non_raw_store_id ,
+          store_location:res.data[0].non_raw_location_id
+ 
         });
         setTableData(data);
       } catch (error) {}
@@ -289,7 +272,7 @@ export default function StoreManagerRelease() {
       invoice_id: invoiceNo,
       date: invoiceDate,
       user_id: user,
-      type: "JOB",
+      type: requestType,
       job_id: jobNo,
       status: "PENDING",
 
@@ -297,10 +280,10 @@ export default function StoreManagerRelease() {
     };
     try {
       const res = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/storekeeper/add/request`,
+        `${process.env.REACT_APP_BACKEND_URL}/request/add/request`,
         ReqData
       );
-      // console.log(res.data);
+      console.log(res.data);
     } catch (error) {}
   };
 
@@ -363,11 +346,11 @@ export default function StoreManagerRelease() {
             <label className="StoreManagerRelease-info-input-label label">
               :
             </label>
-            <select className="StoreManagerRelease-info-input form-input">
+            <select className="StoreManagerRelease-info-input form-input" onChange={(e)=>setRequestType(e.target.value)}>
               <option>SELECT REQUEST TYPE</option>
-              <option>JOB</option>
-              <option>SALE</option>
-              <option>OTHER</option>
+              <option value={'JOB'}>JOB</option>
+              <option value={'SALE'}>SALE</option>
+              <option value={'OTHER'}>OTHER</option>
             </select>
           </div>
 
@@ -503,19 +486,27 @@ export default function StoreManagerRelease() {
                     <td>
                       <input
                         value={
-                          item.releasing_quantity ? item.releasing_quantity : 0
+                          item.releasing_quantity ? item.releasing_quantity : item.quantity
                         }
-                        onChange={(e) => {
-                          // const data = [...tableData]
-                          // data[index].quantity = e.target.value;
-                          // setTableData(data)
+                        onChange={
+                          item.releasing_quantity ? (e) => {}
+                            
+                           : 
+                          
+                          (e) => {
+                          const data = [...tableData]
+                          data[index].quantity = e.target.value;
+                          setTableData(data)
                           console.log(tableData);
                         }}
                       />
                     </td>
                     <td>{item.measure_unit}</td>
                     <td>{item.item_price}</td>
-                    <td>{item.releasing_quantity * item.item_price}</td>
+                    <td>{
+
+                      item.releasing_quantity ? item.releasing_quantity * item.item_price : item.quantity* item.item_price
+            }</td>
 
                     <td>{item.store_id}</td>
                     <td>{item.store_location}</td>
