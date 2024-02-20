@@ -1,0 +1,40 @@
+.AddCustomer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.AddCustomer-form-div {
+    display: flex;
+    align-items: center;
+    width: 600px;
+    justify-content: space-between;
+}
+
+.AddCustomer-form-label {
+    /* background-color: aqua; */
+    width: 200px;
+}
+
+.AddCustomer-form-input {}
+
+
+
+
+.AddCustomer-btn-container {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 20px;
+    margin: 20px 0px 10px 0px;
+}
+
+.AddCustomer-add-btn {
+    background-color: var(--color-secondary);
+}
+
+.AddCustomer-cancel-btn {
+    background-color: var(--warning-color);
+}

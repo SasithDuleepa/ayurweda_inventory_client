@@ -1,37 +1,45 @@
-
-body{
-  background-color:rgb(247, 248, 249);
+body {
+  background-color: rgb(247, 248, 249);
 }
 
 :root {
-  --color-primary: rgb(225, 240, 218); /* Main green color */
+  --color-primary: rgb(225, 240, 218);
+  /* Main green color */
 
-  --color-secondary: rgb(191, 216, 175); /* Main green color */
+  --color-secondary: rgb(191, 216, 175);
+  /* Main green color */
 
 
-  --color-text: #333333; /* Dark text color */
+  --color-text: #333333;
+  /* Dark text color */
 
-  --color-link: #2196F3; /* Blue link color */
- --blue: #065ba0;
+  --color-link: #2196F3;
+  /* Blue link color */
+  --blue: #065ba0;
+
+  --warning-color: rgb(225, 132, 132);
 }
 
 
-.title{
+.title {
   font-size: 20px;
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
 }
-.sub_title{
+
+.sub_title {
   font-size: 18px;
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
 }
-.label{
+
+.label {
   font-size: 15px;
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
 }
-.warning{
+
+.warning {
   font-size: 10px;
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
@@ -39,29 +47,29 @@ body{
 }
 
 
-.line{
+.line {
   border-bottom: 2px solid rgba(0, 0, 0, 0.383);
   margin: 10px 0px;
 }
 
-.container{
+.container {
 
-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.1);
-border-radius: 10px;
-padding: 5px 10px;
-background-color: white;
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 10px 20px;
+  background-color: white;
 }
 
 
 
-.form-input{
-    height: 25px;
-    width: 350px;
-    background-color: var(--color-primary);
-    border: 1px solid rgb(141, 141, 141);
+.form-input {
+  height: 25px;
+  width: 350px;
+  background-color: var(--color-primary);
+  border: 1px solid rgb(141, 141, 141);
 }
 
-.btn{
+.btn {
   padding: 10px 30px;
   border: none;
   border-radius: 5px;
@@ -70,7 +78,8 @@ background-color: white;
   font-family: 'Poppins', sans-serif;
   font-weight: 900;
 }
-.hide{
+
+.hide {
   display: none;
   background-color: #2196F3;
 }
@@ -78,19 +87,21 @@ background-color: white;
 
 
 /* for search and select */
-.select-sub{
+.select-sub {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
 }
-.drop-down-arrow-expand{
+
+.drop-down-arrow-expand {
   width: 15px;
   height: 15px;
   transition: .5s;
   margin: 10px;
 }
-.drop-down-arrow-clos{
+
+.drop-down-arrow-clos {
   width: 15px;
   height: 15px;
   rotate: 180deg;
@@ -105,7 +116,11 @@ background-color: white;
   width: 270px;
   background-color: transparent;
 }
-#myInput:focus {outline: 0px solid #ddd;}
+
+#myInput:focus {
+  outline: 0px solid #ddd;
+}
+
 .dropdown {
   position: relative;
   display: inline-block;
@@ -117,9 +132,13 @@ background-color: white;
   text-decoration: none;
   display: block;
 }
-.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1
+}
+
 .show {
-  display:flex;
+  display: flex;
   flex-direction: column;
 }
 
@@ -128,8 +147,8 @@ background-color: white;
 
 
 
-.search-select-div{
- 
+.search-select-div {
+
 
   margin: 10px 0px;
   display: flex;
@@ -137,10 +156,12 @@ background-color: white;
   justify-content: space-between;
   gap: 20px;
 }
-.Release-search-div-select{
+
+.Release-search-div-select {
   width: max-content;
 
 }
+
 .drop-down-btn {
   display: flex;
   align-items: center;
@@ -153,31 +174,37 @@ background-color: white;
   width: 500px;
   border-radius: 2px;
 }
-.drop-down-btn:hover, .drop-down-btn:focus {
+
+.drop-down-btn:hover,
+.drop-down-btn:focus {
   background-color: rgba(54, 54, 54, 0.249);
 }
-.Release-search-div-select-input{
-  font-size: 16px;
-border: none;
-height: 22px;
-width: 100%;
-background-color: transparent;
 
-&:focus {
-  outline: 0px solid #ddd;
+.Release-search-div-select-input {
+  font-size: 16px;
+  border: none;
+  height: 22px;
+  width: 100%;
+  background-color: transparent;
+
+  &:focus {
+    outline: 0px solid #ddd;
   }
 }
-.select-dropdown-img-on{
+
+.select-dropdown-img-on {
   width: 15px;
   height: 15px;
   transition: 0.3s;
 }
-.select-dropdown-img-off{
+
+.select-dropdown-img-off {
   width: 15px;
   height: 15px;
   transform: rotate(180deg);
   transition: 0.3s;
 }
+
 .dropdown-content-show {
   position: absolute;
   background-color: #f6f6f6;
@@ -185,12 +212,13 @@ background-color: transparent;
   border: 1px solid #ddd;
   z-index: 1;
 }
+
 .dropdown-content-hide {
   display: none;
 
 }
 
-.dropdown-select-btn{
+.dropdown-select-btn {
   background-color: rgba(15, 14, 14, 0.064);
   border: none;
   height: 25px;
@@ -200,7 +228,7 @@ background-color: transparent;
 
 
 
-table{
+table {
   border: 1px solid #ccc;
   border-collapse: collapse;
   margin: 0;
@@ -208,7 +236,8 @@ table{
   width: 100%;
   table-layout: fixed;
 }
-thead tr{
+
+thead tr {
   background-color: #33333340;
   font-weight: 600;
 }
@@ -224,6 +253,7 @@ table td {
   padding: .625em;
   text-align: center;
 }
+
 table th {
   font-size: .85em;
   letter-spacing: .1em;
@@ -239,7 +269,7 @@ table th {
   table caption {
     font-size: 1.3em;
   }
-  
+
   table thead {
     border: none;
     clip: rect(0 0 0 0);
@@ -250,21 +280,21 @@ table th {
     position: absolute;
     width: 1px;
   }
-  
+
   table tr {
     border-bottom: 3px solid #ddd;
     display: block;
     margin-bottom: .625em;
     background-color: #27252548;
   }
-  
+
   table td {
     border-bottom: 1px solid #ddd;
     display: block;
     font-size: .8em;
     text-align: right;
   }
-  
+
   table td::before {
     /*
     * aria-label has no advantage, it won't be read inside a table
@@ -275,7 +305,7 @@ table th {
     font-weight: bold;
     text-transform: uppercase;
   }
-  
+
   table td:last-child {
     border-bottom: 0;
   }
