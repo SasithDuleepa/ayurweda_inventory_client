@@ -1,3 +1,21 @@
+.app {
+  /* display: flex; */
+}
+
+.SideBar {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  z-index: 3;
+}
+
+.App-content {
+  margin-left: 100px;
+}
+
+
+
+
 body {
   background-color: rgb(247, 248, 249);
 }
@@ -18,6 +36,39 @@ body {
   --blue: #065ba0;
 
   --warning-color: rgb(225, 132, 132);
+
+
+  /* colors */
+
+  --background: #EDF7F6;
+
+  --blue_01: #164863;
+  --blue_02: #427D9D;
+  --blue_03: #9BBEC8;
+  --blue_04: #DDF2FD;
+
+  --green_01: #99BC85;
+  --green_02: #BFD8AF;
+  --green_03: #D4E7C5;
+  --green_04: #E1F0DA;
+
+  --black: #1d1d1f;
+  --white: #ffffff;
+  --warning: #db162f;
+  --succesful: #1ec91c;
+
+  --inactiveColor: #828887;
+
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  padding: 0;
+  margin: 0;
 }
 
 

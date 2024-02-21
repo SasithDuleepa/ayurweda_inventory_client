@@ -1,0 +1,110 @@
+.ViewCustomer {}
+
+
+
+
+.ViewCustomer-search-div {
+    display: flex;
+    justify-content: center;
+}
+
+.ViewCustomer-search {
+    background-color: aqua;
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.ViewCustomer-search-sub {
+    width: 500px;
+    background-color: blueviolet;
+}
+
+.ViewCustomer-search-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ViewCustomer-search-btn-input {
+    width: 100%;
+}
+
+.ViewCustomer-search-btn-img-show {
+    width: 20px;
+    transition: .4s;
+}
+
+.ViewCustomer-search-btn-img-hide {
+    width: 20px;
+    rotate: 180deg;
+    transition: .4s;
+}
+
+.ViewCustomer-search-select-div-show {
+    background-color: yellowgreen;
+    width: 100%;
+}
+
+.ViewCustomer-search-select-div-hide {
+    background-color: yellowgreen;
+    width: 100%;
+    display: none;
+}
+
+
+
+
+
+
+
+.ViewCustomer-info-div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.ViewCustomer-info {
+    display: flex;
+    align-items: center;
+    /* background-color: yellowgreen; */
+    width: 500px;
+    justify-content: space-between;
+}
+
+
+
+
+.ViewCustomer-bill-div {}
+
+.ViewCustomer-bill-table {
+    border: 1px solid black;
+}
+
+.ViewCustomer-bill-table-head {
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(190, 190, 190);
+}
+
+.ViewCustomer-bill-table-body {
+    display: flex;
+    justify-content: space-around;
+}
+
+.customer-bill-p1 {
+    width: 300px;
+
+}
+
+.customer-bill-p2 {
+    width: 300px;
+
+}
+
+.customer-bill-p3 {
+    width: 300px;
+
+}

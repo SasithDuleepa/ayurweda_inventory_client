@@ -8,29 +8,46 @@ import StoreKeeperRelease from './inventory/pages/release/store keeper/StoreKeep
 
 
 import AddCustomer from './pos/customer/add customer/addCustomer';
+import UpdateCustomer from './pos/customer/update customer/updateCustomer';
+import ViewCustomer from './pos/customer/view customer/viewCustomer';
 
 import Pos from './pos/pos/pos';
+
+
+import SideMenu from './sidebar/side_menu/side_menu';
 
 
 function App() {
   return (
     <div className='app'>
 
+      
+
+
+
+
+
+      
+      
+
 
 
 
       <Router>
-      <Routes>
+      
+      <div className='SideBar'><SideMenu/></div>
 
-        <Route element={<StoreManagerRelease/>} path="/store-manager-release"/>
+      <div className='App-content'>
+      <Routes>
+         <Route element={<StoreManagerRelease/>} path="/store-manager-release"/>
         <Route element={<StoreKeeperRelease/>} path="/store-keeper-release"/>
         <Route element={<Pos/>} path="/pos"/>
-
-
         <Route element={<AddCustomer/>} path="/customer/add"/>
-       
-
+        <Route element={<UpdateCustomer/>} path="/customer/update"/>
+        <Route element={<ViewCustomer/>} path="/customer/view"/>
       </Routes>
+      </div>
+      
 
       </Router>
     </div>

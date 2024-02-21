@@ -1,0 +1,119 @@
+.side_menu {
+    width: 500px;
+    height: 100%;
+    background-color: var(--white);
+    transition: width 0.3s ease-in;
+    padding: 23px 0 30px 0;
+    overflow-y: auto;
+    scrollbar-color: var(--blue_01) var(--blue_04);
+    scrollbar-width: thin;
+}
+
+.side_menu-system_logo {
+    width: 404px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: opacity 0.3s ease-in;
+}
+
+.side_menu-system_logo img {
+    width: 287px;
+    height: 58px;
+    transition: 0.3s ease-in;
+}
+
+.side_menu-user_details {
+    width: 404px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 30px 0;
+    transition: 0.3s ease-in;
+}
+
+.side_menu-user_details-profile_picture img {
+    width: 86px;
+    height: 86px;
+    border: 2px solid #BEC6C5;
+    border-radius: 50%;
+    transition: 0.3s ease-in;
+}
+
+.side_menu-user_details-details {
+    transform: translateX(-20px);
+    transition: 0.3s ease-in;
+    opacity: 1;
+}
+
+.side_menu-user_details-details-name {
+    margin: 0;
+    padding: 0;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.side_menu-user_details-details-designation {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    transform: translateY(-5px);
+}
+
+.side_menu-user_details-arrow {
+    font-size: 25px;
+    color: var(--blue_01);
+    transition: 0.3s ease-in;
+}
+
+.side_menu-systems {
+    margin: 50px 0 0 0;
+    width: auto;
+    transition: 0.3s ease-in;
+}
+
+
+
+/* collapse status */
+.side_menu.collapse {
+    width: 83px;
+}
+
+.side_menu.collapse .side_menu-system_logo {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+.side_menu.collapse .side_menu-user_details {
+    display: flex;
+    flex-direction: column-reverse;
+    /* align-items: start;
+    justify-content: center; */
+    width: 83px;
+    margin: 10px 0 0;
+    padding: 0;
+    gap: 60px;
+}
+
+.side_menu.collapse .side_menu-user_details-profile_picture img {
+    width: 49px;
+    height: 49px;
+    margin: -10px;
+}
+
+.side_menu.collapse .side_menu-user_details-details {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    display: none;
+    margin: 30px;
+}
+
+.side_menu.collapse .side_menu-systems {
+    width: 83px;
+    margin-top: 68px;
+}
