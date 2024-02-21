@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './addCustomer.css';
 import IdGenerate from '../../../utils/id_generate';
+import axios from 'axios';
 
-export default function AddCustomer() {
+export default function AddCustomer(props) {
     const [id,setId] = useState(IdGenerate('CUSTOMER'));
     const [name,setName] = useState('');
     const [nic,setNic] = useState('');
@@ -12,8 +13,19 @@ export default function AddCustomer() {
     const [customerType,setCustomertype] = useState('');
     const [regNo,setRegNo] = useState('');
 
-    const [userId,setUserId] = useState('');
-    const [date,setDate] = useState('');
+    const [userId,setUserId] = useState('USER-0001');
+    const [date,setDate] = useState(
+        new Date().toLocaleDateString('en-GB', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false
+        }
+        )
+    );
 
 
     const [regNoView,setRegNoView] = useState(false);
@@ -28,9 +40,34 @@ export default function AddCustomer() {
     ])
 
 
+    const AddHandler = async ()=>{
+        if(name === '' || nic === '' || address === '' || contact === '' || email === '' || customerType === '' ){
+            window.alert('Please fill all the fields');
+        }else{
+            const data = {
+                customer_id:id,
+                customer_name:name,
+                customer_nic:nic,
+                customer_address:address,
+                customer_contact:contact,
+                customer_email:email,
+                customer_type:customerType,
+                customer_reg_no:regNo,
+                customer_added_user_id:userId,
+                customer_added_date:date
+            }
+            try {
+                const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/customer/add`, data)
+                console.log(res.data);
+            } catch (error) {
+                
+            }
+        }
+    
+    }
 
     const CancelHandler = ()=>{
-        window.alert('Canceled');
+        // window.alert('Canceled');
         setId(IdGenerate('CUSTOMER'));
         setName('');
         setNic('');
@@ -41,6 +78,8 @@ export default function AddCustomer() {
         setRegNo('');
         setUserId('');
         setDate('');
+
+        props.close()
     
     }
 
@@ -48,7 +87,7 @@ export default function AddCustomer() {
     <div>
         
         <div className='container'>
-        <p className='title'>add customer</p>
+        <p className='title'>Add Customer</p>
         <div className='line'></div>
             <div className=' AddCustomer-container'>
             <div className='AddCustomer-form-div'>
@@ -100,7 +139,7 @@ export default function AddCustomer() {
             </div>
 
             <div  className=' AddCustomer-btn-container'>
-                <button className='btn AddCustomer-add-btn'>ADD</button>
+                <button className='btn AddCustomer-add-btn' onClick={()=>AddHandler()}>ADD</button>
                 <button className='btn AddCustomer-cancel-btn' onClick={()=>CancelHandler()}>CANCEL</button>
             </div>
             

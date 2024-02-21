@@ -4,12 +4,15 @@ import Arrow from '../../icon/down-arrow.png';
 import IdGenerate from '../../utils/id_generate';
 import axios from 'axios';
 
+import AddCustomer from '../customer/add customer/addCustomer';
+
 export default function Pos() {
   const[tableData, setTableData] = useState([])
 
   const[invoiceNo,setInvoiceNo] = useState(IdGenerate('INVOICE'));
-  const[branch,setBranch] = useState('');
+  const[branch,setBranch] = useState('BRANCH-0001');
   const[date,setDate] = useState();
+  const[userId,setUserId] = useState('USER-0001');
 
 
   //item search
@@ -111,6 +114,8 @@ export default function Pos() {
 
   //customer
   const [dropDown2, setDropDown2] = useState('pos-info-customer-search-content-hide');
+  const[customerName, setCustomerName] = useState('');
+  const [customerId,setCustomerId] = useState('');
   
   const DropDown2Handler = () =>{
     if(dropDown2 === 'pos-info-customer-search-content-hide'){
@@ -120,11 +125,51 @@ export default function Pos() {
     }
   }
 
+  const[customers, setCustomers] = useState([])
+  const CustomerSearchHandler = async (e) => {
+    setCustomerName(e.target.value)
+    if(e.target.value !== ''){
+      try {
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/customer/search/${e.target.value}`)
+        console.log(res.data)
+        setCustomers(res.data)
+      } catch (error) {
+        
+      }
+    }
+  };
+  const CustomerSelectHandler = async (customer) => {
+    setCustomerName(customer.customer_name)
+    setCustomerId(customer.customer_id)
+    setDropDown2('pos-info-customer-search-content-hide')
+  
+  }
+
+
 
 
 
   const EnterHandler = () => {
-    console.log(tableData)
+    const data = {
+      invoice_id : invoiceNo,
+      branch_id : branch,
+      date : date,
+      user_id:userId,
+      customer_id:customerId,
+      customer_type:'registered',
+      item_data : tableData,
+    }
+    console.log(data)
+  }
+
+  //customer close
+  const [customerShow, setCustomerShow] = useState(false);
+  const CustomerAddHandler = () =>{
+    setCustomerShow(true)
+  }
+  const CustomerCloseHandler = () =>{
+    console.log('jytj')
+    setCustomerShow(false)
   }
   return (
     <div className='pos'>
@@ -177,15 +222,18 @@ export default function Pos() {
                 <div className='pos-info-customer-div'>
                   <div className='pos-info-customer-search-div'>
                     <button onClick={()=>DropDown2Handler()} className='pos-info-customer-search-btn'>
-                      <input className='pos-info-customer-search-input' placeholder='Customer name'/>
+                      <input onChange={(e)=>CustomerSearchHandler(e)} value={customerName} className='pos-info-customer-search-input' placeholder='Customer name'/>
                       <img src={Arrow} alt='arrow'  className={dropDown2 === 'pos-info-customer-search-content-show' ? 'pos-select-dropdown-img-on':'pos-select-dropdown-img-off'}/>
                     </button>
                     <div className={dropDown2}>
-                      <button className='pos-info-dropdown-select-btn'>ytfj</button>
+                      {customers.length >0 ? customers.map((item,index)=>{
+                        return  <button key={index} onClick={()=>CustomerSelectHandler(item)}  className='pos-info-dropdown-select-btn'>{item.customer_name}</button>
+                      }) : null}
+                      
                     </div>
                   </div>
                   <div className='pos-info-customer-add-div'>
-                    <button className='pos-info-customer-add-btn'>+</button>
+                    <button onClick={()=>CustomerAddHandler()} className='pos-info-customer-add-btn'>+</button>
                   </div>
                 </div>
                
@@ -275,8 +323,8 @@ export default function Pos() {
 
 
         {/* add customer */}
-        <div className='pos-add-customer'>
-
+        <div className={customerShow ? 'pos-add-customer-show': 'pos-add-customer-hide' }>
+                      <AddCustomer close={()=>CustomerCloseHandler()}/>
         </div>
     </div>
   )
