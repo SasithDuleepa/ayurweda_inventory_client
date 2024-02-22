@@ -9,15 +9,17 @@
 }
 
 .ViewCustomer-search {
-    background-color: aqua;
+    /* background-color: aqua; */
     display: flex;
+    align-items: center;
+    gap: 10px;
     justify-content: space-between;
     width: 50%;
 }
 
 .ViewCustomer-search-sub {
     width: 500px;
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
 }
 
 .ViewCustomer-search-btn {
@@ -45,6 +47,8 @@
 .ViewCustomer-search-select-div-show {
     background-color: yellowgreen;
     width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .ViewCustomer-search-select-div-hide {
@@ -87,6 +91,7 @@
     display: flex;
     justify-content: space-around;
     background-color: rgb(190, 190, 190);
+
 }
 
 .ViewCustomer-bill-table-body {

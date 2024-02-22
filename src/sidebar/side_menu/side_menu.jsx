@@ -13,7 +13,7 @@ import SideMenuSystems from "../components/side_menu_systems/side_menu_systems";
 import SystemList from "../utils/side_menu_data/side_menu_data";
 
 function SideMenu() {
-  const [collapse, setCollapse] = useState(false);
+  const [collapse, setCollapse] = useState(true);
   const [sideMenuSystems, setSideMenuSystems] = useState(SystemList);
 
 

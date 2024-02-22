@@ -5,8 +5,6 @@ import "./side_menu_system_sub_features.css";;
 
 function SideMenuSystemSubFeatures({ subFeatures }) {
 
-  const currentPath = window.location.pathname;
-  console.log(currentPath);
 
   return (
     <div className="side_menu_system_sub_features">

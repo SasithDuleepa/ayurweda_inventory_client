@@ -59,8 +59,40 @@ export default function AddCustomer(props) {
             try {
                 const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/customer/add`, data)
                 console.log(res.data);
-            } catch (error) {
+                if(res.status === 201){
+                    window.alert('Customer added successfully');
+                    setId(IdGenerate('CUSTOMER'));
+                    setName('');
+                    setNic('');
+                    setAddress('');
+                    setContact('');
+                    setEmail('');
+                    setCustomertype('');
+                    setRegNo('');
+                    // setUserId('');
+                    setDate(new Date().toLocaleDateString('en-GB', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false
+        }
+        ));
+                    // props.close()
                 
+                }
+            } catch (error) {
+                if(error.response.status === 500){
+                    window.alert('Internal server error');
+                    console.log(error);
+                }else if(error.response.status === 400){
+                    window.alert('Bad request');
+                    console.log(error);
+                }else if(error.response.status === 404){
+
+                }
             }
         }
     

@@ -9,8 +9,8 @@ import { FiChevronUp } from "react-icons/fi";
 function SideMenuSystemFeatures({ features }) {
   const [expand, setExpand] = useState(false);
 
-  const currentPath = window.location.pathname;
-  console.log(currentPath);
+  
+  
   
 
   return (

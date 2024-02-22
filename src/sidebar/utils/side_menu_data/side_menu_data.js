@@ -33,7 +33,7 @@ const sytemsList = [
                      name: "customer update ",
                     url: "/customer/update",
                 },{
-                    _id: "1.2.2",
+                    _id: "1.2.3",
                      name: "customer view ",
                     url: "/customer/view",
                 }
