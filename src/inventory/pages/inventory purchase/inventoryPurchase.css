@@ -1,0 +1,74 @@
+.InventoryPurchase-po-main-div {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 150px;
+}
+
+.InventoryPurchase-po-div {
+    /* background-color: aqua; */
+    display: flex;
+    align-items: start;
+    gap: 10px;
+}
+
+.InventoryPurchase-po-search-div {}
+
+.InventoryPurchase-po-search-bth {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.InventoryPurchase-po-search-input {
+    height: 30px;
+    width: 400px;
+}
+
+.InventoryPurchase-po-search-img-show {
+    width: 30px;
+    transition: 0.3s;
+}
+
+.InventoryPurchase-po-search-img-hide {
+    width: 30px;
+    transform: rotate(180deg);
+    transition: 0.3s;
+}
+
+.InventoryPurchase-po-search-results-div-show {
+    background-color: rgba(231, 230, 230, 0.929);
+    width: 30%;
+    position: absolute;
+    z-index: 1;
+    height: 150px;
+    overflow-y: scroll;
+}
+
+.InventoryPurchase-po-search-results-div-hide {
+    display: none;
+}
+
+
+
+
+
+.InventoryPurchase-po-info-main-div {
+    margin: 10px 20px;
+}
+
+.InventoryPurchase-po-info-div {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.InventoryPurchase-po-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 500px;
+    gap: 20px;
+    background-color: aqua;
+}

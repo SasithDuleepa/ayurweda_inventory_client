@@ -58,7 +58,12 @@ const sytemsList = [
                name: "Store Keeper Release",
                url: "/store-keeper-release",
                // active: true,
-           },
+           },{
+            _id: "2.3",
+           name: "Inventory purchase",
+           url: "/inventory-purchase",
+           // active: true,
+       },
         ]
     },
    
