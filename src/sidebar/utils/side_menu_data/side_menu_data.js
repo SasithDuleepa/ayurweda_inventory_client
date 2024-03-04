@@ -63,7 +63,12 @@ const sytemsList = [
            name: "Inventory purchase",
            url: "/inventory-purchase",
            // active: true,
-       },
+       },{
+        _id: "2.4",
+       name: "Purchased Items Store",
+       url: "/inventory-store",
+       // active: true,
+   }
         ]
     },
    

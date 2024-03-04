@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Arrow from "../../../../icon/down-arrow.png";
+import Arrow from "../../../icon/down-arrow.png";
 import "./StoreManagerRelease.css";
 import axios from "axios";
-import IdGenerate from "../../../../utils/id_generate";
+import IdGenerate from './../../../utils/id_generate';
 
 export default function StoreManagerRelease() {
   //shows in job preview window

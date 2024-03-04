@@ -3,9 +3,10 @@ import { BrowserRouter as Router, Route,Routes, BrowserRouter } from "react-rout
 
 
 
-import StoreManagerRelease from './inventory/pages/release/store manager/StoreManagerRelease';
-import StoreKeeperRelease from './inventory/pages/release/store keeper/StoreKeeperRelease';
-import InventoryPurchase from './inventory/pages/inventory purchase/inventoryPurchase';
+import StoreManagerRelease from './inventory/release/store manager/StoreManagerRelease';
+import StoreKeeperRelease from './inventory/release/store keeper/StoreKeeperRelease';
+import InventoryPurchase from './inventory/inventory purchase/inventoryPurchase';
+import InventoryStore from './inventory/inventory store/inventoryStore';
 
 
 import AddCustomer from './pos/customer/add customer/addCustomer';
@@ -43,6 +44,7 @@ function App() {
          <Route element={<StoreManagerRelease/>} path="/store-manager-release"/>
         <Route element={<StoreKeeperRelease/>} path="/store-keeper-release"/>
         <Route element={<InventoryPurchase/>} path="/inventory-purchase"/>
+        <Route element={<InventoryStore/>} path="/inventory-store"/>
         <Route element={<Pos/>} path="/pos"/>
         <Route element={<AddCustomer/>} path="/customer/add"/>
         <Route element={<UpdateCustomer/>} path="/customer/update"/>

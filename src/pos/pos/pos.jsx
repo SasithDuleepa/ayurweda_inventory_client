@@ -4,7 +4,7 @@ import Arrow from '../../icon/down-arrow.png';
 import IdGenerate from '../../utils/id_generate';
 import axios from 'axios';
 
-import AddCustomer from '../customer/add customer/addCustomer';
+import AddCustomer from '../customer/add customer/addCustomer'
 
 export default function Pos() {
   const[tableData, setTableData] = useState([])

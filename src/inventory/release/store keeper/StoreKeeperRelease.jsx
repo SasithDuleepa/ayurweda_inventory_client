@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './StoreKeeperRelease.css'
-import Arrow from '../../../../icon/down-arrow.png';
+import Arrow from '../../../icon/down-arrow.png';
 import axios from 'axios';
 
 export default function StoreKeeperRelease() {
