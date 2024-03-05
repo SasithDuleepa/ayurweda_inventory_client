@@ -53,6 +53,21 @@ export default function InventoryStore() {
 
 
     }
+
+    const SubmitHandler =async () => {
+        console.log(poId)
+        console.log(items)
+
+        try {
+            const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/inventory/all/store`, {
+                po_items:items,
+                po_id : poId
+            })
+
+        } catch (error) {
+            
+        }
+    }
   return (
     <div>
         <p className='title'>Purchased Inventory Items Store</p>
@@ -145,8 +160,7 @@ export default function InventoryStore() {
                                         <input type='text' value={item.location} onChange={(e)=>{
                                             const data = [...items]
                                             
-                                            data[index].location = e.target.value
-                                            
+                                            data[index].location = e.target.value                                            
                                             setItems(data)
                                             
                                         
@@ -157,9 +171,14 @@ export default function InventoryStore() {
                                     
                                     <td className='InventoryPurchase-purchase-t-9'>
                                         {/* {item.item_status} */}
-                                    <select>
-                                        <option>PENDING</option>
-                                        <option>RELEASED</option>
+                                    <select value={item.item_status} onChange={(e)=>{
+                                        const data = [...items]
+                                        data[index].item_status = e.target.value
+                                        
+                                        setItems(data)                                    
+                                    }}>
+                                        <option value={'PENDING'}>PENDING</option>
+                                        <option value={'RELEASED'}>RELEASED</option>
                                     </select>
                                     </td>
                                 </tr>
@@ -180,7 +199,7 @@ export default function InventoryStore() {
                 <button className='btn' onClick={()=>{
                     setItems([])
                 }}>Cancel</button>
-                <button className='btn'>Save</button>
+                <button className='btn' onClick={()=>SubmitHandler()}>Save</button>
             </div>
         </div>
     </div>
