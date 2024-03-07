@@ -17,8 +17,8 @@ export default function InventoryStore() {
     const PoSearchHandler =async (e) => {
         if(e.target.value !== ''){
             try {
-                const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/purchase/search/${e.target.value}`)  
-                console.log(res.data);
+                const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/purchase/Search/${e.target.value}/RECEIVED`)  
+                // console.log(res.data);
                 setPo(res.data)
             } catch (error) {
                 
@@ -30,7 +30,7 @@ export default function InventoryStore() {
     const GetPoInfo = async(po) => {
         try {
             const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/purchase/po_items/${po}`)
-            console.log(res.data);
+            // console.log(res.data);
             setPoId(res.data[0].purchase_order_id)
             setPoDate(res.data[0].purchase_order_date)
         } catch (error) {
@@ -43,7 +43,7 @@ export default function InventoryStore() {
     const GetPoData = async (po) => {
         try {
             const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/inventory/all/items/${po}`)
-            // console.log(res.data);
+            console.log(res.data);
             setItems(res.data)
            
         } catch (error) {
@@ -54,6 +54,9 @@ export default function InventoryStore() {
 
     }
 
+
+    const currentDate = new Date(); // Get the current date and time
+    const formattedDate = currentDate.toISOString(); // Format the date to ISO string
     const SubmitHandler =async () => {
         console.log(poId)
         console.log(items)
@@ -61,7 +64,8 @@ export default function InventoryStore() {
         try {
             const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/inventory/all/store`, {
                 po_items:items,
-                po_id : poId
+                po_id : poId,
+                updated_date  : formattedDate,
             })
 
         } catch (error) {
