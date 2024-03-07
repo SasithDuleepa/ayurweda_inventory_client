@@ -3,10 +3,22 @@ import './inventoryPurchase.css';
 import Arrow from './../../icon/down-arrow.png';
 import axios from 'axios';
 import IdGenerate from '../../utils/id_generate';
+import { socket } from '../../socket';
+
+import TopNaw from '../../components/top nav/topNaw';
 
 export default function InventoryPurchase() {
     const[userId,setUserId] = useState('USER-00001');
+    const [userName, setUserName] = useState('USER-0001');
     const[branch,setBranch] = useState('Navinna');
+
+
+    //notification 
+  setInterval(() => {
+    socket.on('statusChange', (data) => {
+      console.log(data)
+    })
+}, 5000)
 
 
 
@@ -111,9 +123,9 @@ export default function InventoryPurchase() {
     }
   return (
     <div>
-        <p className='title'>Inventory Items Purchase</p>
+        <TopNaw moduleName ='Inventory Items Purchase' userName={userName}/>
 
-        <div className='line'></div>
+
 
         <div className='container'>
             <div className='InventoryPurchase-po-main-div'>

@@ -12,15 +12,9 @@ import TopNaw from '../../components/top nav/topNaw';
 
 export default function Pos() {
 
-  const [foo,setFoo] = useState('')
 
-  const sendMassege = () => {
-    socket.emit('send_message',foo)
 
-    
-  
-  }
-
+//notification 
   setInterval(() => {
     socket.on('statusChange', (data) => {
       console.log(data)
@@ -193,8 +187,7 @@ export default function Pos() {
   }
   return (
     <div className='pos'>
-      <input value={foo} onChange={(e)=>setFoo(e.target.value)}/>
-      <button onClick={sendMassege}>send</button>
+
       <TopNaw moduleName ='Point of Sale' userName={userName}/>
         <div className='container'>
 
