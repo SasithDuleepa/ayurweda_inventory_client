@@ -2,16 +2,19 @@
     margin-bottom: 10px;
     /* border-left: 5px solid green; */
 }
+
 .side_menu_systems-system li {
     /* list-style: none; */
 }
-.side_menu_systems-system li a{
+
+.side_menu_systems-system li a {
     text-decoration: none;
-    /* background-color: rgb(214, 63, 63); */ 
+    /* background-color: rgb(214, 63, 63); */
 }
+
 .side_menu_systems-system-details {
     width: 410px;
-    padding: 10px 30px;
+    padding: 10px 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -19,12 +22,14 @@
     /* background-color: rgb(163, 163, 197); */
     /* border-left: 5px solid green; */
 }
+
 .side_menu_systems-system-details:hover {
     width: 421px;
     background-color: var(--blue_04);
     color: var(--blue_01);
     border-left: 7px solid var(--blue_01);
 }
+
 .side_menu_systems-system-details-active {
     padding: 0;
     display: flex;
@@ -35,35 +40,46 @@
     color: var(--blue_01);
     border-left: 7px solid var(--blue_01);
 }
+
 .side_menu_systems-system-details-nameIcon {
     display: flex;
     align-items: center;
     gap: 10px;
+    /* background-color: yellowgreen; */
 }
+
 .side_menu_systems-system-details-nameIcon-icon {
     display: flex;
+    width: 35px;
+
 }
+
 .side_menu_systems-system-details-active .side_menu_systems-system-details-nameIcon-icon {
     display: flex;
     color: var(--blue_01);
 }
+
 .side_menu_systems-system-details-nameIcon-name {
     display: flex;
     /* font-size: 15px; */
 }
+
 .side_menu_systems-system-details-active .side_menu_systems-system-details-nameIcon-name {
     display: flex;
     color: var(--blue_01);
 }
+
 .side_menu_systems-system-details-arrow {
     display: flex;
     align-items: center;
 }
+
 .side_menu_systems-system-details-active .side_menu_systems-system-details-arrow {
     display: flex;
     align-items: center;
     color: var(--blue_01);
 }
+
 .side_menu_systems-system-features {
     /* width: 364px; */
     /* height: 0;
@@ -72,6 +88,7 @@
     display: none;
     transition: height 0.3s ease-in;
 }
+
 .side_menu_systems-system-features-feature {
     margin-left: 40px;
     /* background-color: aqua; */
@@ -86,6 +103,7 @@
     display: inline;
     height: auto;
     /* opacity: 1; */
+    background-color: yellowgreen;
 }
 
 
@@ -95,10 +113,13 @@
 /* collapse status */
 .side_menu.collapse .side_menu_systems-system-details {
     width: 83px;
+    background-color: aqua;
 }
-.side_menu.collapse .side_menu_systems-system-details-nameIcon-name {
+
+.side_menu_systems-system-details-nameIcon-name-hide {
     display: none;
 }
+
 .side_menu.collapse .side_menu_systems-system-details-arrow {
     display: none;
 }

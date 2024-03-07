@@ -1,18 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import './pos.css';
 import Arrow from '../../icon/down-arrow.png';
 import IdGenerate from '../../utils/id_generate';
 import axios from 'axios';
+import { socket } from '../../socket';
 
 import AddCustomer from '../customer/add customer/addCustomer'
 
+
+import TopNaw from '../../components/top nav/topNaw';
+
 export default function Pos() {
+
+  const [foo,setFoo] = useState('')
+
+  const sendMassege = () => {
+    socket.emit('send_message',foo)
+
+    
+  
+  }
+
+  setInterval(() => {
+    socket.on('statusChange', (data) => {
+      console.log(data)
+    })
+}, 5000)
+
   const[tableData, setTableData] = useState([])
 
   const[invoiceNo,setInvoiceNo] = useState(IdGenerate('INVOICE'));
   const[branch,setBranch] = useState('BRANCH-0001');
   const[date,setDate] = useState();
   const[userId,setUserId] = useState('USER-0001');
+  const [userName, setUserName] = useState('USER-0001');
 
 
   //item search
@@ -168,12 +189,13 @@ export default function Pos() {
     setCustomerShow(true)
   }
   const CustomerCloseHandler = () =>{
-    console.log('jytj')
     setCustomerShow(false)
   }
   return (
     <div className='pos'>
-        <p className='title'>POS</p>
+      <input value={foo} onChange={(e)=>setFoo(e.target.value)}/>
+      <button onClick={sendMassege}>send</button>
+      <TopNaw moduleName ='Point of Sale' userName={userName}/>
         <div className='container'>
 
             <div className='pos-info-div'>
@@ -203,11 +225,11 @@ export default function Pos() {
               <div className='pos-info-div-form'>
                 <label className='pos-info-div-form-label label'>User</label>
                 <label className=' label'>:</label>
-                <input  className='pos-info-div-form-input form-input' type='text' placeholder='user'/>
+                <input  className='pos-info-div-form-input form-input' type='text'  placeholder='user'/>
               </div>
 
               <div className='pos-info-div-form'>
-                <label className='pos-info-div-form-label label'>Customer type</label>
+                <label className='pos-info-div-form-label label'>Customer Type</label>
                 <label className=' label'>:</label>
                 <select  className='pos-info-div-form-input form-input' >
                   <option>Select Customer type</option>
@@ -256,7 +278,10 @@ export default function Pos() {
                   </button>
                   <div className={dropDown1}>
                     {dropDown1Results.length > 0 ? dropDown1Results.map((item,index)=>(
-                      <button key={index} onClick={()=>DropDown1SelectHandler(item.Inventory_item_id)} className='pos-dropdown-select-btn'>{item.item_name}</button>
+                      <button key={index} onClick={()=>DropDown1SelectHandler(item.Inventory_item_id)} className='pos-dropdown-select-btn'>
+                        <p className='pos-dropdown-select-btn-p1'>{item.item_name}</p>
+                        <p className='pos-dropdown-select-btn-p2'>{item.purchased_date}</p>
+                      </button>
                     ))
                   :null}
                                      </div>
@@ -313,8 +338,8 @@ export default function Pos() {
 
 
             <div className='pos-btn-div'>
-              <button className='btn btn-cancel'>cancel</button>
-              <button onClick={(e)=>EnterHandler()} className='btn btn-enter'>enter</button>
+              <button className='btn-cancel'>cancel</button>
+              <button onClick={(e)=>EnterHandler()} className='btn-submit'>enter</button>
             </div>
 
 

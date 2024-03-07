@@ -6,7 +6,12 @@ import IdGenerate from '../../utils/id_generate';
 
 export default function InventoryPurchase() {
     const[userId,setUserId] = useState('USER-00001');
-    const[branch,setBranch] = useState('Navinna')
+    const[branch,setBranch] = useState('Navinna');
+
+
+
+    const currentDate = new Date(); // Get the current date and time
+    const formattedDate = currentDate.toISOString(); // Format the date to ISO string
 
 
 
@@ -19,7 +24,7 @@ export default function InventoryPurchase() {
     const PoSearchHandler =async (e) => {
         if(e.target.value !== ''){
             try {
-                const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/purchase/search/${e.target.value}`)  
+                const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/purchase/search/${e.target.value}/PENDING`)  
                 console.log(res.data);
                 setPo(res.data)
             } catch (error) {
@@ -30,6 +35,7 @@ export default function InventoryPurchase() {
 
     const [PoData, setPoData] = useState({
         purchase_order_id:'',
+        purchase_order_date:'',
         supplier_id:'',
         supplier_name:'',
         supplier_address:'',
@@ -45,13 +51,16 @@ export default function InventoryPurchase() {
             console.log(res.data);
             setPoData({
                 purchase_order_id:res.data[0].purchase_order_id,
+                purchase_order_date:res.data[0].purchase_order_date,
                 supplier_id:res.data[0].supplier_id,
                 branch:branch,
+                user:userId,
+                date_now:formattedDate,
                 po_items:res.data.map((item,index)=>({
                     item_id:item.purchase_order_item_id,
                     item_name:item.item_name,
                     item_requested_quantity:item.purchase_order_item_qty,
-                    item_supplied_quantity:0,
+                    
                     
                     
                     item_measure_unit:item.item_measure_unit,
@@ -75,7 +84,7 @@ export default function InventoryPurchase() {
 
 
     const SubmitHandler = async() => {
-        // console.log(PoData);
+        console.log(PoData);
         try {
             const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/inventory/all`,PoData)
             console.log(res.data); 
@@ -148,9 +157,9 @@ export default function InventoryPurchase() {
                     </div>
 
                     <div className='InventoryPurchase-po-info'>
-                        <p className='label'>Purchase Date </p>
+                        <p className='label'>Purchase Order Date </p>
                         <p className=''>:</p>
-                        <p>5634756uiykghj</p>
+                        <p>{PoData.purchase_order_date}</p>
                     </div>
 
                     <div className='InventoryPurchase-po-info'>
@@ -186,7 +195,7 @@ export default function InventoryPurchase() {
                                 <td className='InventoryPurchase-purchase-t-6'>measure unit</td>
                                 <td className='InventoryPurchase-purchase-t-7'>unit purchasing price</td>
                                 <td className='InventoryPurchase-purchase-t-8'>description</td>
-                                <td className='InventoryPurchase-purchase-t-9'>status</td>
+                                {/* <td className='InventoryPurchase-purchase-t-9'>status</td> */}
                             </tr>
                         </thead>
                         <tbody>
@@ -202,6 +211,7 @@ export default function InventoryPurchase() {
                                                 const items = [...data.po_items]
                                                 items[index].item_supplied_qty = e.target.value
                                                 data.po_items = items
+                                                console.log(data)
                                                 setPoData(data)
                                                 
                                             }}/>
@@ -222,12 +232,14 @@ export default function InventoryPurchase() {
                                                 <option value={"STORE 2"}>STORE 2</option>
                                             </select>
                                         </td>
-                                        <td className='InventoryPurchase-purchase-t-5'><input value={item.item_location} onChange={(e)=>{
+                                        <td className='InventoryPurchase-purchase-t-5'><input value={item.item_location} disabled onChange={(e)=>{
                                             const data = {...PoData}
                                             const items = [...data.po_items]
                                             items[index].item_location = e.target.value
                                             data.po_items = items
                                             setPoData(data)
+
+                                        
 
                                         
                                         }}/></td>
@@ -244,7 +256,7 @@ export default function InventoryPurchase() {
 
                                         
                                         }}/></td>
-                                        <td className='InventoryPurchase-purchase-t-9'>
+                                        {/* <td className='InventoryPurchase-purchase-t-9'>
                                             <select value={item.item_status} onChange={(e)=>{
                                                 const data = {...PoData}
                                                 const items = [...data.po_items]
@@ -259,7 +271,7 @@ export default function InventoryPurchase() {
                                                 <option value={'PENDING'}>PENDING</option>
                                                 <option value={'RELEASED'}>RELEASED</option>
                                             </select>
-                                        </td>
+                                        </td> */}
                                         
                                     </tr>
                                     
