@@ -9,7 +9,7 @@ import TopNaw from '../../components/top nav/topNaw';
 
 export default function InventoryPurchase() {
     const[userId,setUserId] = useState('USER-00001');
-    const [userName, setUserName] = useState('USER-0001');
+    const [userName, setUserName] = useState('USER-0001 NAme');
     const[branch,setBranch] = useState('Navinna');
 
 
@@ -40,7 +40,12 @@ export default function InventoryPurchase() {
                 console.log(res.data);
                 setPo(res.data)
             } catch (error) {
-                
+                if (error.response.status === 403){
+                    alert('Forbidden')
+                }
+                else if (error.response.status === 401){
+                    alert('Unauthorized')
+                }
             }
         }
     }
@@ -53,7 +58,8 @@ export default function InventoryPurchase() {
         supplier_address:'',
         supplier_phone:'',
         supplier_email:'',
-        branch:'Navinna',
+        user:userId,
+        branch_id:'Navinna',
         po_items:[]
 
     })
@@ -65,20 +71,17 @@ export default function InventoryPurchase() {
                 purchase_order_id:res.data[0].purchase_order_id,
                 purchase_order_date:res.data[0].purchase_order_date,
                 supplier_id:res.data[0].supplier_id,
+                supplier_name:res.data[0].supplier_name,
                 branch:branch,
                 user:userId,
                 date_now:formattedDate,
                 po_items:res.data.map((item,index)=>({
+
                     item_id:item.purchase_order_item_id,
                     item_name:item.item_name,
                     item_requested_quantity:item.purchase_order_item_qty,
-                    
-                    
-                    
                     item_measure_unit:item.item_measure_unit,
                     item_unit_purchasing_price:item.purchase_order_item_unit_price,
-
-
                     item_inventory_id:IdGenerate(`INVENTORY-${item.purchase_order_item_id.split('-')[0]}`),
                     item_supplied_qty:0,
                     item_store:'',
@@ -89,14 +92,19 @@ export default function InventoryPurchase() {
 
             })
         } catch (error) {
-            
+            if (error.response.status === 403){
+                alert('Forbidden')
+            }
+            else if (error.response.status === 401){
+                alert('Unauthorized')
+            }
         }
     }
 
 
 
     const SubmitHandler = async() => {
-        console.log(PoData);
+   
         try {
             const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/inventory/all`,PoData)
             console.log(res.data); 
@@ -165,7 +173,7 @@ export default function InventoryPurchase() {
                     <div className='InventoryPurchase-po-info'>
                         <p className='label'>Supplier Name  </p>
                         <p className=''>:</p>
-                        <p>{PoData.supplier_id}</p>
+                        <p>{PoData.supplier_name}</p>
                     </div>
 
                     <div className='InventoryPurchase-po-info'>
@@ -175,9 +183,9 @@ export default function InventoryPurchase() {
                     </div>
 
                     <div className='InventoryPurchase-po-info'>
-                        <p className='label'>User Id </p>
+                        <p className='label'>User Name</p>
                         <p className=''>:</p>
-                        <p>5634756uiykghj</p>
+                        <p>{userName}</p>
                     </div>
 
                     <div className='InventoryPurchase-po-info'>

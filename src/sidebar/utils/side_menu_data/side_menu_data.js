@@ -50,27 +50,91 @@ const sytemsList = [
         features: [
             {
              _id: "2.1",
-            name: "Store Manager Release",
+            name: "STORE MANAGER",
             url: "/store-manager-release",
+            subFeatures: [
+                {
+                    _id: "2.1.1",
+                     name: "INVENTORY PURCHASE",
+                    url: "/inventory-purchase",
+                },{
+                    _id: "2.1.2",
+                     name: "JOB RELEASE",
+                    url: "/store-manager-release",
+                }
+            ]
             },
             {
                 _id: "2.2",
-               name: "Store Keeper Release",
+               name: "STORE KEEPER",
                url: "/store-keeper-release",
                // active: true,
+
+               subFeatures: [
+                {
+                    _id: "2.2.1",
+                     name: "INVENTORY STORE",
+                    url: "/inventory-store",
+                },{
+                    _id: "2.2.2",
+                     name: "JOB RELEASE",
+                    url: "/store-keeper-release",
+                }
+            ]
            },{
-            _id: "2.3",
-           name: "Inventory purchase",
-           url: "/inventory-purchase",
-           // active: true,
-       },{
-        _id: "2.4",
-       name: "Purchased Items Store",
-       url: "/inventory-store",
-       // active: true,
-   }
-        ]
-    },
+                _id: "2.5",
+                name: "ITEM HANDLE",
+                url: "/items/create",
+                // active: true,
+                subFeatures: [
+                    {
+                        _id: "2.5.1",
+                         name: "CREATE ITEM ",
+                        url: "/items/create",
+                    },{
+                        _id: "2.5.2",
+                         name: "UPDATE ITEM",
+                        url: "/items/update",
+                    }
+                ]
+                }
+            ]
+    },{
+        _id: "3",
+        name: "BRANCH",
+        url: "/branches/add",
+        icon: <FiMapPin/>,
+        expandIcon: <FiChevronDown />,
+        features: [
+            {
+             _id: "3.1",
+            name: "ADD BRANCH",
+            url: "/branches/add",
+            },{
+                _id: "3.2",
+               name: "UPDATE BRANCH",
+               url: "/branches/update",
+               }
+            ]
+    },{
+        _id: "4",
+        name: "USERS",
+        url: "/users/add",
+        icon: <FiUser/>,
+        expandIcon: <FiChevronDown />,
+        features: [
+            {
+             _id: "4.1",
+            name: "ADD USERS",
+            url: "/users/add",
+            },{
+                _id: "4.2",
+               name: "UPDATE USERS",
+               url: "/users/update",
+               }
+            ]
+    }
+
    
 
     

@@ -16,6 +16,16 @@ import ViewCustomer from './pos/customer/view customer/viewCustomer';
 import Pos from './pos/pos/pos';
 
 
+import AddBranches from './branches/add branch/addBranches';
+import UpdateBranches from './branches/update branch/updateBranches';
+
+import AddUser from './users/add user/addUser';
+import UpdateUser from './users/update user/updateUser';
+
+import CreateItem from './inventory/items/create item/createItem';
+import UpdateItem from './inventory/items/update item/updateItem';
+
+
 import SideMenu from './sidebar/side_menu/side_menu';
 
 
@@ -49,6 +59,16 @@ function App() {
         <Route element={<AddCustomer/>} path="/customer/add"/>
         <Route element={<UpdateCustomer/>} path="/customer/update"/>
         <Route element={<ViewCustomer/>} path="/customer/view"/>
+
+
+        <Route element={<AddBranches/>} path="/branches/add"/>
+        <Route element={<UpdateBranches/>} path="/branches/update"/>
+
+        <Route element={<AddUser/>} path="/users/add"/>
+        <Route element={<UpdateUser/>} path="/users/update"/>
+
+        <Route element={<CreateItem/>} path="/items/create"/>
+        <Route element={<UpdateItem/>} path="/items/update"/>
       </Routes>
       </div>
       
