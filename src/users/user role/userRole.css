@@ -1,0 +1,93 @@
+.UserRole-User-search-div {
+    padding-bottom: 200px;
+}
+
+.UserRole-User-search-div-main {
+    width: 100%;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    gap: 20px;
+}
+
+.UserRole-User-search {
+    display: flex;
+    flex-direction: column;
+}
+
+.UserRole-User-search-btn {
+    display: flex;
+    align-items: center;
+    width: 600px;
+}
+
+.UserRole-User-search-input {
+    width: 100%;
+}
+
+.UserRole-User-search-img-show {
+    width: 15px;
+    height: 15px;
+    transition: .5s;
+    margin: 10px;
+}
+
+.UserRole-User-search-img-hide {
+    width: 15px;
+    height: 15px;
+    rotate: 180deg;
+    transition: .5s;
+    margin: 10px;
+}
+
+
+.UserRole-User-search-results-div-show {
+    width: 600px;
+    height: 200px;
+    background-color: aquamarine;
+    position: absolute;
+    margin-top: 41px;
+}
+
+.UserRole-User-search-results-div-hide {
+    width: 600px;
+    height: 200px;
+    background-color: aquamarine;
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.UserRole-User-roles-div {}
+
+.UserRole-User-roles {}
+
+.UserRole-User-roles-form-div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+
+
+
+
+
+.UserRole-btn-div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    grid: 10px;
+}
