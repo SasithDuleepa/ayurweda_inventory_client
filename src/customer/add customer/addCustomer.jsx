@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './addCustomer.css';
-import IdGenerate from '../../../utils/id_generate';
+import IdGenerate from '../../utils/id_generate';
 import axios from 'axios';
 
 export default function AddCustomer(props) {

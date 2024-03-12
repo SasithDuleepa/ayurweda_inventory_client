@@ -4,102 +4,53 @@ const sytemsList = [
     {
         _id: "1",
         name: "POS",
-        url: "/#",
+        url: "/pos",
         icon: <FiDollarSign />,
         expandIcon: <FiChevronDown />,
         // active: true,
         features: [
             {
             _id: "1.1",
-            name: "Pos ",
+            name: "POS ",
             url: "/pos",
             icon: <FiFileText/>,
             expandIcon: <FiChevronDown />,
             
             },
-            {
-            _id: "1.2",
-             name: "customer",
-            url: "/#",
-            icon: <FiFileText/>,
-            expandIcon: <FiChevronDown />,
-            subFeatures: [
-                {
-                    _id: "1.2.1",
-                     name: "customer add ",
-                    url: "/customer/add",
-                },{
-                    _id: "1.2.2",
-                     name: "customer update ",
-                    url: "/customer/update",
-                },{
-                    _id: "1.2.3",
-                     name: "customer view ",
-                    url: "/customer/view",
-                }
-            ]
-            }
+
         ]
     },
     {
         _id: "2",
         name: "INVENTORY",
-        url: "/store-manager-release",
+        url: "/inventory/purchase",
         icon: <FiFileText/>,
         expandIcon: <FiChevronDown />,
         features: [
             {
              _id: "2.1",
-            name: "STORE MANAGER",
-            url: "/store-manager-release",
-            subFeatures: [
-                {
-                    _id: "2.1.1",
-                     name: "INVENTORY PURCHASE",
-                    url: "/inventory-purchase",
-                },{
-                    _id: "2.1.2",
-                     name: "JOB RELEASE",
-                    url: "/store-manager-release",
-                }
-            ]
-            },
-            {
-                _id: "2.2",
-               name: "STORE KEEPER",
-               url: "/store-keeper-release",
-               // active: true,
+            name: "INVENTORY PURCHASE",
+            url: "/inventory/purchase"
+            },{
+            _id: "2.2",
+            name: "INVENTORY STORE",
+            url: "/inventory/store",
+            },{
+            _id: "2.3",
+            name: "INVENTORY REQUEST",
+            url: "/inventory/store-keeper-release"
+            },{
+            _id: "2.4",
+            name: "INVENTORY RELEASE",
+            url: "/inventory/store-manager-release"
+            },{
+            _id: "2.5",
+            name: "INVENTORY DISPOSE",
+            url: "/inventory/dispose"
+            }
+        ],
 
-               subFeatures: [
-                {
-                    _id: "2.2.1",
-                     name: "INVENTORY STORE",
-                    url: "/inventory-store",
-                },{
-                    _id: "2.2.2",
-                     name: "JOB RELEASE",
-                    url: "/store-keeper-release",
-                }
-            ]
-           },{
-                _id: "2.5",
-                name: "ITEM HANDLE",
-                url: "/items/create",
-                // active: true,
-                subFeatures: [
-                    {
-                        _id: "2.5.1",
-                         name: "CREATE ITEM ",
-                        url: "/items/create",
-                    },{
-                        _id: "2.5.2",
-                         name: "UPDATE ITEM",
-                        url: "/items/update",
-                    }
-                ]
-                }
-            ]
-    },{
+        },{
         _id: "3",
         name: "BRANCH",
         url: "/branches/add",
@@ -111,10 +62,10 @@ const sytemsList = [
             name: "ADD BRANCH",
             url: "/branches/add",
             },{
-                _id: "3.2",
-               name: "UPDATE BRANCH",
-               url: "/branches/update",
-               }
+             _id: "3.2",
+            name: "UPDATE BRANCH",
+            url: "/branches/update",
+            }
             ]
     },{
         _id: "4",
@@ -128,11 +79,70 @@ const sytemsList = [
             name: "ADD USERS",
             url: "/users/add",
             },{
-                _id: "4.2",
-               name: "UPDATE USERS",
+            _id: "4.2",
+            name: "UPDATE USERS",
                url: "/users/update",
-               }
+            },{
+            _id: "4.3",
+            name: "USERS ROLE",
+            url: "/users/role",
+            }
             ]
+    },{
+        _id: "5",
+        name: "CUSTOMER",
+        url: "/customer/add",
+        icon: <FiUser/>,
+        expandIcon: <FiChevronDown />,
+        features: [
+            {
+            _id: "5.1",
+            name: "ADD CUSTOMER",
+            url: "/customer/add",
+            },{
+            _id:"5.2",
+            name: "UPDATE CUSTOMER",
+            url: "/customer/update",
+            },{
+            _id: "5.3",
+            name: "VIEW CUSTOMER",
+            url: "/customer/view",
+            }
+        ]
+    },{
+        _id: "6",
+        name: "INVENTORY TRANSFER",
+        url: "/transfer/request",
+        icon: <FiClipboard/>,
+        expandIcon: <FiChevronDown />,
+        features: [
+            {
+            _id: "6.1",
+            name: "REQUEST ITEMS",
+            url: "/transfer/request",
+            },{
+            _id: "6.2",
+            name: "TRANSFER REQUEST",
+            url: "/transfer/send",
+            }
+        ]
+    },{
+        _id: "7",
+        name: "SUPPLIER",
+        url: "/supplier/add",
+        icon: <FiClipboard/>,
+        expandIcon: <FiChevronDown />,
+        features: [
+            {
+            _id: "6.1",
+            name: "ADD SUPPLIER",
+            url: "/supplier/add",
+            },{
+            _id: "6.2",
+            name: "ADD SUPPLIER",
+            url: "/supplier/update",
+            }
+        ]
     }
 
    

@@ -5,7 +5,7 @@ import IdGenerate from '../../utils/id_generate';
 import axios from 'axios';
 import { socket } from '../../socket';
 
-import AddCustomer from '../customer/add customer/addCustomer'
+import AddCustomer from '../../customer/add customer/addCustomer';
 
 
 import TopNaw from '../../components/top nav/topNaw';

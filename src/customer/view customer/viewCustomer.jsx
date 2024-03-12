@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './viewCustomer.css';
-import Arrow from './../../../icon/down-arrow.png';
+import Arrow from './../../icon/down-arrow.png';
 import axios from 'axios';
 
 export default function ViewCustomer() {
