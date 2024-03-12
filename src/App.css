@@ -121,6 +121,19 @@ li {
   background-color: var(--color-primary);
   border: 2px solid rgb(141, 141, 141);
   border-radius: 4px;
+}
+
+.form-input-select {
+  height: 34px;
+  width: 357px;
+  background-color: var(--color-primary);
+  border: 2px solid rgb(141, 141, 141);
+  border-radius: 4px;
+
+  &:focus {
+    outline: 0px solid #ddd;
+  }
+
 
 
 }

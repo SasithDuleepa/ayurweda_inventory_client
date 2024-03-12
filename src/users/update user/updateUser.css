@@ -1,0 +1,85 @@
+.UpdateUser-search-div-main {
+    padding-bottom: 200px;
+}
+
+.UpdateUser-search-div {
+    display: flex;
+    align-items: start;
+    gap: 20px;
+    justify-content: center;
+}
+
+.UpdateUser-search-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 600px;
+}
+
+.UpdateUser-search-input {
+    width: 100%;
+}
+
+.UpdateUser-search-img-show {
+    width: 15px;
+    height: 15px;
+    transition: .5s;
+    margin: 10px
+}
+
+.UpdateUser-search-img-hide {
+    width: 15px;
+    height: 15px;
+    rotate: 180deg;
+    transition: .5s;
+    margin: 10px;
+}
+
+.UpdateUser-search-result-div {
+    display: flex;
+    flex-direction: column;
+    background-color: yellowgreen;
+    height: 200px;
+    width: 200px;
+    z-index: 1;
+    position: absolute;
+}
+
+.UpdateUser-search-result-div-hidden {
+    display: none;
+}
+
+
+
+
+
+
+.UpdateUser-info-div {}
+
+.UpdateUser-info-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.UpdateUser-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 600px;
+    justify-content: space-between;
+}
+
+
+
+
+
+.UpdateUser-btn-div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    gap: 10px;
+}
