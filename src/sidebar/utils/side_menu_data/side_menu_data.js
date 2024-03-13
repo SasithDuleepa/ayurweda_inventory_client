@@ -134,13 +134,47 @@ const sytemsList = [
         expandIcon: <FiChevronDown />,
         features: [
             {
-            _id: "6.1",
+            _id: "7.1",
             name: "ADD SUPPLIER",
             url: "/supplier/add",
             },{
-            _id: "6.2",
+            _id: "7.2",
             name: "ADD SUPPLIER",
             url: "/supplier/update",
+            }
+        ]
+    },{
+        _id:"8",
+        name:"ITEM CATEGORY",
+        url: "/item category/add",
+        icon: <FiCheckSquare/>,
+        expandIcon: <FiChevronDown />,
+        features: [
+            {
+            _id: "8.1",
+            name: "ADD ITEM CATEGORY",
+            url: "/item category/add",
+            },{
+            _id: "8.2",
+            name: "UPDATE ITEM CATEGORY",
+            url: "/item category/update",
+            }
+        ]
+    },{
+        _id: "9",
+        name: "ITEM",
+        url: "/items/create",
+        icon: <FiCheckSquare/>,
+        expandIcon: <FiChevronDown />,
+        features: [
+            {
+            _id: "9.1",
+            name: "ADD ITEM",
+            url: "/items/create",
+            },{
+                _id: "9.2",
+                name: "UPDATE ITEM",
+                url: "/items/update",
             }
         ]
     }

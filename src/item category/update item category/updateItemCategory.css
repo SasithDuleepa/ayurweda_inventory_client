@@ -1,0 +1,93 @@
+.UpdateItemCategory-search-div {
+    margin-bottom: 200px;
+}
+
+.UpdateItemCategory-search {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    gap: 20px;
+}
+
+.UpdateItemCategory-search-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 600px
+}
+
+.UpdateItemCategory-search-input {
+    width: 100%;
+}
+
+.UpdateItemCategory-search-img-show {
+    width: 15px;
+    height: 15px;
+    transition: .5s;
+    margin: 10px;
+}
+
+.UpdateItemCategory-search-img-hide {
+    width: 15px;
+    height: 15px;
+    rotate: 180deg;
+    transition: .5s;
+    margin: 10px;
+}
+
+.UpdateItemCategory-search-result_div-show {
+    width: 600px;
+    height: 200px;
+    background-color: aqua;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.UpdateItemCategory-search-result_div-hide {
+    display: none;
+}
+
+.UpdateItemCategory-search-result-btn {
+    background-color: aqua;
+}
+
+
+
+
+
+
+
+
+
+.UpdateItemCategory-info-div {}
+
+.UpdateItemCategory-info {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.UpdateItemCategory-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 600px;
+}
+
+
+
+
+
+
+
+.UpdateItemCategory-btn-div {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    gap: 10px;
+    margin-top: 20px;
+}
