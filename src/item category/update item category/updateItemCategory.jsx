@@ -11,7 +11,7 @@ export default function UpdateItemCategory() {
   const CategorySearchHandler = async(e) => {
     if(e.target.value !== ''){
       try {
-        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/itemCategory?status=ACTIVE&category=${e.target.value}`)
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/itemCategory/status-category/ACTIVE/${e.target.value}`)
         console.log(res.data);
         setResults(res.data);
       } catch (error) {
@@ -32,7 +32,7 @@ export default function UpdateItemCategory() {
   });
   const GetItemCategory = async(id) => {
     try {
-      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/itemCategory/category?id=${id}`)
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/itemCategory/category/item_id/${id}`)
       console.log(res.data);
       setResults2(res.data[0]);
     } catch (error) {
@@ -66,6 +66,16 @@ export default function UpdateItemCategory() {
     });
   }
   
+  const DeleteHandler = async() => {
+    alert('are you sure?');
+    try {
+      const res = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/itemCategory/delete?id=${results2.item_category_id}`)
+      console.log(res.data);
+    } catch (error) {
+      
+    }
+  }
+
   return (
     <div className='UpdateItemCategory'>
       <p className='title'> Update Item Category</p>
@@ -128,7 +138,7 @@ export default function UpdateItemCategory() {
               
               }}/>
             </div>
-            <div  className='UpdateItemCategory-form'>
+            {/* <div  className='UpdateItemCategory-form'>
               <label className='label'>item category status</label>
               <label className='label'>:</label>
               <select className='form-input-select' value={results2.item_category_status} 
@@ -141,11 +151,12 @@ export default function UpdateItemCategory() {
                 <option value='ACTIVE'>ACTIVE</option>
                 <option value='INACTIVE'>INACTIVE</option>
             </select>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className='UpdateItemCategory-btn-div'>
           <button className='btn-submit' onClick={UpdateItemCategoryHandler}>Update</button>
+          <button className='btn-delete' onClick={DeleteHandler}>Delete</button>
           <button className='btn-cancel' onClick={CancelHandler}>Cancel</button>
         </div>
       </div>

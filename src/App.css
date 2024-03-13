@@ -171,6 +171,7 @@ li {
   }
 }
 
+/* submit or update */
 .btn-submit {
   padding: 10px 30px;
   border: none;
@@ -188,6 +189,27 @@ li {
     background-color: white;
     color: var(--color-secondary);
     border: 1px solid var(--color-secondary);
+    transition: .2s;
+  }
+}
+
+.btn-delete {
+  padding: 10px 30px;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+  font-size: 17px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 900;
+  background-color: red;
+  color: rgb(0, 0, 0);
+  border: 1px solid black;
+  transition: .2s;
+
+  &:hover {
+    background-color: white;
+    color: red;
+    border: 1px solid red;
     transition: .2s;
   }
 }
