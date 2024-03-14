@@ -15,7 +15,7 @@ export default function UpdateItem() {
         const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/item/search/name-status/ACTIVE/${e.target.value}`)
         console.log(res.data);
       } catch (error) {
-        console.log(error);
+        
       
         
       }
