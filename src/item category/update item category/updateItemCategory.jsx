@@ -69,7 +69,7 @@ export default function UpdateItemCategory() {
   const DeleteHandler = async() => {
     alert('are you sure?');
     try {
-      const res = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/itemCategory/delete?id=${results2.item_category_id}`)
+      const res = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/itemCategory/delete/${results2.item_category_id}`)
       console.log(res.data);
     } catch (error) {
       

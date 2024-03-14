@@ -4,11 +4,18 @@ import axios from 'axios';
 import IdGenerate from '../../utils/id_generate';
 
 export default function AddBranches() {
+  const currentDate = new Date(); // Get the current date and time
+  const formattedDate = currentDate.toISOString(); // Format the date to ISO string
+  const [userId,setUserId] = useState('USER-000000');
+
   const [data,setData] = useState({
     branch_id:IdGenerate('BRANCH'),
     branch_name:'',
     branch_address:'',
     branch_status :'',
+    branch_description:'',
+    branch_update_date:formattedDate,
+    branch_update_user_id:userId
   })
 
   const CancelHandler = () => {
@@ -23,7 +30,7 @@ export default function AddBranches() {
 
 const SubmitHandler =async () => {
   try {
-    const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/branch/add` , data)
+    const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/branch/addBranch` , data)
     console.log(res.data)
     if(res.status === 200 || res.status === 201){
       alert('Branch Added Successfully');
@@ -84,17 +91,13 @@ const SubmitHandler =async () => {
           </div>
 
           <div className='AddBranches-form-div'>
-            <label className='label'>Branch Status</label>
+            <label className='label'>Branch Description</label>
             <label className='label'> :</label>
-            <select className='form-input' value={data.branch_status} onChange={(e)=>{
+            <input className='form-input' type="text" value={data.branch_description} onChange={(e)=>{
               const Data = {...data}
-              Data.branch_status = e.target.value
+              Data.branch_description = e.target.value
               setData(Data)
-            }}>
-              <option value={''}>SELECT STATUS</option>
-              <option value={'ACTIVE'}>ACTIVE</option>
-              <option value={'INACTIVE'}>INACTIVE</option>
-            </select>
+            }}/>
           </div>
 
         </div>

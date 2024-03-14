@@ -43,7 +43,7 @@ export default function Pos() {
   const DropDown1SearchHandler =async (e) =>{
     if(e.target.value !== ''){
       try {
-        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/inventory/all/${e.target.value}`)  
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/inventory/searchInventory/ItemName/InventoryStatus/ShadowQty/${e.target.value}/ACTIVE`)  
         console.log(res.data)
         setDropDown1Results(res.data)
       } catch (error) {
@@ -57,70 +57,24 @@ export default function Pos() {
   }
   const DropDown1SelectHandler =async (inventory_id) =>{
     console.log(inventory_id)
-    let item_cetergory = inventory_id.split('-')
-    if(item_cetergory[1] === 'RAW'){
-      try {
-        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/inventory/raw/item/RELEASED/${inventory_id}`)
-        console.log(res.data);
-        let data = {
-          item_inventory_id : res.data[0].raw_item_inventory_id ,
-          item_id : res.data[0].raw_item_id,
-          item_name : res.data[0].raw_item_name,
-          item_price: res.data[0].raw_item_unit_price ,
-          available_qty: res.data[0].raw_item_shadow_qty,
-          item_quantity: 0,
-          item_total: 0,
-          action:'delete',
-        }
-        let temp = [...tableData]
-        temp.push(data)
-        setTableData(temp)
-      } catch (error) {
-        
+    try {
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/inventory/inventory/InventoryBatchId/${inventory_id}`)  
+      console.log(res.data)
+      const data = {
+        inventory_id : res.data[0].inventory_batch_id,
+        item_name :res.data[0].item_name,
+        item_price : res.data[0].item_unit_selling_price,
+        item_available_qty : res.data[0].shadow_qty,
+        item_qty : 0,
+        item_total : 0,
       }
+      setTableData([...tableData,data])
+
+   
+    } catch (error) {
+      
     }
-    else if(item_cetergory[1] === 'NRAW'){
-      try {
-        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/inventory/non-raw/item/RELEASED/${inventory_id}`)
-        console.log(res.data)
-        let data = {
-          item_inventory_id : res.data[0].non_raw_inventory_item_id,
-          item_id : res.data[0].non_raw_item_id,
-          item_name : res.data[0].non_raw_item_name,
-          item_price: res.data[0].non_raw_item_unit_price,
-          available_qty: res.data[0].non_raw_shadow_qty,
-          item_quantity: 0,
-          item_total: 0,
-          action:'delete',
-        }
-        let temp = [...tableData]
-        temp.push(data)
-        setTableData(temp)
-      } catch (error) {
-        
-      }
-    }
-    else if(item_cetergory[1] === 'PRODUCT'){
-      try {
-        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/inventory/product/item/RELEASED/${inventory_id}`)
-        console.log(res.data)
-        let data = {
-          item_inventory_id : res.data[0].inventory_product_id ,
-          item_id : res.data[0].product_id,
-          item_name : res.data[0].product_name,
-          item_price: res.data[0].product_unit_price,
-          available_qty: res.data[0].product_shadow_qty,
-          item_quantity: 0,
-          item_total: 0,
-          action:'delete',
-        }
-        let temp = [...tableData]
-        temp.push(data)
-        setTableData(temp)
-      } catch (error) {
-        
-      }
-    }
+
   }
 
 
@@ -271,9 +225,9 @@ export default function Pos() {
                   </button>
                   <div className={dropDown1}>
                     {dropDown1Results.length > 0 ? dropDown1Results.map((item,index)=>(
-                      <button key={index} onClick={()=>DropDown1SelectHandler(item.Inventory_item_id)} className='pos-dropdown-select-btn'>
+                      <button key={index} onClick={()=>DropDown1SelectHandler(item.inventory_batch_id )} className='pos-dropdown-select-btn'>
                         <p className='pos-dropdown-select-btn-p1'>{item.item_name}</p>
-                        <p className='pos-dropdown-select-btn-p2'>{item.purchased_date}</p>
+                        <p className='pos-dropdown-select-btn-p2'>{item.inventory_purchase_date}</p>
                       </button>
                     ))
                   :null}
@@ -303,14 +257,14 @@ export default function Pos() {
                     <tr key={index}>
                       <td>{index+1}</td>
                       <td>{item.item_name}</td>
-                      <td>{item.available_qty}</td>
+                      <td>{item.item_available_qty}</td>
                       <td>{item.item_price}</td>
                       {/* <td>{item.item_quantity}</td> */}
                       <td><input value={item.item_quantity} 
                       onChange={(e)=>{
                         let temp = [...tableData]
-                        temp[index].item_quantity = e.target.value
-                        temp[index].item_total = temp[index].item_quantity * temp[index].item_price
+                        temp[index].item_qty= e.target.value
+                        temp[index].item_total = temp[index].item_qty * temp[index].item_price
                         setTableData(temp)
                       }}/></td>
                       <td>{item.item_total}</td>

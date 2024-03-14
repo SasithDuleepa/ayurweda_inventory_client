@@ -13,7 +13,7 @@ export default function AddItemCategory() {
     categoryId: IdGenerate('ITEM-CATEGORY'),
     categoryName: '',
     categoryDescription: '',
-    categoryStatus:''
+    categoryStatus:'ACTIVE'
   })
   const ChangeHandler =(e) => {
     const Data = {...data}
@@ -42,7 +42,7 @@ export default function AddItemCategory() {
           //   categoryDescription: '',
           //   categoryStatus:''
           // })
-          // window.location.reload()
+          window.location.reload()
         }
       } catch (error) {
         if(error.response.status === 500){
@@ -81,7 +81,7 @@ export default function AddItemCategory() {
             <label className='label'>:</label>
             <input type="text" className='form-input' id='categoryDescription' onChange={(e)=>ChangeHandler(e)} value={data.categoryDescription}/>
           </div>
-          <div  className='AddItemCategory-form-div'>
+          {/* <div  className='AddItemCategory-form-div'>
             <label className='label'>Category Status</label>
             <label className='label'>:</label>
             <select className='form-input-select' id='categoryStatus' onChange={(e)=>ChangeHandler(e)} value={data.categoryStatus}>
@@ -89,7 +89,7 @@ export default function AddItemCategory() {
               <option value='ACTIVE'>ACTIVE</option>
               <option value='INACTIVE'>INACTIVE</option>
             </select>
-          </div>
+          </div> */}
 
         </div>
 
