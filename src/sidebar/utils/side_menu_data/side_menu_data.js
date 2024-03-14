@@ -7,7 +7,7 @@ const sytemsList = [
         url: "/pos",
         icon: <FiDollarSign />,
         expandIcon: <FiChevronDown />,
-        // active: true,
+        
         features: [
             {
             _id: "1.1",
