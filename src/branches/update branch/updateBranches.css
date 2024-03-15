@@ -1,0 +1,85 @@
+.UpdateBranches-search-div-main {
+    padding-bottom: 200px;
+}
+
+.UpdateBranches-search-div {
+    display: flex;
+    align-items: start;
+    gap: 20px;
+    justify-content: center;
+}
+
+.UpdateBranches-search-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 600px;
+}
+
+.UpdateBranches-search-input {
+    width: 100%;
+}
+
+.UpdateBranches-search-image-show {
+    width: 15px;
+    height: 15px;
+    transition: .5s;
+    margin: 10px
+}
+
+.UpdateBranches-search-img-hide {
+    width: 15px;
+    height: 15px;
+    rotate: 180deg;
+    transition: .5s;
+    margin: 10px;
+}
+
+.UpdateBranches-search-result-div {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(217, 0, 255);
+    height: 200px;
+    width: 600px;
+    z-index: 1;
+    position: absolute;
+}
+
+.UpdateBranches-search-result-div-hidden {
+    display: none;
+}
+
+.UpdateBranches-info-div {}
+
+.UpdateBranches-info-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.UpdateBranches-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 600px;
+    justify-content: space-between;
+}
+
+
+.UpdateBranches-btn-container {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 20px;
+    margin: 20px 0px 10px 0px;
+}
+
+.UpdateBranches-add-btn {
+    background-color: var(--color-secondary);
+}
+
+.UpdateBranches-cancel-btn {
+    background-color: var(--warning-color);
+}

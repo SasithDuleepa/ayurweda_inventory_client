@@ -8,7 +8,9 @@ import { socket } from '../../socket';
 import TopNaw from '../../components/top nav/topNaw';
 
 export default function InventoryPurchase() {
-    const[userId,setUserId] = useState('USER-00001');
+    const currentDate = new Date(); // Get the current date and time
+  const formattedDate = currentDate.toISOString(); // Format the date to ISO string
+  const [userId,setUserId] = useState('USER-000000');
     const [userName, setUserName] = useState('USER-0001 NAme');
     const[branch,setBranch] = useState('Navinna');
 
@@ -22,8 +24,7 @@ export default function InventoryPurchase() {
 
 
 
-    const currentDate = new Date(); // Get the current date and time
-    const formattedDate = currentDate.toISOString(); // Format the date to ISO string
+
 
 
 

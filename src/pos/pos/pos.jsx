@@ -43,7 +43,7 @@ export default function Pos() {
   const DropDown1SearchHandler =async (e) =>{
     if(e.target.value !== ''){
       try {
-        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/inventory/searchInventory/ItemName/InventoryStatus/ShadowQty/${e.target.value}/ACTIVE`)  
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/inventory/searchInventory/ItemName/InventoryStatus/ShadowQty/Branch/${e.target.value}/ACTIVE/BRANCH-06247866 `)  
         console.log(res.data)
         setDropDown1Results(res.data)
       } catch (error) {

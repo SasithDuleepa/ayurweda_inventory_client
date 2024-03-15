@@ -139,7 +139,7 @@ const sytemsList = [
             url: "/supplier/add",
             },{
             _id: "7.2",
-            name: "ADD SUPPLIER",
+            name: "UPDATE SUPPLIER",
             url: "/supplier/update",
             }
         ]
@@ -172,9 +172,26 @@ const sytemsList = [
             name: "ADD ITEM",
             url: "/items/create",
             },{
-                _id: "9.2",
-                name: "UPDATE ITEM",
-                url: "/items/update",
+            _id: "9.2",
+            name: "UPDATE ITEM",
+            url: "/items/update",
+            }
+        ]
+    },{
+        _id: "10",
+        name: "STORES",
+        url: "/stores/add",
+        icon: <FiCheckSquare/>,
+        expandIcon: <FiChevronDown />,
+        features: [
+            {
+            _id: "9.1",
+            name: "ADD STORE",
+            url: "/stores/add",
+            },{
+            _id: "9.2",
+            name: "UPDATE STORE",
+            url: "/stores/update",
             }
         ]
     }

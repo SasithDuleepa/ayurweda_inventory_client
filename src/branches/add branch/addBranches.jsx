@@ -24,13 +24,22 @@ export default function AddBranches() {
       branch_name:'',
       branch_address:'',
       branch_status :'',
+      branch_description:'',
     })
   
 }
 
 const SubmitHandler =async () => {
   try {
-    const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/branch/addBranch` , data)
+    const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/branch/addBranch` , {
+      branch_id:data.branch_id,
+      branch_name:data.branch_name,
+      branch_address:data.branch_address,
+      branch_status :data.branch_status,
+      branch_description:data.branch_description,
+      branch_update_date:formattedDate,
+      branch_update_user_id:userId
+    })
     console.log(res.data)
     if(res.status === 200 || res.status === 201){
       alert('Branch Added Successfully');

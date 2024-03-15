@@ -1,9 +1,25 @@
 import React, { useState } from 'react';
 import './updateUser.css';
 import Arrow from './../../icon/down-arrow.png';
+import axios from 'axios';
 
 export default function UpdateUser() {
-  const [resultShow, setResultShow] = useState(false)
+  const [resultShow, setResultShow] = useState(false);
+
+
+  const [users, setUsers] = useState([])
+  const SearchUser = async (e) => {
+    if (e.target.value !== '') {
+      try {
+        const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/search/name/status/${e.target.value}/ACTIVE`);
+        console.log(res.data);
+        setUsers(res.data)
+      } catch (error) {
+        
+      }
+    }
+  };
+
   return (
     <div className='UpdateUser'>
       <p className='title'>Update User</p>
@@ -15,10 +31,14 @@ export default function UpdateUser() {
             <label className='label'>:</label>
             <div>
             <button  className='UpdateUser-search-btn' onClick={()=>setResultShow(!resultShow)}>
-              <input className='UpdateUser-search-input'/>
+              <input className='UpdateUser-search-input' onChange={(e)=>SearchUser(e)}/>
               <img className={resultShow ? 'UpdateUser-search-img-show' : 'UpdateUser-search-img-hide'} src={Arrow} alt="arrow"/>
             </button>
-            <div  className={resultShow ?'UpdateUser-search-result-div' : 'UpdateUser-search-result-div-hidden'  }></div>
+            <div  className={resultShow ?'UpdateUser-search-result-div' : 'UpdateUser-search-result-div-hidden'  }>
+              {users.length > 0 ? users.map((user,index)=>(
+                <button key={index} className='UpdateUser-search-result-btn'>{user.user_name}</button>
+              )):<p>user not found</p>}
+            </div>
 
             </div>
             

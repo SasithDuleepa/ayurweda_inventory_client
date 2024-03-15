@@ -31,7 +31,7 @@ export default function CreateItem() {
    
     try {
       const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/itemCategory/status/ACTIVE`)
-      console.log(res.data);
+      // console.log(res.data);
       setCategory(res.data)
     } catch (error) {
       
@@ -47,10 +47,27 @@ export default function CreateItem() {
     if(data.item_name !== '' && data.item_category_id !== '' && data.item_measure_unit !== ''){
       try {
         const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/item/add` , data)
-        console.log(res.data);      
+        // console.log(res.data);
+        if(res.status === 200 || res.status === 201){
+          alert('Item Added Successfully');
+          ResetHandler()
+      }
         
       } catch (error) {
-        
+        if(error.response.status === 409){
+          alert('Item Already Exist')
+      }else if (error.response.status === 400){
+          alert('Item Not Added')
+      }else if (error.response.status === 500){
+          alert('Internal Server Error')
+      }else if (error.response.status === 404){
+          alert('Item Not Found')
+      }else if (error.response.status === 403){
+          alert('Forbidden')
+      }
+      else if (error.response.status === 401){
+          alert('Unauthorized')
+      }
       }
     }
   }

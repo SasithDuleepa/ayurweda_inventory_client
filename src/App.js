@@ -31,9 +31,17 @@ import TransferRequest from './transfer/transfer request/transferRequest';
 import Transfer from './transfer/transfer/transfer';
 
 import AddSupplier from './supplier/add supplier/addSupplier';
+import UpdateSupplier from './supplier/update supplier/updateSupplier';
+
+
 
 import AddItemCategory from './item category/add item category/addItemCategory';
 import UpdateItemCategory from './item category/update item category/updateItemCategory';
+
+import AddStores from './stores/addStores/addStores';
+import UpdateStores from './stores/updateStores/updateStores';
+
+
 
 import SideMenu from './sidebar/side_menu/side_menu';
 
@@ -76,10 +84,13 @@ function App() {
 
 
         <Route element={<AddSupplier/>} path="/supplier/add"/>
-        <Route element={<AddSupplier/>} path="/supplier/update"/>
+        <Route element={<UpdateSupplier/>} path="/supplier/update"/>
 
         <Route element={<AddItemCategory/>} path="/item category/add"/>
         <Route element={<UpdateItemCategory/>} path="/item category/update"/>
+
+        <Route element={<AddStores/>} path="/stores/add"/>
+        <Route element={<UpdateStores/>} path="/stores/update"/>
 
       </Routes>
       </div>
