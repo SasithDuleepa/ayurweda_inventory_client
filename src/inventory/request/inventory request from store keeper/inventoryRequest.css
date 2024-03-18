@@ -1,0 +1,204 @@
+.InventoryRequest-request-div {}
+
+
+.InventoryRequest-request-info-div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+
+
+    div {
+        display: flex;
+        width: 600px;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+.InventoryRequest-request-search-div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 50px;
+    padding: 50px 10px;
+
+}
+
+.InventoryRequest-search {
+    display: flex;
+    align-items: start;
+    gap: 20px;
+    width: 600px;
+    justify-content: space-between;
+}
+
+.InventoryRequest-search-main {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.InventoryRequest-search-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 400px;
+}
+
+.InventoryRequest-search-input {
+    width: 100%;
+}
+
+.InventoryRequest-search-img-show {
+    width: 15px;
+    height: 15px;
+    transform: rotate(180deg);
+    transition: 0.3s;
+}
+
+.InventoryRequest-search-img-hide {
+
+    width: 15px;
+    height: 15px;
+    transition: 0.3s;
+}
+
+.InventoryRequest-search-result-div-show {
+    width: 400px;
+    height: 200px;
+    background-color: aqua;
+    position: absolute;
+    margin-top: 29px;
+    display: flex;
+    flex-direction: column;
+}
+
+.InventoryRequest-search-result-div-hide {
+    display: none;
+}
+
+
+
+
+
+
+
+.InventoryRequest-request-table-div {}
+
+.InventoryRequest-request-btn-div {}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.InventoryRequest-job-preview-div {
+    position: absolute;
+    top: 0%;
+    background-color: aliceblue;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.InventoryRequest-transfer-preview-div {
+    position: absolute;
+    top: 0%;
+    background-color: aliceblue;
+    width: 100%;
+    min-height: 100vh;
+}
+
+
+
+
+
+
+.InventoryRequest-pos-preview-div {
+    position: absolute;
+    top: 0%;
+    background-color: aliceblue;
+    width: 93%;
+    min-height: 100vh;
+}
+
+.InventoryRequest-pos-preview-info {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+
+
+
+    div {
+        width: 600px;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.InventoryRequest-pos-preview-table {
+    margin: 20px auto;
+}
+
+.InventoryRequest-pos-preview-btn {
+    display: flex;
+    justify-content: right;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.InventoryRequest-items-select-div {
+    position: absolute;
+    top: 0%;
+    background-color: aliceblue;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.InventoryRequest-preview-hide {
+    position: absolute;
+    top: 0%;
+    background-color: aliceblue;
+    width: 100%;
+    min-height: 100vh;
+    display: none;
+}

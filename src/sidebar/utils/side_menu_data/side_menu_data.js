@@ -38,11 +38,11 @@ const sytemsList = [
             },{
             _id: "2.3",
             name: "INVENTORY REQUEST",
-            url: "/inventory/store-keeper-release"
+            url: "/inventory/request"
             },{
             _id: "2.4",
             name: "INVENTORY RELEASE",
-            url: "/inventory/store-manager-release"
+            url: "/inventory/store-keeper-release"
             },{
             _id: "2.5",
             name: "INVENTORY DISPOSE",

@@ -6,88 +6,44 @@ import axios from 'axios'
 
 export default function AddSupplier(props) {
 
-  // const [id,setId] = useState(IdGenerate('SUPPLIER'))
-  // const [name,setName] = useState('')
-  // const [nic,setNic] = useState('')
-  // const [address,setAddress] = useState('')
-  // const [contact,setContact] = useState('')
+  const currentDate = new Date(); // Get the current date and time
+  const formattedDate = currentDate.toISOString(); // Format the date to ISO string
+  const [userId,setUserId] = useState('USER-000000');
 
-  // const [userId, setUserId] = useState('USER-0001')
-  // const [date, setDate] = useState(
-  //   new Date().toLocaleDateString('en-GB',{
-  //     year: 'numeric',
-  //     month: '2-digit',
-  //     day : '2-digit',
-  //     hour : '2-digit',
-  //     minute: '2-digit',
-  //     second:'2-digit'
-  //   })
-  // )
+
+  const [data,setData] = useState({
+    supplier_id:IdGenerate('SUPPLIER'),
+    supplier_name:'',
+    supplier_nic:'',
+    supplier_address:'',
+    supplier_contact_no:'',
+    
+  })
+
 
   const AddHandler = async() =>{
-  //   if(name === '' || nic === '' || address === '' || contact === ''){
-  //     window.alert('Please fill all the fields');
-  // }else{
-  //     const data = {
-  //         Supplier_id:id,
-  //         Supplier_name:name,
-  //         Supplier_nic:nic,
-  //         Supplier_address:address,
-  //         Supplier_contact:contact,
-          
-  //         Supplier_added_user_id:userId,
-  //         Supplier_added_date:date
-  //     }
-  //     try {
-  //         const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/supplier/add`, data)
-  //         console.log(res.data);
-  //         if(res.status === 201){
-  //             window.alert('Supplier added successfully');
-  //             setId(IdGenerate('SUPPLIER'));
-  //             setName('')
-  //             setNic('')
-  //             setAddress('')
-  //             setContact('')
-              
-  //             setUserId('')
-  //             setDate(new Date().toLocaleDateString('en-GB', {
-  //               year: 'numeric',
-  //               month: '2-digit',
-  //               day: '2-digit',
-  //               hour: '2-digit',
-  //               minute: '2-digit',
-  //               second: '2-digit',
-  //               hour12: false
-  //           }
-  //       ))
-  //         props.close()
-  //      }
-  //       } catch (error) {
-  //         if(error.response.status === 500){
-  //             window.alert('Internal server error');
-  //             console.log(error);
-  //         }else if(error.response.status === 400){
-  //             window.alert('Bad request');
-  //             console.log(error);
-  //         }else if(error.response.status === 404){
-
-  //         }
-  //     }
-  // }
+    const Data ={
+      supplier_id:data.supplier_id,
+      supplier_name:data.supplier_name,
+      supplier_nic:data.supplier_nic,
+      supplier_address:data.supplier_address,
+      supplier_contact_no:data.supplier_contact_no,
+      supplier_update_date:formattedDate,
+      supplier_update_user_id:userId
+    }
 
   }
 
   const CancelHandler = () =>{
-    // setId(IdGenerate('CSUPPLIER'))
-    // setName('')
-    // setNic('')
-    // setAddress('')
-    // setContact('')
-    
-    // setUserId('')
-    // setDate('')
+    setData({
+      supplier_id:IdGenerate('SUPPLIER'),
+      supplier_name:'',
+      supplier_nic:'',
+      supplier_address:'',
+      supplier_contact_no:'',
+      
+    })
 
-    // props.close()
 
   }
   return (
@@ -101,31 +57,51 @@ export default function AddSupplier(props) {
           <div className='AddSupplier-form-div'>
             <label className='AddSupplier-form-label label'>Supplier ID</label>
             <label className='label'>:</label>
-            <input className='AddSupplier-form-input form-input' type='text' value={''} onChange={''} disabled/>
+            <input className='AddSupplier-form-input form-input' type='text' value={data.supplier_id} onChange={''} disabled/>
           </div>
 
           <div className='AddSupplier-form-div'>
             <label className='AddSupplier-form-label label'>Supplier Name</label>
             <label className='label'>:</label>
-            <input className='AddSupplier-form-input form-input' type='text' value={''} onChange={''} disabled/>
+            <input className='AddSupplier-form-input form-input' type='text' value={data.supplier_name} onChange={(e)=>{
+              setData({
+                ...data,
+                supplier_name:e.target.value
+              })
+            }} />
           </div>
 
           <div className='AddSupplier-form-div'>
             <label className='AddSupplier-form-label label'>Supplier NIC</label>
             <label className=' label'>:</label>
-            <input className='AddSupplier-form-input form-input' type='text' value={''} onChange={''} disabled/>
+            <input className='AddSupplier-form-input form-input' type='text' value={data.supplier_nic} onChange={(e)=>{
+              setData({
+                ...data,
+                supplier_nic:e.target.value
+              })
+            }} />
           </div>
 
           <div className='AddSupplier-form-div'>
             <label className='AddSupplier-form-label label'>Supplier Address</label>
             <label className='label'>:</label>
-            <input className='AddSupplier-form-input form-input' type='text' value={''} onChange={''} disabled/>
+            <input className='AddSupplier-form-input form-input' type='text' value={data.supplier_address} onChange={(e)=>{
+              setData({
+                ...data,
+                supplier_address:e.target.value
+              })
+            }} />
           </div>
 
           <div className='AddSupplier-form-div'>
             <label className='AddSupplier-form-label label'>Supplier Contact No</label>
             <label className='label'>:</label>
-            <input className='AddSupplier-form-input form-input' type='text' value={''} onChange={''} disabled/>
+            <input className='AddSupplier-form-input form-input' type='text' value={data.supplier_contact_no} onChange={(e)=>{
+              setData({
+                ...data,
+                supplier_contact_no:e.target.value
+              })
+            }} />
           </div>
 
           

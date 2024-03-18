@@ -264,7 +264,7 @@ useEffect(()=>{
 
   return (
     <div className='StoreKeeperRelease'>
-            <p className='title'>Inventory Store Keeper Release</p>
+            <p className='title'>Inventory Release</p>
 
         <div className='line'></div>
         <div className='container'>

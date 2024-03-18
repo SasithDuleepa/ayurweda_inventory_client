@@ -2,12 +2,13 @@ import './App.css';
 import { BrowserRouter as Router, Route,Routes, BrowserRouter } from "react-router-dom";
 
 
-import StoreManagerRelease from './inventory/request/store manager/StoreManagerRelease';
 
 import StoreKeeperRelease from './inventory/release/store keeper/StoreKeeperRelease';
 import InventoryPurchase from './inventory/inventory purchase/inventoryPurchase';
 import InventoryStore from './inventory/inventory store/inventoryStore';
 import InventoryDispose from './inventory/disposal/inventoryDispose';
+
+import InventoryRequest from './inventory/request/inventory request from store keeper/inventoryRequest';
 
 
 import AddCustomer from './customer/add customer/addCustomer';
@@ -59,8 +60,9 @@ function App() {
         <Route element={<InventoryPurchase/>} path="/inventory/purchase"/>
         <Route element={<InventoryStore/>} path="/inventory/store"/>
         <Route element={<StoreKeeperRelease/>} path="/inventory/store-keeper-release"/>
-        <Route element={<StoreManagerRelease/>} path="/inventory/store-manager-release"/>
         <Route element={<InventoryDispose/>} path="/inventory/dispose"/>
+
+        <Route element={<InventoryRequest/>} path='/inventory/request' />
 
 
         <Route element={<Pos/>} path="/pos"/>

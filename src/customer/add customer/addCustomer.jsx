@@ -4,6 +4,10 @@ import IdGenerate from '../../utils/id_generate';
 import axios from 'axios';
 
 export default function AddCustomer(props) {
+    const currentDate = new Date(); // Get the current date and time
+  const formattedDate = currentDate.toISOString(); // Format the date to ISO string
+  const [userId,setUserId] = useState('USER-000000');
+
     const [id,setId] = useState(IdGenerate('CUSTOMER'));
     const [name,setName] = useState('');
     const [nic,setNic] = useState('');
@@ -13,19 +17,7 @@ export default function AddCustomer(props) {
     const [customerType,setCustomertype] = useState('');
     const [regNo,setRegNo] = useState('');
 
-    const [userId,setUserId] = useState('USER-0001');
-    const [date,setDate] = useState(
-        new Date().toLocaleDateString('en-GB', {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit',
-            hour12: false
-        }
-        )
-    );
+
 
 
     const [regNoView,setRegNoView] = useState(false);
@@ -49,17 +41,18 @@ export default function AddCustomer(props) {
                 customer_name:name,
                 customer_nic:nic,
                 customer_address:address,
-                customer_contact:contact,
+                customer_contact_no:contact,
                 customer_email:email,
                 customer_type:customerType,
-                customer_reg_no:regNo,
-                customer_added_user_id:userId,
-                customer_added_date:date
+                reg_no:regNo,
+                customer_update_user_id:userId,
+                customer_update_date:formattedDate
+
             }
             try {
                 const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/customer/add`, data)
                 console.log(res.data);
-                if(res.status === 201){
+                if(res.status === 201 || 200){
                     window.alert('Customer added successfully');
                     setId(IdGenerate('CUSTOMER'));
                     setName('');
@@ -69,18 +62,7 @@ export default function AddCustomer(props) {
                     setEmail('');
                     setCustomertype('');
                     setRegNo('');
-                    // setUserId('');
-                    setDate(new Date().toLocaleDateString('en-GB', {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit',
-            hour12: false
-        }
-        ));
-                    // props.close()
+                    props.close()
                 
                 }
             } catch (error) {
@@ -109,7 +91,7 @@ export default function AddCustomer(props) {
         setCustomertype('');
         setRegNo('');
         setUserId('');
-        setDate('');
+
 
         props.close()
     

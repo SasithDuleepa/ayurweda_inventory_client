@@ -12,6 +12,10 @@ import TopNaw from '../../components/top nav/topNaw';
 
 export default function Pos() {
 
+  const currentDate = new Date(); // Get the current date and time
+  const formattedDate = currentDate.toISOString(); // Format the date to ISO string
+  const [userId,setUserId] = useState('USER-000000');
+
 
 
 //notification 
@@ -26,7 +30,7 @@ export default function Pos() {
   const[invoiceNo,setInvoiceNo] = useState(IdGenerate('INVOICE'));
   const[branch,setBranch] = useState('BRANCH-0001');
   const[date,setDate] = useState();
-  const[userId,setUserId] = useState('USER-0001');
+
   const [userName, setUserName] = useState('USER-0001');
 
 
@@ -99,7 +103,7 @@ export default function Pos() {
     setCustomerName(e.target.value)
     if(e.target.value !== ''){
       try {
-        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/customer/search/${e.target.value}`)
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/customer/search/name/contact/status/${e.target.value}/ACTIVE`)
         console.log(res.data)
         setCustomers(res.data)
       } catch (error) {
@@ -110,7 +114,7 @@ export default function Pos() {
   const CustomerSelectHandler = async (customer) => {
     setCustomerName(customer.customer_name)
     setCustomerId(customer.customer_id)
-    setDropDown2('pos-info-customer-search-content-hide')
+    setDropDown2('pos-info-customer-search-content-hide');
   
   }
 
@@ -118,17 +122,59 @@ export default function Pos() {
 
 
 
-  const EnterHandler = () => {
+  const EnterHandler =async () => {
     const data = {
-      invoice_id : invoiceNo,
+      pos_id : invoiceNo,
       branch_id : branch,
-      date : date,
-      user_id:userId,
+      pos_date : formattedDate,
+      pos_user_id:userId,
+      pos_type:'BRANCH-POS',
       customer_id:customerId,
       customer_type:'registered',
+      pos_status:"CLOSED",
       item_data : tableData,
     }
-    console.log(data)
+
+
+    try {
+      const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/pos/addPos`, data);
+      // console.log(res.data)
+      if(res.status === 200 || res.status === 201){
+        alert('Bill Added Successfully');
+        setTableData([])
+        setCustomerName('')
+        setCustomerId('')
+        setInvoiceNo(IdGenerate('INVOICE'))
+        setBranch('BRANCH-0001')
+        setDate('')
+        setDropDown1Results([])
+    }
+    } catch (error) {
+      if(error.response.status === 409){
+        alert('Bill Already Exist')
+    }else if (error.response.status === 400){
+        alert('Bill Not Added')
+    }else if (error.response.status === 500){
+        alert('Internal Server Error')
+    }else if (error.response.status === 404){
+        alert('Bill Not Found')
+    }else if (error.response.status === 403){
+        alert('Forbidden')
+    }
+    else if (error.response.status === 401){
+        alert('Unauthorized')
+    }
+    }
+  }
+  const CancelHandler = () => {
+    setTableData([])
+    setCustomerName('')
+    setCustomerId('')
+    setInvoiceNo(IdGenerate('INVOICE'))
+    setBranch('BRANCH-0001')
+    setDate('')
+    setDropDown1Results([])
+  
   }
 
   //customer close
@@ -142,7 +188,8 @@ export default function Pos() {
   return (
     <div className='pos'>
 
-      <TopNaw moduleName ='Point of Sale' userName={userName}/>
+      {/* <TopNaw moduleName ='Point of Sale' userName={userName}/> */}
+      <p className='title'>Sale</p>
         <div className='container'>
 
             <div className='pos-info-div'>
@@ -152,7 +199,7 @@ export default function Pos() {
                 <input  className='pos-info-div-form-input form-input' type='text' value={invoiceNo} onChange={(e)=>setInvoiceNo(e.target.value)} placeholder='invoice'/>
               </div>
 
-              <div className='pos-info-div-form'>
+              {/* <div className='pos-info-div-form'>
                 <label className='pos-info-div-form-label label'>Branch</label>
                 <label className='label'>:</label>
                 <select className='pos-info-div-form-input form-input'>
@@ -161,19 +208,7 @@ export default function Pos() {
                   <option>Branch 2</option>
                   <option>Branch 3</option>
                 </select>
-              </div>
-
-              <div className='pos-info-div-form'>
-                <label className='pos-info-div-form-label label'>Date</label>
-                <label className='label'>:</label>
-                <input  className='pos-info-div-form-input form-input' value={date} onChange={(e)=>setDate(e.target.value)} type='datetime-local' placeholder='invoice'/>
-              </div>
-
-              <div className='pos-info-div-form'>
-                <label className='pos-info-div-form-label label'>User</label>
-                <label className=' label'>:</label>
-                <input  className='pos-info-div-form-input form-input' type='text'  placeholder='user'/>
-              </div>
+              </div> */}
 
               <div className='pos-info-div-form'>
                 <label className='pos-info-div-form-label label'>Customer Type</label>
@@ -285,7 +320,7 @@ export default function Pos() {
 
 
             <div className='pos-btn-div'>
-              <button className='btn-cancel'>cancel</button>
+              <button className='btn-cancel' onClick={CancelHandler}>cancel</button>
               <button onClick={(e)=>EnterHandler()} className='btn-submit'>enter</button>
             </div>
 
