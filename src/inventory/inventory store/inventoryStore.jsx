@@ -17,8 +17,8 @@ export default function InventoryStore() {
     const PoSearchHandler =async (e) => {
         if(e.target.value !== ''){
             try {
-                const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/purchase/Search/${e.target.value}/RECEIVED`)  
-                // console.log(res.data);
+                const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/purchase_order/search/id/status/${e.target.value}/WAITING`)  
+                console.log(res.data);
                 setPo(res.data)
             } catch (error) {
                 

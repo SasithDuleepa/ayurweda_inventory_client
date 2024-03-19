@@ -61,6 +61,7 @@ export default function Pos() {
   }
   const DropDown1SelectHandler =async (inventory_id) =>{
     console.log(inventory_id)
+    setDropDown1('pos-dropdown-content-hide')
     try {
       const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/inventory/inventory/InventoryBatchId/${inventory_id}`)  
       console.log(res.data)
@@ -185,6 +186,9 @@ export default function Pos() {
   const CustomerCloseHandler = () =>{
     setCustomerShow(false)
   }
+
+  
+  
   return (
     <div className='pos'>
 
@@ -263,6 +267,7 @@ export default function Pos() {
                       <button key={index} onClick={()=>DropDown1SelectHandler(item.inventory_batch_id )} className='pos-dropdown-select-btn'>
                         <p className='pos-dropdown-select-btn-p1'>{item.item_name}</p>
                         <p className='pos-dropdown-select-btn-p2'>{item.inventory_purchase_date}</p>
+                        <p className='pos-dropdown-select-btn-p3'>{item.shadow_qty}</p>
                       </button>
                     ))
                   :null}
@@ -294,14 +299,16 @@ export default function Pos() {
                       <td>{item.item_name}</td>
                       <td>{item.item_available_qty}</td>
                       <td>{item.item_price}</td>
-                      {/* <td>{item.item_quantity}</td> */}
-                      <td><input value={item.item_quantity} 
-                      onChange={(e)=>{
-                        let temp = [...tableData]
-                        temp[index].item_qty= e.target.value
-                        temp[index].item_total = temp[index].item_qty * temp[index].item_price
-                        setTableData(temp)
-                      }}/></td>
+
+                      <td><input type='number' value={item.item_quantity} className={
+                        item.item_available_qty <item.item_qty ? 'pos-table-input-red':'pos-table-input'
+                      }
+                      onChange={(e) => {
+                        let temp = [...tableData];
+                        temp[index].item_qty = parseFloat(e.target.value); // Convert to float
+                        temp[index].item_total = temp[index].item_qty * temp[index].item_price;
+                        setTableData(temp);
+                    }}/></td>
                       <td>{item.item_total}</td>
                       {/* <td>{item.action}</td> */}
                       <td><button onClick={()=>{

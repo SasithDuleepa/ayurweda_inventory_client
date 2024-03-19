@@ -37,7 +37,7 @@ export default function InventoryPurchase() {
     const PoSearchHandler =async (e) => {
         if(e.target.value !== ''){
             try {
-                const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/purchase/search/${e.target.value}/PENDING`)  
+                const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/purchase_order/search/id/status/${e.target.value}/WAITING`)  
                 console.log(res.data);
                 setPo(res.data)
             } catch (error) {
@@ -151,10 +151,10 @@ export default function InventoryPurchase() {
                         <div className={PoSearchShow ? 'InventoryPurchase-po-search-results-div-show' : 'InventoryPurchase-po-search-results-div-hide'}>
                             {Po.length>0 ? Po.map((item,index)=>(
                                 <button className='InventoryPurchase-po-search-results-btn' onClick={()=>{
-                                    GetPoData(item.purchase_order_id);
+                                    GetPoData(item.po_id);
                                     setPoSearchShow(false);
 
-                                }} key={index}>{item.purchase_order_id}</button>
+                                }} key={index}>{item.po_id}</button>
                             )):null}
                         </div>
                     </div>

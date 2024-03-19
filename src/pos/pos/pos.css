@@ -217,6 +217,12 @@
 
 .pos-dropdown-select-btn-p2 {
     line-height: 0px;
+    background-color: aqua;
+    width: 600px;
+}
+
+.pos-dropdown-select-btn-p3 {
+    line-height: 0px;
 }
 
 
@@ -227,6 +233,17 @@
 
 
 .pos-table-div {}
+
+.pos-table-input-red {
+    border: 2px solid red;
+
+    &:focus {
+        outline: 2px solid red;
+    }
+
+}
+
+.pos-table-input {}
 
 
 

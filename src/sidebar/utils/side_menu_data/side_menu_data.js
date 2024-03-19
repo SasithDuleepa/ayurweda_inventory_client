@@ -16,7 +16,14 @@ const sytemsList = [
             icon: <FiFileText/>,
             expandIcon: <FiChevronDown />,
             
-            },
+            },{
+                _id: "1.2",
+                name: "POS BILLS ",
+                url: "/pos/bill",
+                icon: <FiFileText/>,
+                expandIcon: <FiChevronDown />,
+                
+                }
 
         ]
     },
