@@ -9,6 +9,7 @@ export default function InventoryRequest() {
     const formattedDate = currentDate.toISOString(); // Format the date to ISO string
     const [userId,setUserId] = useState('USER-000000');
     const[inventoryRequestId,setInventoryRequestId] = useState(IdGenerate('INVOICE'));
+    const[requestDescription , setRequestDescription] = useState('')
     const[requestType,setRequestType]  = useState('')
 
     const[jobPreviewShow,setJobPreviewShow] = useState(false);
@@ -21,14 +22,7 @@ export default function InventoryRequest() {
     const[searchPosShow, setSearchPosShow] = useState(false);
     const[searchItemShow, setSearchItemShow] = useState(false);
 
-    const[tableData,setTableData] = useState([{
-        item_name:"",
-        item_inventory_batch_id:"",
-        available_qty:"",
-        qty:'',
-        measure_unit:'',
-
-    }]);
+    const[tableData,setTableData] = useState([]);
 
 
     //item request
@@ -128,6 +122,7 @@ export default function InventoryRequest() {
                     inventory_request_user_id:userId,
                     inventory_request_date:formattedDate,
                     inventory_request_status:'',
+                    inventory_request_description:requestDescription,
                     inventory_request_items:tableData
                 });
             } catch (error) {
@@ -150,25 +145,11 @@ export default function InventoryRequest() {
                     <input  className='form-input' value={inventoryRequestId} onChange={(e)=>setInventoryRequestId(e.target.value)}/>
                 </div>
                 <div>
-                    <label className='label'> Invoice Name</label>
+                    <label className='label'>Request Description</label>
                     <label>:</label>
-                    <input  className='form-input'/>
+                    <textarea  className='form-input' value={requestDescription} onChange={(e)=>setRequestDescription(e.target.value)} placeholder='Inventory request description'/>
                 </div>
-                <div>
-                    <label className='label'> Invoice Name</label>
-                    <label>:</label>
-                    <input  className='form-input'/>
-                </div>
-                <div>
-                    <label className='label'> Invoice Name</label>
-                    <label>:</label>
-                    <input  className='form-input'/>
-                </div>
-                <div>
-                    <label className='label'> Invoice Name</label>
-                    <label>:</label>
-                    <input  className='form-input'/>
-                </div>
+                
 
             </div>
 
@@ -179,12 +160,12 @@ export default function InventoryRequest() {
                     <label className='label'>:</label>
                     <div className='InventoryRequest-search-main'>
                         <button  className='InventoryRequest-search-btn' onClick={()=>setSearchItemShow(!searchItemShow)}>
-                            <input  className='InventoryRequest-search-input' onChange={(e)=>ItemSearchHandler(e)}/>
+                            <input  className='InventoryRequest-search-input' onChange={(e)=>ItemSearchHandler(e)} placeholder='Item Name'/>
                             <img src={Arrow}  className={searchItemShow? 'InventoryRequest-search-img-show':'InventoryRequest-search-img-hide'}/>
                         </button>
                         <div className={searchItemShow?'InventoryRequest-search-result-div-show':'InventoryRequest-search-result-div-hide'}>
                             {items.length > 0 ? items.map((item,index)=>(
-                                <button key={index} onClick={()=>ItemSelectHandler(item.inventory_batch_id )}>{item.item_name}{item.inventory_purchase_date}</button> )):null}
+                                <button key={index} onClick={()=>{setSearchItemShow(!searchItemShow);ItemSelectHandler(item.inventory_batch_id );}}>{item.item_name}{item.inventory_purchase_date}</button> )):null}
                         </div>
                     </div>
                 </div>
@@ -194,7 +175,7 @@ export default function InventoryRequest() {
                     <label className='label'>:</label>
                     <div className='InventoryRequest-search-main'>
                         <button  className='InventoryRequest-search-btn' onClick={()=>setSearchJobShow(!searchJobShow)}>
-                            <input  className='InventoryRequest-search-input'/>
+                            <input  className='InventoryRequest-search-input' placeholder='Job Id'/>
                             <img src={Arrow}  className={searchJobShow? 'InventoryRequest-search-img-show':'InventoryRequest-search-img-hide'}/>
                         </button>
                         <div className={searchJobShow?'InventoryRequest-search-result-div-show':'InventoryRequest-search-result-div-hide'}></div>
@@ -262,13 +243,18 @@ export default function InventoryRequest() {
                                 
                                 }} /></td>
                                 <td>{item.measure_unit}</td>
-                            </tr> )):null}
+                            </tr> )):
+                            <tr>
+                                <td colSpan={5}>no item</td>
+                            </tr>}
                     </tbody>
                 </table>
-                <button className='btn-submit' onClick={()=>RequestHandler()}>Request</button>
-                <button className='btn-cancel'>Save</button>
+                
             </div>
-            <div className='InventoryRequest-request-btn-div'></div>
+            <div className='InventoryRequest-request-btn-div'>
+                <button className='btn-submit' onClick={()=>RequestHandler()}>Request</button>
+                <button className='btn-cancel'>Cancel</button>
+            </div>
         </div>
     </div>
 

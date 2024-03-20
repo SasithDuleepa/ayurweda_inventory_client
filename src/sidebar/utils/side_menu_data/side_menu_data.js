@@ -4,7 +4,7 @@ const sytemsList = [
     {
         _id: "1",
         name: "POS",
-        url: "/pos",
+        url: "/pos/pos",
         icon: <FiDollarSign />,
         expandIcon: <FiChevronDown />,
         
@@ -12,7 +12,7 @@ const sytemsList = [
             {
             _id: "1.1",
             name: "POS ",
-            url: "/pos",
+            url: "/pos/pos",
             icon: <FiFileText/>,
             expandIcon: <FiChevronDown />,
             
