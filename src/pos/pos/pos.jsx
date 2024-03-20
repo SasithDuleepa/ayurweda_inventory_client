@@ -18,6 +18,14 @@ export default function Pos() {
 
 
 
+  const [total,setTotal] = useState(0);
+  const [discount,setDiscount] = useState(0);
+  const [netTotal,setNetTotal] = useState(0);
+  const [cash,setCash] = useState(0);
+  const [change,setChange] = useState(0);
+
+
+
 //notification 
   setInterval(() => {
     socket.on('statusChange', (data) => {
@@ -133,6 +141,11 @@ export default function Pos() {
       customer_id:customerId,
       customer_type:'registered',
       pos_status:"CLOSED",
+      pos_sub_total:total,
+      pos_discount:discount,
+      pos_net_total:netTotal,
+      pos_cash:cash,
+      pos_change:change,
       item_data : tableData,
     }
 
@@ -149,6 +162,12 @@ export default function Pos() {
         setBranch('BRANCH-0001')
         setDate('')
         setDropDown1Results([])
+        setTotal(0)
+        setDiscount(0)
+        setNetTotal(0)
+        setCash(0)
+        setChange(0)
+
     }
     } catch (error) {
       if(error.response.status === 409){
@@ -175,6 +194,12 @@ export default function Pos() {
     setBranch('BRANCH-0001')
     setDate('')
     setDropDown1Results([])
+    setTotal(0)
+        setDiscount(0)
+        setNetTotal(0)
+        setCash(0)
+        setChange(0)
+        
   
   }
 
@@ -189,11 +214,7 @@ export default function Pos() {
 
 
   //total
-  const [total,setTotal] = useState(0);
-  const [discount,setDiscount] = useState(0);
-  const [netTotal,setNetTotal] = useState(0);
-  const [cash,setCash] = useState(0);
-  const [change,setChange] = useState(0);
+
     useEffect(() => {
       let total = 0;
       tableData.forEach((item) => {

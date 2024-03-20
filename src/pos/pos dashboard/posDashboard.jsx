@@ -65,7 +65,7 @@ export default function PosDashboard() {
                                     <td>{index+1}</td>
                                     <td>{bill.pos_id}</td>
                                     <td>{bill.pos_date}</td>
-                                    <td>{bill.total}</td>
+                                    <td>{bill.pos_net_total}</td>
                                 </tr>
                             )
                         }):null}

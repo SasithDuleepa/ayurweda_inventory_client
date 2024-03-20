@@ -18,12 +18,60 @@
     justify-content: space-between;
     align-items: start;
     width: 500px;
+    /* border: 1px solid rgba(82, 82, 82, 0.598); */
+    padding: 5px 10px;
 }
 
 
 .BillPreview-bill-items-div {
     margin: 20px auto;
 }
+
+
+
+
+
+
+
+
+
+
+.BillPreview-total-div {
+    display: flex;
+    justify-content: end;
+}
+
+.BillPreview-total-div-main {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px 0px;
+}
+
+.BillPreview-total-info {
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+
+    p {
+        font-size: 16px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+        line-height: 0px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 
 .BillPreview-btn-div {
     display: flex;

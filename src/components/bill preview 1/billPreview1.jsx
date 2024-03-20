@@ -10,6 +10,12 @@ export default function BillPreview1(props) {
     const[customerName,setCustomerName] = useState('');
     const[billDate,setBillDate] = useState('');
 
+    const [total,setTotal] = useState(0);
+    const [discount,setDiscount] = useState(0);
+    const [netTotal,setNetTotal] = useState(0);
+    const [cash,setCash] = useState(0);
+    const [change,setChange] = useState(0);
+
     useEffect(()=>{
         GetBill(props.id)
     },[props])
@@ -24,6 +30,12 @@ export default function BillPreview1(props) {
                 setBillid(res.data[0].pos_id)
                 setCustomerName(res.data[0].customer_name)
                 setBillDate(res.data[0].pos_date)
+
+                setTotal(res.data[0].pos_sub_total)
+                setDiscount(res.data[0].pos_discount)
+                setNetTotal(res.data[0].pos_net_total)
+                setCash(res.data[0].pos_cash)
+                setChange(res.data[0].pos_change)
             } catch (error) {
                 
             }
@@ -88,6 +100,31 @@ export default function BillPreview1(props) {
 
                         </tbody>
                     </table>
+                </div>
+
+                <div className='BillPreview-total-div'>
+                    <div className='BillPreview-total-div-main'>
+                        <div className='BillPreview-total-info'>
+                            <p>Sub Total</p>
+                            <p>{total}</p>
+                        </div>
+                        <div className='BillPreview-total-info'>
+                            <p>Discount %</p>
+                            <p>{discount}</p>
+                        </div>
+                        <div className='BillPreview-total-info'>
+                            <p>Net Total</p>
+                            <p>{netTotal}</p>
+                        </div>
+                        <div className='BillPreview-total-info'>
+                            <p>Cash</p>
+                            <p>{cash}</p>
+                        </div>
+                        <div className='BillPreview-total-info'>
+                            <p>Change</p>
+                            <p>{change}</p>
+                        </div>
+                    </div>
                 </div>
 
 
