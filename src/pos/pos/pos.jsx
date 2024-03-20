@@ -187,6 +187,35 @@ export default function Pos() {
     setCustomerShow(false)
   }
 
+
+  //total
+  const [total,setTotal] = useState(0);
+  const [discount,setDiscount] = useState(0);
+  const [netTotal,setNetTotal] = useState(0);
+  const [cash,setCash] = useState(0);
+  const [change,setChange] = useState(0);
+    useEffect(() => {
+      let total = 0;
+      tableData.forEach((item) => {
+        total += item.item_total;
+      });
+      setTotal(total);
+    }
+    , [tableData]);
+
+    //net total
+    useEffect(() => {
+      setNetTotal(total - discount*total/100)
+    }
+    , [total,discount]);
+
+    //change
+    useEffect(() => {
+      setChange(cash - netTotal)
+    }
+    , [cash,netTotal]);
+
+
   
   
   return (
@@ -323,6 +352,35 @@ export default function Pos() {
                 </tbody>
 
               </table>
+
+
+            </div>
+
+            <div  className='pos-total-div'>
+              <div  className='pos-total-div-main'>
+              <div className='pos-total-sub-div'>
+                <p>Sub Total</p>
+                <p>{total}</p>
+              </div>
+              <div className='pos-total-sub-div'>
+                <p>Discount %</p>
+                <input type='number' value={discount} onChange={(e)=>setDiscount(e.target.value)}/>
+              </div>
+              <div className='pos-total-sub-div'>
+                <p>Net Total</p>
+                <p>{netTotal}</p>
+              </div>
+              <div className='pos-total-sub-div'>
+                <p>Cash</p>
+                <input type='number' value={cash} onChange={(e)=>setCash(e.target.value)}/>
+              </div>
+              <div className='pos-total-sub-div'>
+                <p>Change</p>
+                <p>{change}</p>
+              </div>
+
+              </div>
+              
             </div>
 
 

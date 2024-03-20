@@ -249,6 +249,53 @@
 
 
 
+
+
+
+.pos-total-div {
+
+    display: flex;
+    justify-content: end;
+
+}
+
+.pos-total-div-main {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    padding: 10px;
+    margin: 10px 0px;
+
+
+}
+
+.pos-total-sub-div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 300px;
+
+    p {
+        font-size: 18px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        line-height: 0px;
+    }
+
+    input {
+        height: 20px;
+        width: 100px;
+        background-color: var(--color-primary);
+        border: 2px solid rgb(141, 141, 141);
+        border-radius: 4px;
+    }
+}
+
+
+
+
+
+
 .pos-btn-div {
     display: flex;
     justify-content: end;

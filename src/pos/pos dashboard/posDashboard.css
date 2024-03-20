@@ -1,0 +1,31 @@
+.PosDashboard-div-1 {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 10px auto 30px auto;
+}
+
+
+
+
+.PosDashboard-div-2 {
+    max-height: 500px;
+    overflow-y: scroll;
+}
+
+.PosDashboard-div-2-date-div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 5px;
+    justify-content: end;
+
+    input {
+        width: 180px;
+        height: 28px;
+        background-color: var(--color-primary);
+        border: 2px solid rgb(141, 141, 141);
+        border-radius: 4px;
+    }
+}

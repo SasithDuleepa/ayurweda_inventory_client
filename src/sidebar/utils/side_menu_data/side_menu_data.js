@@ -23,6 +23,13 @@ const sytemsList = [
                 icon: <FiFileText/>,
                 expandIcon: <FiChevronDown />,
                 
+            },{
+                _id: "1.3",
+                name: "DASHBOARD ",
+                url: "/pos/pos-dashboard",
+                icon: <FiFileText/>,
+                expandIcon: <FiChevronDown />,
+                
                 }
 
         ]

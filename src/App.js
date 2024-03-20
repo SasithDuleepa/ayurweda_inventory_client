@@ -17,6 +17,7 @@ import ViewCustomer from './customer/view customer/viewCustomer';
 
 import Pos from './pos/pos/pos';
 import Bill from './pos/bills/bill';
+import PosDashboard from './pos/pos dashboard/posDashboard';
 
 
 import AddBranches from './branches/add branch/addBranches';
@@ -58,6 +59,7 @@ function App() {
 
         <Route element={<Pos/>} path="/pos/pos"/>
         <Route element={<Bill/>} path="/pos/bill"/>
+        <Route element={<PosDashboard/>} path="/pos/pos-dashboard"/>
 
         <Route element={<InventoryPurchase/>} path="/inventory/purchase"/>
         <Route element={<InventoryStore/>} path="/inventory/store"/>
