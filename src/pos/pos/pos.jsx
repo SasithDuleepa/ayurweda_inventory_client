@@ -97,7 +97,7 @@ export default function Pos() {
   //customer
   const [dropDown2, setDropDown2] = useState('pos-info-customer-search-content-hide');
   const[customerName, setCustomerName] = useState('');
-  const [customerId,setCustomerId] = useState('');
+  const [customerId,setCustomerId] = useState('CUSTOMER-0000');
   
   const DropDown2Handler = () =>{
     if(dropDown2 === 'pos-info-customer-search-content-hide'){

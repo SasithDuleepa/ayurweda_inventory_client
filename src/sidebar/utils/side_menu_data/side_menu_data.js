@@ -61,7 +61,11 @@ const sytemsList = [
             _id: "2.5",
             name: "INVENTORY DISPOSE",
             url: "/inventory/dispose"
-            }
+            },{
+                _id: "2.6",
+                name: "DASHBOARD",
+                url: "/inventory/dashboard"
+                }
         ],
 
         },{
@@ -206,6 +210,23 @@ const sytemsList = [
             _id: "9.2",
             name: "UPDATE STORE",
             url: "/stores/update",
+            }
+        ]
+    },{
+        _id: "11",
+        name: "REPORTS",
+        url: "/reports/item",
+        icon: <FiCheckSquare/>,
+        expandIcon: <FiChevronDown />,
+        features: [
+            {
+            _id: "9.1",
+            name: "ITEMS",
+            url: "/reports/item",
+            },{
+            _id: "9.2",
+            name: "CATEGORY",
+            url: "/reports/category",
             }
         ]
     }

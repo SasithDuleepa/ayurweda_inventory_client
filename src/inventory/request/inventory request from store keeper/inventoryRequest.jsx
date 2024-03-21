@@ -8,7 +8,7 @@ export default function InventoryRequest() {
     const currentDate = new Date(); // Get the current date and time
     const formattedDate = currentDate.toISOString(); // Format the date to ISO string
     const [userId,setUserId] = useState('USER-000000');
-    const[inventoryRequestId,setInventoryRequestId] = useState(IdGenerate('INVOICE'));
+    const[inventoryRequestId,setInventoryRequestId] = useState(IdGenerate('REQ'));
     const[requestDescription , setRequestDescription] = useState('')
     const[requestType,setRequestType]  = useState('')
 
@@ -121,7 +121,7 @@ export default function InventoryRequest() {
                     inventory_request_id:inventoryRequestId,
                     inventory_request_user_id:userId,
                     inventory_request_date:formattedDate,
-                    inventory_request_status:'',
+                    inventory_request_status:'PENDING',
                     inventory_request_description:requestDescription,
                     inventory_request_items:tableData
                 });

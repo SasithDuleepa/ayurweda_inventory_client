@@ -9,6 +9,7 @@ import InventoryStore from './inventory/inventory store/inventoryStore';
 import InventoryDispose from './inventory/disposal/inventoryDispose';
 
 import InventoryRequest from './inventory/request/inventory request from store keeper/inventoryRequest';
+import InventoryDashboard from './inventory/inventory dashboard/inventoryDashboard';
 
 
 import AddCustomer from './customer/add customer/addCustomer';
@@ -45,6 +46,10 @@ import AddStores from './stores/addStores/addStores';
 import UpdateStores from './stores/updateStores/updateStores';
 
 
+import ItemReports from './reports/item reports/itemReports';
+import CategoryReports from './reports/category reports/categoryReports';
+
+
 
 import SideMenu from './sidebar/side_menu/side_menu';
 
@@ -67,6 +72,7 @@ function App() {
         <Route element={<InventoryDispose/>} path="/inventory/dispose"/>
 
         <Route element={<InventoryRequest/>} path='/inventory/request' />
+        <Route element={<InventoryDashboard/>} path='/inventory/dashboard' />
 
 
         <Route element={<Pos/>} path="/pos"/>
@@ -97,6 +103,9 @@ function App() {
 
         <Route element={<AddStores/>} path="/stores/add"/>
         <Route element={<UpdateStores/>} path="/stores/update"/>
+
+        <Route element={<ItemReports/>} path="/reports/item"/>
+        <Route element={<CategoryReports/>} path="/reports/category"/>
 
       </Routes>
       </div>

@@ -1,0 +1,20 @@
+.inventoryDashboard-div-1 {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+
+
+
+
+.inventoryDashboard-div-2 {
+    margin: 30px 0px;
+}
+
+.inventoryDashboard-div-2-table-div {}
+
+
+.inventoryDashboard-div-3 {}

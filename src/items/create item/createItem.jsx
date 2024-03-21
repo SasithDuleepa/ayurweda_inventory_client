@@ -117,7 +117,7 @@ export default function CreateItem() {
               Data.item_category_id = e.target.value.split('/')[1]
               setData(Data)           
             }}>
-              <option value="">select category</option>
+              <option value="">{data.item_category_name === '' ?'select category' :data.item_category_name}</option>
               {category.length >0 ? category.map((category,index)=>{
                 return <option key={index} value={`${category.item_category_name}/${category.item_category_id}`}>{category.item_category_name}</option> 
               

@@ -1,13 +1,15 @@
-.StoreKeeperRelease{
+.StoreKeeperRelease {
     margin: auto 10px;
 }
-.StoreKeeperRelease-info-main-div{
+
+.StoreKeeperRelease-info-main-div {
     /* background-color: violet; */
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 }
-.StoreKeeperRelease-info-input-div{
+
+.StoreKeeperRelease-info-input-div {
     /* border: 1px solid black; */
     width: 600px;
     display: flex;
@@ -15,29 +17,86 @@
     justify-content: space-between;
     margin: 10px 0px;
 }
-.StoreKeeperRelease-info-input-label{}
-.StoreKeeperRelease-info-input{}
+
+.StoreKeeperRelease-info-input-label {}
+
+.StoreKeeperRelease-info-input {}
 
 
 
 
 
-.StoreKeeperRelease-search-main-div{
-    /* background-color: antiquewhite; */
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-.StoreKeeperRelease-search-div-select-input{
-    font-size: 16px;
-    border: none;
-    height: 22px;
+.StoreKeeperRelease-search-main-div {
     width: 100%;
+    margin-bottom: 200px;
+}
+
+.StoreKeeperRelease-search-select-div {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    gap: 20px;
+}
+
+.StoreKeeperRelease-search-div-select {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.StoreKeeperRelease-search-div-select-btn {
+    width: 600px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--color-primary);
+    border: 2px solid rgb(141, 141, 141);
+    border-radius: 4px;
+}
+
+.StoreKeeperRelease-search-div-select-input {
+    width: 100%;
+    height: 30px;
+    border: none;
     background-color: transparent;
-    
+
     &:focus {
-      outline: 0px solid #ddd;
-      }
+        outline: 0px;
+    }
+}
+
+.StoreKeeperRelease-search-results-div {
+    width: 600px;
+    position: absolute;
+    margin-top: 40px;
+    background-color: var(--color-primary);
+    height: 180px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+
+}
+
+.StoreKeeperRelease-search-results-btn {
+    width: 100%;
+    background-color: rgb(246, 243, 243);
+    border: none;
+
+    &:hover {
+        background-color: var(--color-secondary);
+    }
+}
+
+
+
+
+.StoreKeeperRelease-btn-main-div {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    gap: 10px;
+    margin-top: 20px;
 }
 
 
@@ -50,51 +109,7 @@
 
 
 
-
-
-
-.StoreKeeperRelease-input-main-div{
+.StoreKeeperRelease-input-main-div {
     margin-top: 50px;
     /* background-color: yellow; */
-}
-
-
-
-
-
-
-
-.StoreKeeperRelease-job-preview{
-    width: 99%;
-    height: 100vh;
-    background-color: rgba(247, 247, 247, 0.944);
-    position: absolute;
-    top: 0px;
-    z-index: 2;
-
-}
-.StoreKeeperRelease-job-select_item-title{
-    text-align: center;
-}
-.StoreKeeperRelease-job-preview-1{
-
-}
-
-
-
-
-
-
-
-
-.StoreKeeperRelease-job-select_item-preview{
-    width: 99%;
-    height: 100vh;
-    background-color: rgba(247, 247, 247, 0.944);
-    position: absolute;
-    top: 0px;
-    z-index: 3;
-}
-.StoreKeeperRelease-job-select_item-preview-1{
-
 }
