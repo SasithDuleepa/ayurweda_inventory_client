@@ -54,6 +54,10 @@ import CategoryReports from './reports/category reports/categoryReports';
 import SideMenu from './sidebar/side_menu/side_menu';
 
 
+
+import AdminRoutes from './auth/adminAuth';
+
+
 function App() {
   return (
     <div className='app'>
@@ -61,9 +65,15 @@ function App() {
       <div className='SideBar'><SideMenu/></div>
       <div className='App-content'>
       <Routes>
+      <Route element={<Pos/>} path="/pos/pos"/>
 
-        <Route element={<Pos/>} path="/pos/pos"/>
-        <Route element={<Bill/>} path="/pos/bill"/>
+      {/* <Route element={<AdminRoutes/>}>
+        
+
+      </Route> */}
+
+        
+      <Route element={<Bill/>} path="/pos/bill"/>
         <Route element={<PosDashboard/>} path="/pos/pos-dashboard"/>
 
         <Route element={<InventoryPurchase/>} path="/inventory/purchase"/>
@@ -106,6 +116,11 @@ function App() {
 
         <Route element={<ItemReports/>} path="/reports/item"/>
         <Route element={<CategoryReports/>} path="/reports/category"/>
+
+
+
+
+        
 
       </Routes>
       </div>

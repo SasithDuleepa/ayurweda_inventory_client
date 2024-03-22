@@ -50,9 +50,11 @@
 
 .side_menu_systems-system-details-nameIcon-icon {
     display: flex;
-    width: 35px;
-    margin-left: 18px;
-
+    justify-content: center;
+    width: 60px;
+    /* margin-left: 18px; */
+    margin-right: 10px;
+    /* background-color: yellowgreen */
 }
 
 .side_menu_systems-system-details-active .side_menu_systems-system-details-nameIcon-icon {
