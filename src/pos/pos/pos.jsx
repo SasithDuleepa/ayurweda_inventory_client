@@ -139,7 +139,6 @@ export default function Pos() {
       pos_user_id:userId,
       pos_type:'BRANCH-POS',
       customer_id:customerId,
-      customer_type:'registered',
       pos_status:"CLOSED",
       pos_sub_total:total,
       pos_discount:discount,
@@ -251,27 +250,6 @@ export default function Pos() {
                 <label className='pos-info-div-form-label label'>Invoice no.</label>
                 <label className=' label'>:</label>
                 <input  className='pos-info-div-form-input form-input' type='text' value={invoiceNo} onChange={(e)=>setInvoiceNo(e.target.value)} placeholder='invoice'/>
-              </div>
-
-              {/* <div className='pos-info-div-form'>
-                <label className='pos-info-div-form-label label'>Branch</label>
-                <label className='label'>:</label>
-                <select className='pos-info-div-form-input form-input'>
-                  <option>Select Branch</option>
-                  <option>Branch 1</option>
-                  <option>Branch 2</option>
-                  <option>Branch 3</option>
-                </select>
-              </div> */}
-
-              <div className='pos-info-div-form'>
-                <label className='pos-info-div-form-label label'>Customer Type</label>
-                <label className=' label'>:</label>
-                <select  className='pos-info-div-form-input form-input' >
-                  <option>Select Customer type</option>
-                  <option>Register</option>
-                  <option>Guest</option>
-                </select>
               </div>
 
               <div className='pos-info-div-form'>

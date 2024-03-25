@@ -6,6 +6,7 @@
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 15px;
+    margin-bottom: 20px;
 }
 
 .pos-info-div-form {
@@ -41,6 +42,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+
 }
 
 .pos-info-customer-search-btn {
@@ -110,7 +112,7 @@
 .pos-search-div {
     /* background-color: aqua; */
     width: 100%;
-    padding-bottom: 100px;
+    padding: 20px 0px 140px 0px;
 }
 
 .pos-search-div-sub {
@@ -232,7 +234,9 @@
 
 
 
-.pos-table-div {}
+.pos-table-div {
+    padding: 20px 0px;
+}
 
 .pos-table-input-red {
     border: 2px solid red;
@@ -240,6 +244,8 @@
     &:focus {
         outline: 2px solid red;
     }
+
+
 
 }
 
